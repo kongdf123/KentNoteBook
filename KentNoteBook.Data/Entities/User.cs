@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-	public class User
+	public class User : BaseEntity
 	{
 		[Key]
-		public Guid Id { get; set; }
+		public override Guid Id { get; set; }
 
-		[MaxLength(50)]
+		[MaxLength(50),Required]
 		public string Name { get; set; }
 
 		[MaxLength(30)]
 		public string NickName { get; set; }
 
-		[MaxLength(100)]
+		[MaxLength(100), Required]
 		public string Email { get; set; }
 
 		[MaxLength(150)]
@@ -24,5 +24,13 @@ namespace KentNoteBook.Data.Entities
 
 		[MaxLength(500)]
 		public string Discription { get; set; }
+
+		public bool IsActive { get; set; }
+
+		public Status Status { get; set; }
+
+
+		public List<UsersInRole> UsersInRoles { get; set; } = new List<UsersInRole>();
+
 	}
 }

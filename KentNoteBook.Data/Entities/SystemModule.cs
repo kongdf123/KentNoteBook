@@ -5,7 +5,7 @@ using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-	public class Role : BaseEntity
+	public class SystemModule : BaseEntity
 	{
 		[Key]
 		public override Guid Id { get; set; }
@@ -13,10 +13,12 @@ namespace KentNoteBook.Data.Entities
 		[MaxLength(50), Required]
 		public string Name { get; set; }
 
+		public int Level { get; set; }
+
 		public Status Status { get; set; }
 
 
-		public List<UsersInRole> UsersInRoles { get; set; } = new List<UsersInRole>();
+		public List<SystemAction> SystemActions { get; set; } = new List<SystemAction>();
 		public List<ModulesInRole> ModulesInRoles { get; set; } = new List<ModulesInRole>();
 	}
 }

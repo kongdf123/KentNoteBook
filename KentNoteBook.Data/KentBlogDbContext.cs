@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace KentNoteBook.Data
 {
-	public partial class KentBlogDbContext : DbContext
+	public partial class KentNoteBookDbContext : DbContext
 	{
-		public KentBlogDbContext(DbContextOptions<KentBlogDbContext> options) : base(options) { }
+		public KentNoteBookDbContext(DbContextOptions<KentNoteBookDbContext> options) : base(options) { }
 
 	}
 }
