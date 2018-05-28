@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace KentBlogSite.WebApp.Pages
+namespace KentNoteBook.WebApp.Pages
 {
-    public class AboutModel : PageModel
+    public class ContactModel : PageModel
     {
         public string Message { get; set; }
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            Message = "Your contact page.";
         }
     }
 }

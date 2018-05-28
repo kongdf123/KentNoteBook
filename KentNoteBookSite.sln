@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentBlogSite.Data", "KentBlogSite.Data\KentBlogSite.Data.csproj", "{98515875-314E-4824-A86E-FE29259F90AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBook.Data", "KentNoteBook.Data\KentNoteBook.Data.csproj", "{98515875-314E-4824-A86E-FE29259F90AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Data", "01-Data", "{17840A0F-AF22-48DC-A8E0-181F72EC74BC}"
 EndProject
@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Core", "02-Core", "{3149
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Application", "03-Application", "{C3B8477C-473D-4AD0-B80E-93AAE036EEC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentBlogSite.Infrastructure", "KentBlogSite.Infrastructure\KentBlogSite.Infrastructure.csproj", "{EB768D75-C88F-4BB7-8D96-C221674F3669}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBook.Infrastructure", "KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj", "{EB768D75-C88F-4BB7-8D96-C221674F3669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentBlogSite.WebApp", "KentBlogSite.WebApp\KentBlogSite.WebApp.csproj", "{5267F474-22B9-4F94-8337-974A2515863A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBook.WebApp", "KentNoteBook.WebApp\KentNoteBook.WebApp.csproj", "{5267F474-22B9-4F94-8337-974A2515863A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

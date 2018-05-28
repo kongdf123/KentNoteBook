@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "KentBlogSite.WebApp": {
+    "KentNoteBook.WebApp": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

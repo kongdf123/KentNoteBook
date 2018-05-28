@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KentBlogSite.Data
+namespace KentNoteBook.Infrastructure
 {
     public class Class1
     {
