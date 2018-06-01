@@ -1,0 +1,14 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+$enable-rounded:            false;
+
+$moderate-blue:    #438eb9;
+
+$theme-colors: ();
+$theme-colors: map-merge((
+  "moderate-blue":$moderate-blue
+), $theme-colors);
+
+@import "bootstrap-4.1.1/scss/bootstrap";
+

@@ -35,3 +35,5 @@
 /*}*/
 
 .navbar-brand { padding-top: .75rem; padding-bottom: .75rem; font-size: 1rem; }
+
+.nav-list>li>.submenu>li:before { display: block; position: absolute; z-index: 1; left: 18px; top: 0; bottom: 0; border: 1px dotted; border-width: 0 0 0 1px; content: ""; }
