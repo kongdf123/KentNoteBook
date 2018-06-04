@@ -7,19 +7,20 @@
 
 	<environment include="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link href="~/lib/fontawesome/css/fontawesome-all.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"
 			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+		<link href="~/lib/fontawesome/css/fontawesome-all.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
 <body>
 	<nav class="navbar navbar-dark sticky-top bg-moderate-blue flex-md-nowrap p-0">
-		<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">KentNoteBook WebApp</a>
-		<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+		<a class="navbar-brand font-weight-bold col-sm-3 col-md-2 mr-0" href="#">KentNoteBook WebApp</a>
 		<ul class="navbar-nav px-3">
 			<li class="nav-item text-nowrap">
 				<a class="nav-link" href="#">Sign out</a>
@@ -28,70 +29,78 @@
 	</nav>
 	<div class="container-fluid pl-0">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar pl-0 pr-0 border-right">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar pl-3 pr-0 border-right">
 				<div class="sidebar-sticky">
 					<ul class="nav nav-list flex-column">
 						<li class="nav-item border-bottom">
-							<a class="nav-link active" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-								Dashboard <span class="sr-only">(current)</span>
+							<a class="nav-link active" href="#" aria-expanded="false">
+								<span><i class="fa fa-home" aria-hidden="true"></i></span>
+								<span>Dashboard</span>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-								Orders
+							<a class="nav-link border-bottom" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Orders</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
 							</a>
-							<ul class="nav submenu flex-column border-top pl-3 bg-white">
-								<li class="nav-item border-bottom">
-									<a class="nav-link" href="#">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-										Orders 1
+							<ul class="nav submenu flex-column bg-white collapse" id="collapseExample">
+								<li class="nav-item border-bottom col-12 pl-3">
+									<a class="nav-link" href="#" role="button">
+										<span>Orders 1</span>
 									</a>
 								</li>
-								<li class="nav-item border-bottom">
-									<a class="nav-link" href="#">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-										Orders 1
+								<li class="nav-item border-bottom col-12 pl-3">
+									<a class="nav-link" href="#" role="button">
+										<span>Orders 2</span>
+									</a>
+								</li>
+								<li class="nav-item border-bottom col-12 pl-3">
+									<a class="nav-link" href="#" role="button">
+										<span>Orders 3</span>
 									</a>
 								</li>
 							</ul>
 						</li>
 						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-								Products
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Products</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
 							</a>
 						</li>
 						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-								Customers
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Customers</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
 							</a>
 						</li>
 						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-								Reports
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Reports</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
 							</a>
 						</li>
 						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-								Integrations
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Integrations</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
 							</a>
 						</li>
 					</ul>
 				</div>
 			</nav>
 
-			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+			<main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-2 pl-2 pr-2">
 				@RenderBody()
 			</main>
 		</div>
-		<hr class="mt-1 mb-1"/>
-		<footer>
-			<p>&copy; 2017 - KentNoteBook.WebApp</p>
+		<hr class="mt-1 mb-1" />
+		<footer class="align-middle">
+			<p class="text-center">&copy; 2017 - KentNoteBook.WebApp</p>
 		</footer>
 	</div>
 
