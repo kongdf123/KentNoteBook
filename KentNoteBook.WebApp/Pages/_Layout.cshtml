@@ -7,14 +7,14 @@
 
 	<environment include="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-		<link href="~/lib/fontawesome/css/fontawesome-all.css" rel="stylesheet" />
+		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"
 			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-		<link href="~/lib/fontawesome/css/fontawesome-all.css" rel="stylesheet" />
+		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
@@ -29,7 +29,7 @@
 	</nav>
 	<div class="container-fluid pl-0">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar pl-3 pr-0 border-right">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar pl-3 pr-0 border-right" id="navbar-menu">
 				<div class="sidebar-sticky">
 					<ul class="nav nav-list flex-column">
 						<li class="nav-item border-bottom">
@@ -46,17 +46,20 @@
 							</a>
 							<ul class="nav submenu flex-column bg-white collapse" id="collapseExample">
 								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link" href="#" role="button">
+									<a class="nav-link pl-0" href="#" role="button">
+										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
 										<span>Orders 1</span>
 									</a>
 								</li>
 								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link" href="#" role="button">
+									<a class="nav-link pl-0" href="#" role="button">
+										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
 										<span>Orders 2</span>
 									</a>
 								</li>
 								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link" href="#" role="button">
+									<a class="nav-link pl-0" href="#" role="button">
+										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
 										<span>Orders 3</span>
 									</a>
 								</li>
@@ -91,6 +94,12 @@
 							</a>
 						</li>
 					</ul>
+
+					<div class="text-center pt-2 pb-2 sidebar-collapse border-bottom" id="sidebar-collapse">
+						<span class="sidebar-toggle-button">
+							<i id="sidebar-toggle-icon" class="fa fa-angle-double-left sidebar-toggle-icon rounded-circle"></i>
+						</span>
+					</div>
 				</div>
 			</nav>
 
@@ -99,8 +108,8 @@
 			</main>
 		</div>
 		<hr class="mt-1 mb-1" />
-		<footer class="align-middle">
-			<p class="text-center">&copy; 2017 - KentNoteBook.WebApp</p>
+		<footer class="align-middle text-center font-italic mb-3">
+			&copy; 2017 - KentNoteBook.WebApp
 		</footer>
 	</div>
 
@@ -120,3 +129,23 @@
 	@RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script>
+
+	$(".nav-list .submenu li").click(function () {
+
+		$(".nav-list .submenu li").removeClass("active");
+		$(this).addClass("active");
+	});
+
+	$("#sidebar-toggle-icon").click(function () {
+		$(this).toggleClass("fa-angle-double-left").toggleClass("fa-angle-double-right");
+
+		if ($(this).hasClass("fa-angle-double-right")) {
+
+		} else {
+
+		}
+	});
+
+</script>
