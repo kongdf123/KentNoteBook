@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html style="height: calc(100% - 100px);">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -18,7 +18,7 @@
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
-<body>
+<body class="h-100">
 	<nav class="navbar navbar-dark sticky-top bg-moderate-blue flex-md-nowrap p-0">
 		<a class="navbar-brand font-weight-bold col-sm-3 col-md-2 mr-0" href="#">KentNoteBook WebApp</a>
 		<ul class="nav nav-pills pr-2">
@@ -34,8 +34,8 @@
 			</li>
 		</ul>
 	</nav>
-	<div class="container-fluid pl-0">
-		<div class="row">
+	<div class="container-fluid h-100 pl-0">
+		<div class="row h-100">
 			<nav class="col-md-3 col-lg-2 bg-light sidebar pl-3 pr-0 border-right" id="navbar-menu">
 				<div class="sidebar-sticky">
 					<ul class="nav nav-list flex-column">
@@ -142,7 +142,6 @@
 	<script type="text/javascript">
 
 		$(".nav-list .submenu li").click(function () {
-
 			$(".nav-list .submenu li").removeClass("active");
 			$(this).addClass("active");
 		});
@@ -162,6 +161,12 @@
 
 			}
 		});
+
+		function autoFitSidebarHeight() {
+			var maxHeight = $(window).height() - $(".navbar").height() - $("footer").height() - 20;
+			$(".sidebar").css({ height: maxHeight + "px" });
+		}
+		//autoFitSidebarHeight();
 
 		$('#exampleModal').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal

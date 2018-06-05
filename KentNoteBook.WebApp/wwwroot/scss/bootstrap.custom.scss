@@ -1,13 +1,6 @@
 // Custom.scss
 // Option A: Include all of Bootstrap
 
-@import "bootstrap-4.1.1/scss/functions";
-@import "bootstrap-4.1.1/scss/variables";
-@import "bootstrap-4.1.1/scss/mixins";
-
-
-$enable-rounded: false;
-
 $moderate-blue: #438eb9;
 
 $theme-colors: ();
@@ -16,6 +9,7 @@ $theme-colors: map-merge(( "moderate-blue":$moderate-blue ), $theme-colors);
 $breadcrumb-bg: rgba(#000, .03);
 $card-cap-bg: #F5F5F5;
 
+@import "bootstrap-4.1.1/scss/bootstrap";
 
 $modal-xl: 1200px;
 
@@ -24,6 +18,3 @@ $modal-xl: 1200px;
 		max-width: $modal-xl;
 	}
 }
-
-
-@import "bootstrap-4.1.1/scss/bootstrap";
