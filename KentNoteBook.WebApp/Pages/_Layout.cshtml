@@ -21,15 +21,22 @@
 <body>
 	<nav class="navbar navbar-dark sticky-top bg-moderate-blue flex-md-nowrap p-0">
 		<a class="navbar-brand font-weight-bold col-sm-3 col-md-2 mr-0" href="#">KentNoteBook WebApp</a>
-		<ul class="navbar-nav px-3">
-			<li class="nav-item text-nowrap">
-				<a class="nav-link" href="#">Sign out</a>
+		<ul class="nav nav-pills pr-2">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle bg-transparent text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin User</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Sign out</a>
+				</div>
 			</li>
 		</ul>
 	</nav>
 	<div class="container-fluid pl-0">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar pl-3 pr-0 border-right" id="navbar-menu">
+			<nav class="col-md-3 col-lg-2 bg-light sidebar pl-3 pr-0 border-right" id="navbar-menu">
 				<div class="sidebar-sticky">
 					<ul class="nav nav-list flex-column">
 						<li class="nav-item border-bottom">
@@ -44,23 +51,23 @@
 								<span>Orders</span>
 								<i class="fa fa-angle-down pt-1 float-right"></i>
 							</a>
-							<ul class="nav submenu flex-column bg-white collapse" id="collapseExample">
+							<ul class="nav submenu bg-white collapse" id="collapseExample">
 								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link pl-0" href="#" role="button">
+									<a class="nav-link pl-1" href="Contact" role="button">
 										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
-										<span>Orders 1</span>
+										<span>Order 1</span>
 									</a>
 								</li>
 								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link pl-0" href="#" role="button">
+									<a class="nav-link pl-1" href="#" role="button">
 										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
-										<span>Orders 2</span>
+										<span>Order 2</span>
 									</a>
 								</li>
 								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link pl-0" href="#" role="button">
+									<a class="nav-link pl-1" href="#" role="button">
 										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
-										<span>Orders 3</span>
+										<span>Order 3</span>
 									</a>
 								</li>
 							</ul>
@@ -82,15 +89,19 @@
 						<li class="nav-item border-bottom">
 							<a class="nav-link" href="#" role="button">
 								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>Reports</span>
-								<i class="fa fa-angle-down pt-1 float-right"></i>
+								<span>
+									Reports
+									<i class="fa fa-angle-down pt-1 float-right"></i>
+								</span>
 							</a>
 						</li>
-						<li class="nav-item border-bottom">
+						<li class="nav-item border-bottom d-inline-block text-truncate">
 							<a class="nav-link" href="#" role="button">
 								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>Integrations</span>
-								<i class="fa fa-angle-down pt-1 float-right"></i>
+								<span>
+									Integrations
+									<i class="fa fa-angle-down pt-1 float-right"></i>
+								</span>
 							</a>
 						</li>
 					</ul>
@@ -103,7 +114,7 @@
 				</div>
 			</nav>
 
-			<main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-2 pl-2 pr-2">
+			<main role="main" class="col-md-9 col-lg-10 pt-1 pl-2 pr-2" id="main-body">
 				@RenderBody()
 			</main>
 		</div>
@@ -127,25 +138,32 @@
 	</environment>
 
 	@RenderSection("Scripts", required: false)
+
+	<script type="text/javascript">
+
+		$(".nav-list .submenu li").click(function () {
+
+			$(".nav-list .submenu li").removeClass("active");
+			$(this).addClass("active");
+		});
+
+		$("#sidebar-collapse .sidebar-toggle-button").click(function () {
+			var $toggleIcon = $(this).find(".sidebar-toggle-icon");
+
+			$toggleIcon.toggleClass("fa-angle-double-left").toggleClass("fa-angle-double-right");
+
+			if ($toggleIcon.hasClass("fa-angle-double-right")) {
+				$("#navbar-menu").removeClass("col-lg-2").addClass("col-lg-1");
+				$("#main-body").removeClass("col-lg-10").addClass("col-lg-11");
+
+			} else {
+				$("#navbar-menu").removeClass("col-lg-1").addClass("col-lg-2");
+				$("#main-body").removeClass("col-lg-11").addClass("col-lg-10");
+
+			}
+		});
+
+	</script>
 </body>
+
 </html>
-
-<script>
-
-	$(".nav-list .submenu li").click(function () {
-
-		$(".nav-list .submenu li").removeClass("active");
-		$(this).addClass("active");
-	});
-
-	$("#sidebar-toggle-icon").click(function () {
-		$(this).toggleClass("fa-angle-double-left").toggleClass("fa-angle-double-right");
-
-		if ($(this).hasClass("fa-angle-double-right")) {
-
-		} else {
-
-		}
-	});
-
-</script>
