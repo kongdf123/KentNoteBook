@@ -11,9 +11,10 @@ using System;
 namespace KentNoteBook.Data.Migrations
 {
     [DbContext(typeof(KentNoteBookDbContext))]
-    partial class KentNoteBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180612094734_Add_User_Password")]
+    partial class Add_User_Password
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,9 +134,6 @@ namespace KentNoteBook.Data.Migrations
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsActive");
-
-                    b.Property<string>("Mobile")
-                        .HasMaxLength(30);
 
                     b.Property<string>("Name")
                         .IsRequired()

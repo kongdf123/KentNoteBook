@@ -11,9 +11,10 @@ using System;
 namespace KentNoteBook.Data.Migrations
 {
     [DbContext(typeof(KentNoteBookDbContext))]
-    partial class KentNoteBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180612101457_Add_User_Mobile")]
+    partial class Add_User_Mobile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

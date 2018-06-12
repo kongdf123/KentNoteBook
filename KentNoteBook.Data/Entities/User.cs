@@ -10,14 +10,20 @@ namespace KentNoteBook.Data.Entities
 		[Key]
 		public override Guid Id { get; set; }
 
-		[MaxLength(50),Required]
+		[MaxLength(50), Required]
 		public string Name { get; set; }
 
 		[MaxLength(30)]
 		public string NickName { get; set; }
 
+		[MaxLength(50), Required]
+		public string Password { get; set; }
+
 		[MaxLength(100), Required]
 		public string Email { get; set; }
+
+		[MaxLength(30)]
+		public string Mobile { get; set; }
 
 		[MaxLength(150)]
 		public string Avatar { get; set; }
