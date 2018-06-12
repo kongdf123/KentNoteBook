@@ -7,14 +7,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KentNoteBook.Service.Controllers
 {
-	[Produces("application/json")]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class HomeController : ControllerBase
 	{
-		[HttpGet]
+		[HttpGet("TestData")]
 		public JsonResult Test() {
 			return new JsonResult(new { Site = "Web API" });
+		}
+
+		[Produces("application/xml")]
+		[HttpGet("Products")]
+		public ActionResult<List<Product>> GetProducts() {
+			return new List<Product> {
+				new Product{ Id=Guid.NewGuid(),Name="Apple"},
+				new Product{ Id=Guid.NewGuid(),Name="Huawei"}
+			};
 		}
 	}
 }
