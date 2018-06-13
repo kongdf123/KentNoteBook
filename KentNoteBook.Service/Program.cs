@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using KentNoteBook.Data;
+﻿using KentNoteBook.Data;
+using KentNoteBook.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace KentNoteBook.Service
 {
@@ -21,6 +15,8 @@ namespace KentNoteBook.Service
 			using ( var serviceScope = host.Services.GetService<IServiceScopeFactory>().CreateScope() ) {
 				var context = serviceScope.ServiceProvider.GetRequiredService<KentNoteBookDbContext>();
 				context.Database.Migrate();
+
+				context.SeedData();
 			}
 
 			host.Run();

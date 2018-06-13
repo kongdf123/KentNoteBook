@@ -8,10 +8,10 @@ namespace KentNoteBook.Data.Base
 		[Key]
 		public virtual Guid Id { get; set; }
 
-		public virtual DateTime CreatedDate { get; set; }
+		public virtual DateTime CreatedDate { get; set; } = DateTime.Now;
 		public virtual string CreatedBy { get; set; }
 
-		public virtual DateTime UpdatedDate { get; set; }
+		public virtual DateTime UpdatedDate { get; set; } = DateTime.Now;
 		public virtual string UpdatedBy { get; set; }
 	}
 }

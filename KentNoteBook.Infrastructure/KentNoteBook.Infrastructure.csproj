@@ -8,4 +8,8 @@
     <Folder Include="ViewModel\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
+  </ItemGroup>
+
 </Project>
