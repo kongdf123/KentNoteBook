@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html style="height: calc(100% - 100px);">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>@ViewData["Title"] - KentNoteBook.WebApp</title>
+
+	<environment include="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
+	<environment exclude="Development">
+		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"
+			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
+			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+	</environment>
+</head>
+<body class="h-100">
+	<nav class="navbar navbar-dark sticky-top bg-moderate-blue flex-md-nowrap p-0">
+		<a class="navbar-brand font-weight-bold col-sm-3 col-md-2 mr-0" href="#">KentNoteBook WebApp</a>
+		<ul class="nav nav-pills pr-2">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle bg-transparent text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin User</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Sign out</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<div class="container-fluid h-100 pl-0">
+		<div class="row h-100">
+			<nav class="col-md-3 col-lg-2 bg-light sidebar pl-3 pr-0 border-right" id="navbar-menu">
+				<div class="sidebar-sticky">
+					<ul class="nav nav-list flex-column">
+						<li class="nav-item border-bottom">
+							<a class="nav-link active" href="#" aria-expanded="false">
+								<span><i class="fa fa-home" aria-hidden="true"></i></span>
+								<span>Dashboard</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link border-bottom" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Orders</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
+							</a>
+							<ul class="nav submenu bg-white collapse" id="collapseExample">
+								<li class="nav-item border-bottom col-12 pl-3">
+									<a class="nav-link pl-1" href="Contact" role="button">
+										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
+										<span>Order 1</span>
+									</a>
+								</li>
+								<li class="nav-item border-bottom col-12 pl-3">
+									<a class="nav-link pl-1" href="#" role="button">
+										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
+										<span>Order 2</span>
+									</a>
+								</li>
+								<li class="nav-item border-bottom col-12 pl-3">
+									<a class="nav-link pl-1" href="#" role="button">
+										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
+										<span>Order 3</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item border-bottom">
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Products</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
+							</a>
+						</li>
+						<li class="nav-item border-bottom">
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>Customers</span>
+								<i class="fa fa-angle-down pt-1 float-right"></i>
+							</a>
+						</li>
+						<li class="nav-item border-bottom">
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>
+									Reports
+									<i class="fa fa-angle-down pt-1 float-right"></i>
+								</span>
+							</a>
+						</li>
+						<li class="nav-item border-bottom d-inline-block text-truncate">
+							<a class="nav-link" href="#" role="button">
+								<span><i class="fa fa-list" aria-hidden="true"></i></span>
+								<span>
+									Integrations
+									<i class="fa fa-angle-down pt-1 float-right"></i>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="text-center pt-2 pb-2 sidebar-collapse border-bottom" id="sidebar-collapse">
+					<span class="sidebar-toggle-button">
+						<i id="sidebar-toggle-icon" class="fa fa-angle-double-left sidebar-toggle-icon rounded-circle"></i>
+					</span>
+				</div>
+			</nav>
+
+			<main role="main" class="col-md-9 col-lg-10 pt-1 pl-2 pr-2" id="main-body">
+				@RenderBody()
+			</main>
+		</div>
+		<hr class="mt-1 mb-1" />
+		<footer class="align-middle text-center font-italic mb-3">
+			&copy; 2017 - KentNoteBook.WebApp
+		</footer>
+	</div>
+
+	<environment include="Development">
+		<script src="~/lib/jquery/dist/jquery-3.3.1.slim.js"></script>
+		<script src="~/lib/popper/popper.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="~/js/site.js" asp-append-version="true"></script>
+	</environment>
+	<environment exclude="Development">
+		<script src="~/lib/jquery/dist/jquery-3.3.1.slim.js"></script>
+		<script src="~/lib/popper/popper.js"></script>
+		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="~/js/site.min.js" asp-append-version="true"></script>
+	</environment>
+
+	@RenderSection("Scripts", required: false)
+
+	<script type="text/javascript">
+
+		//$(".nav-list .submenu li").click(function () {
+		//	$(".nav-list .submenu li").removeClass("active");
+		//	$(this).addClass("active");
+		//});
+
+		//$("#sidebar-collapse .sidebar-toggle-button").click(function () {
+		//	var $toggleIcon = $(this).find(".sidebar-toggle-icon");
+
+		//	$toggleIcon.toggleClass("fa-angle-double-left").toggleClass("fa-angle-double-right");
+
+		//	if ($toggleIcon.hasClass("fa-angle-double-right")) {
+		//		$("#navbar-menu").removeClass("col-lg-2").addClass("col-lg-1");
+		//		$("#main-body").removeClass("col-lg-10").addClass("col-lg-11");
+
+		//	} else {
+		//		$("#navbar-menu").removeClass("col-lg-1").addClass("col-lg-2");
+		//		$("#main-body").removeClass("col-lg-11").addClass("col-lg-10");
+
+		//	}
+		//});
+
+		//function autoFitSidebarHeight() {
+		//	var maxHeight = $(window).height() - $(".navbar").height() - $("footer").height() - 20;
+		//	$(".sidebar").css({ height: maxHeight + "px" });
+		//}
+		////autoFitSidebarHeight();
+
+		//$('#exampleModal').on('show.bs.modal', function (event) {
+		//	var button = $(event.relatedTarget) // Button that triggered the modal
+		//	var recipient = button.data('whatever') // Extract info from data-* attributes
+		//	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		//	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		//	var modal = $(this)
+		//	modal.find('.modal-title').text('New message to ' + recipient)
+		//	modal.find('.modal-body input').val(recipient)
+		//})
+	</script>
+</body>
+
+</html>
