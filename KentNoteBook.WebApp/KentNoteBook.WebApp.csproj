@@ -5,6 +5,21 @@
     <UserSecretsId>45569433-89a3-4d78-b687-a65e6cec68c2</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Pages\PermissionManagement\**" />
+    <Content Remove="Pages\PermissionManagement\**" />
+    <EmbeddedResource Remove="Pages\PermissionManagement\**" />
+    <None Remove="Pages\PermissionManagement\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Pages\About.cshtml.cs" />
+    <Compile Remove="Pages\Contact.cshtml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Pages\About.cshtml" />
+    <Content Remove="Pages\Contact.cshtml" />
+    <Content Remove="Pages\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
@@ -14,9 +29,6 @@
   <ItemGroup>
     <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
     <ProjectReference Include="..\KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\PermissionManagement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Pages\_LayoutV1.cshtml">

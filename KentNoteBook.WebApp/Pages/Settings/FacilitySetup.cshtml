@@ -1,0 +1,183 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.Settings.FacilitySetupModel
+@{
+	Layout = "_LayoutV1";
+
+	ViewData["Title"] = "FacilitySetup";
+}
+
+<!--- Breadcrumbs -->
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="#">Settings</a>
+	</li>
+	<li class="breadcrumb-item active">Facility Setup</li>
+</ol>
+
+<form class="pl-3 needs-validation" novalidate>
+	<fieldset>
+		<legend class="border-bottom"> Audit</legend>
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="focusedInput">
+				Facility
+			</label>
+			<div class="col-sm-6">
+				<input id="focusedInput" class="form-control" type="text" placeholder="Facility name" value="Fac 567" required />
+				@*<div class="valid-tooltip">
+						Looks good!
+					</div>*@
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="Username">Site</label>
+			<div class="col-sm-6">
+				<input id="Username" class="form-control" type="text" placeholder="First name" value="North Wacker Drive, Peoria, IL, USA" aria-describedby="inputGroupPrepend2" required />
+				<div class="invalid-tooltip">
+					Please provide a valid Username.
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="disabledInput">Department</label>
+			<div class="col-sm-6">
+				<input id="Department" class="form-control" type="text" placeholder="Department" disabled="" />
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="col-6">
+				<label class="col-sm-1 col-form-label ml-2" for="disabledInput">Site Manager</label>
+				<div class="col-sm-6">
+					<input id="SiteManager" class="form-control" type="text" placeholder="Site Manager" disabled="" />
+				</div>
+			</div>
+			<div class="col-6">
+				<label class="col-sm-1 col-form-label ml-2" for="disabledInput">Title</label>
+				<div class="col-sm-6">
+					<input id="SiteManagerTitle" class="form-control" type="text" placeholder="Site Manager Title" disabled="" />
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="disabledInput">Custom Field</label>
+			<div class="col-sm-6">
+				<input id="disabledInput" class="form-control" type="text" placeholder="Custom Field" disabled="" />
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2">Uneditable input</label>
+			<div class="col-sm-6">
+				Some value here
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="optionsCheckbox1">Disabled checkbox</label>
+			<div class="col-sm-6">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="optionsCheckbox1" disabled />
+					<label class="custom-control-label" for="optionsCheckbox1">This is a disabled checkbox</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="optionsCheckbox2">Enabled checkbox</label>
+			<div class="col-sm-6">
+				<div class="custom-control custom-checkbox">
+					<input type="checkbox" class="custom-control-input" id="optionsCheckbox2" />
+					<label class="custom-control-label" for="optionsCheckbox2">This is a enbled checkbox</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2" for="selectError">Select with success</label>
+			<div class="col-sm-6 mb-5">
+				<select id="selectError" class="form-control">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<div class="valid-tooltip">
+					Looks good!
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2">Varying modal content</label>
+			<div class="col-sm-6 mb-5">
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@@mdo">Open modal for @@mdo</button>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@@fat">Open modal for @@fat</button>
+				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@@getbootstrap">Open modal for @@getbootstrap</button>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-1 col-form-label ml-2">&nbsp;</label>
+			<div class="col-sm-6">
+				<button type="submit" class="btn btn-primary">Save changes</button>
+				<button type="reset" class="btn btn-primary">Cancel</button>
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">Recipient:</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="col-form-label">Message:</label>
+						<textarea class="form-control" id="message-text"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Send message</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function () {
+		'use strict';
+		window.addEventListener('load', function () {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function (form) {
+				form.addEventListener('submit', function (event) {
+					if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					form.classList.add('was-validated');
+				}, false);
+			});
+		}, false);
+	})();
+
+</script>

@@ -21,16 +21,16 @@
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="pageTop">
+<body class="fixed-nav sticky-footer" id="pageTop">
 
 	<!-- Left navigation menu-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="sideMainMenu">
-		<a class="navbar-brand" href="/DashboardV1">STP Xcelerator 3.0</a>
-		<button class="navbar-toggler navbar-toggler-right border" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-moderate-blue fixed-top p-0" id="sideMainMenu">
+		<a class="navbar-brand ml-3 mr-0 pl-0" href="/DashboardV1">SHE Test - Applicable Regulations</a>
+		<button class="navbar-toggler navbar-toggler-right border mr-3" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
 			<i class="fa fa-list"></i>
 		</button>
 
-		<div class="navbar-collapse collapse" id="navbarResponsive">
+		<div class="navbar-collapse collapse bg-dark pl-3 pr-3" id="navbarResponsive">
 			<ul class="navbar-nav navbar-sidenav" id="menuRoot">
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" data-original-title="Dashboard" title="Dashboard">
 					<a class="nav-link" href="/DashboardV1">
@@ -38,83 +38,59 @@
 						<span class="nav-link-text">Dashboard</span>
 					</a>
 				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
+
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Reports">
+					<a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseReports" data-parent="#menuRoot" aria-expanded="false">
 						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Setup</span>
+						<span class="nav-link-text">Reports</span>
 					</a>
+					<ul class="sidenav-second-level collapse collapsed" id="collapseReports" style="">
+						<li>
+							<a href="#">Corrective Action</a>
+						</li>
+						<li>
+							<a href="#">General Environmental</a>
+						</li>
+						<li>
+							<a href="#">Solid Waste</a>
+						</li>
+						<li>
+							<a href="#">HW - Part A-3 </a>
+						</li>
+						<li>
+							<a href="#">HW - Part D 	</a>
+						</li>
+						<li>
+							<a href="#">HW - Part E  </a>
+						</li>
+						<li>
+							<a href="#">Materials Transportation  </a>
+						</li>
+						<li>
+							<a href="#">Recordkeeping and Posting Requirements</a>
+						</li>
+						<li>
+							<a href="#">Process Safety  </a>
+						</li>
+						<li>
+							<a href="#">Guide Notes  </a>
+						</li>
+					</ul>
 				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Results_Dashboard</span>
+
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Settings">
+					<a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
+						<i class="fa fa-fw fa-wrench"></i>
+						<span class="nav-link-text">Settings</span>
 					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Corrective_Action</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Australia_N1</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Solid_Waste2</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Part_A-3_-_3</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Part_D_-_Us4</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Part_E_-_Un5</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Hazardous_M6</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Recordkeepi7</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Process_Saf8</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Scoring_Settings</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tables">
-					<a class="nav-link" href="#">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Guidenotes</span>
-					</a>
+					<ul class="sidenav-second-level collapse collapsed" id="collapseSettings" style="">
+						<li>
+							<a href="/Settings/FacilitySetup">Facility Setup</a>
+						</li>
+						<li>
+							<a href="/Settings/ScoringSetting">Scoring Settings</a>
+						</li>
+					</ul>
 				</li>
 			</ul>
 
@@ -127,18 +103,6 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-				@*<li class="nav-item">
-						<form class="form-inline my-2 my-lg-0 mr-lg-2">
-							<div class="input-group">
-								<input class="form-control" type="text" placeholder="Search for...">
-								<span class="input-group-append">
-									<button class="btn btn-primary" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</form>
-					</li>*@
 				<li class="nav-item">
 					<a class="nav-link" data-toggle="modal" data-target="#LogoutModalDialog">
 						<i class="fa fa-fw fa-sign-out"></i>Logout
@@ -155,7 +119,7 @@
 		</div>
 		<footer class="sticky-footer">
 			<div class="container">
-				<div class="text-center">
+				<div class="text-center align-middle">
 					<small>Copyright © 2018 Specialty Technical Publishers. All rights reserved.</small>
 				</div>
 			</div>
