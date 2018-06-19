@@ -1,26 +1,3 @@
-/*.navbar-brand { padding-top: .75rem; padding-bottom: .75rem; font-size: 1rem; }
-
-.nav-list > li > .submenu { position: relative; }
-.nav-list > li > .submenu > li:before { display: block; position: absolute; z-index: 1; left: 15px; top: 0; bottom: 0; border: 1px dotted; border-width: 0 0 0 1px; content: ""; }
-.nav-list > li > .submenu > li:after { display: block; width: 7px; position: absolute; z-index: 1; left: 17px; top: 20px; border: 1px dotted; border-width: 1px 0 0; content: ""; }
-
-.nav-list > li > .submenu > li:hover { color: #4B88B7; background-color: #F1F5F9; }
-
-.nav-list > li > .submenu > li .fa.fa-caret-right { visibility: hidden !important; }
-.nav-list > li > .submenu > li.active { color: #4B88B7; background-color: #F1F5F9; }
-.nav-list > li > .submenu > li.active .fa.fa-caret-right { visibility: visible !important; }
-.nav-list > li > .submenu > li { border-top-color: #E4E4E4; background-color: #FFF; color: #616161; }
-
-.nav-list > li .submenu > li:hover, .nav-list > li > a, a:active, a:focus { text-decoration: none; }
-
-.sidebar-collapse { position: relative; }
-.sidebar-collapse .sidebar-toggle-button { cursor: pointer; }
-.sidebar-collapse .sidebar-toggle-button .sidebar-toggle-icon { border: 1px solid #dee2e6; background-color: white; padding: 5px 10px; }
-.sidebar-collapse .sidebar-toggle-button:before { display: block; height: 0; border-top: 1px dashed; border-color: #E0E0E0; position: absolute; left: 15px; right: 15px; top: 21px; content: ""; }
-
-a { color: #08c; text-decoration: none; }*/
-
-
 /* Responsive layout*/
 html { position: relative; min-height: 100%; }
 body { background-color: #E4E6E9; font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif; color: #393939; font-size: 0.8rem; }
@@ -248,7 +225,7 @@ table.dataTable { clear: both; max-width: none !important; }
 
 .card-register { max-width: 40rem; }
 
-footer.sticky-footer { position: absolute; right: 0; bottom: 0; width: 100%; height: 56px; background-color: #e9ecef; line-height: 55px; }
+footer.sticky-footer { position: absolute; right: 0; bottom: 0; width: 100%; height: 56px; background-color: #e9ecef; line-height: 56px; }
 
 @media (min-width: 992px) {
 	footer.sticky-footer { width: calc(100% - 250px); }

@@ -5,21 +5,6 @@
     <UserSecretsId>45569433-89a3-4d78-b687-a65e6cec68c2</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Pages\PermissionManagement\**" />
-    <Content Remove="Pages\PermissionManagement\**" />
-    <EmbeddedResource Remove="Pages\PermissionManagement\**" />
-    <None Remove="Pages\PermissionManagement\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Pages\About.cshtml.cs" />
-    <Compile Remove="Pages\Contact.cshtml.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Pages\About.cshtml" />
-    <Content Remove="Pages\Contact.cshtml" />
-    <Content Remove="Pages\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
@@ -27,12 +12,42 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
-    <ProjectReference Include="..\KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj" />
+    <None Include="Pages\Dashboard.cshtml" />
+    <None Include="Pages\Error.cshtml" />
+    <None Include="Pages\Index.cshtml" />
+    <None Include="Pages\Reports\CorrectiveAction.cshtml" />
+    <None Include="Pages\Reports\GeneralEnvironmental.cshtml" />
+    <None Include="Pages\Reports\HazardousMaterialsTransportation.cshtml" />
+    <None Include="Pages\Reports\LargeQuantityGeneratorRequirements.cshtml" />
+    <None Include="Pages\Reports\ProcessSafety.cshtml" />
+    <None Include="Pages\Reports\RecordkeepingAndPostingRequirements.cshtml" />
+    <None Include="Pages\Reports\SolidWaste.cshtml" />
+    <None Include="Pages\Reports\UniversalWastes.cshtml" />
+    <None Include="Pages\Reports\UsedOilManagement.cshtml" />
+    <None Include="Pages\Settings\FacilitySetup.cshtml" />
+    <None Include="Pages\Settings\ScoringSetting.cshtml" />
+    <None Include="Pages\_Layout.cshtml" />
+    <None Include="Pages\_ValidationScriptsPartial.cshtml" />
+    <None Include="Pages\_ViewImports.cshtml" />
+    <None Include="Pages\_ViewStart.cshtml" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\site.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\lib\jquery-dataTables\jquery.dataTables.js" />
+    <None Include="wwwroot\lib\jquery-dataTables\js\jquery.dataTables.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery-3.3.1.js" />
+    <None Include="wwwroot\lib\popper\popper.js" />
+    <None Include="wwwroot\scss\bootstrap.custom.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Update="Pages\_LayoutV1.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
+    <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
+    <ProjectReference Include="..\KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

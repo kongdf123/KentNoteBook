@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KentNoteBook.WebApp.Pages
 {
-    public class DashboardV1Model : PageModel
+    public class DashboardModel : PageModel
     {
         public void OnGet()
         {

@@ -1,15 +1,13 @@
 ﻿@page
-@model KentNoteBook.WebApp.Pages.DashboardV1Model
+@model KentNoteBook.WebApp.Pages.DashboardModel
 @{
-	Layout = "_LayoutV1";
-
 	ViewData["Title"] = "DashboardV1";
 }
 
 <!--- Breadcrumbs -->
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
-		<a href="#">Dashboard</a>
+		<a href="/Dashboard">Dashboard</a>
 	</li>
 	<li class="breadcrumb-item active">My Dashboard</li>
 </ol>
@@ -23,8 +21,8 @@
 			<div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
 				<form>
 					<div class="form-row">
-						<div class="col-sm-12 col-md-8 mb-3">
-							<div class="input-group mb-3">
+						<div class="col-sm-12 col-md-6 mb-1">
+							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Search for ..." aria-label="Search for ..." aria-describedby="basic-addon2">
 								<div class="input-group-append">
 									<button class="btn btn-primary" type="button">
@@ -46,7 +44,7 @@
 							</tfoot>
 							<tbody>
 								<tr role="row" class="odd">
-									<td class="">Cedric Kelly</td>
+									<td class="bg-warning">Cedric Kelly</td>
 									<td>Senior Javascript Developer</td>
 									<td class="sorting_1">Edinburgh</td>
 									<td>22</td>
@@ -55,7 +53,7 @@
 								</tr>
 								<tr role="row" class="even">
 									<td class="">Dai Rios</td>
-									<td>Personnel Lead</td>
+									<td class="bg-primary">Personnel Lead</td>
 									<td class="sorting_1">Edinburgh</td>
 									<td>35</td>
 									<td>2012/09/26</td>
@@ -64,7 +62,7 @@
 								<tr role="row" class="odd">
 									<td class="">Gavin Joyce</td>
 									<td>Developer</td>
-									<td class="sorting_1">Edinburgh</td>
+									<td class="sorting_1 bg-success">Edinburgh</td>
 									<td>42</td>
 									<td>2010/12/22</td>
 									<td>$92,575</td>
@@ -73,7 +71,7 @@
 									<td class="">Jennifer Acosta</td>
 									<td>Junior Javascript Developer</td>
 									<td class="sorting_1">Edinburgh</td>
-									<td>43</td>
+									<td class="bg-danger">43</td>
 									<td>2013/02/01</td>
 									<td>$75,650</td>
 								</tr>
@@ -82,7 +80,7 @@
 									<td>Post-Sales support</td>
 									<td class="sorting_1">Edinburgh</td>
 									<td>46</td>
-									<td>2011/03/09</td>
+									<td class="bg-info">2011/03/09</td>
 									<td>$324,050</td>
 								</tr>
 								<tr role="row" class="even">

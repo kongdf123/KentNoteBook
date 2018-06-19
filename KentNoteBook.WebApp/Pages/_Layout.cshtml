@@ -1,13 +1,15 @@
 ﻿<!DOCTYPE html>
-<html style="height: calc(100% - 100px);">
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>@ViewData["Title"] - KentNoteBook.WebApp</title>
+	<title>@ViewData["Title"] - SHE Test - Applicable Regulations</title>
 
 	<environment include="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
+		<link href="~/lib/jquery-dataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
@@ -15,168 +17,185 @@
 			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
+		<link href="~/lib/jquery-dataTables/dataTables.bootstrap4.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
-<body class="h-100">
-	<nav class="navbar navbar-dark sticky-top bg-moderate-blue flex-md-nowrap p-0">
-		<a class="navbar-brand font-weight-bold col-sm-3 col-md-2 mr-0" href="#">KentNoteBook WebApp</a>
-		<ul class="nav nav-pills pr-2">
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle bg-transparent text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin User</a>
-				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Sign out</a>
-				</div>
-			</li>
-		</ul>
-	</nav>
-	<div class="container-fluid h-100 pl-0">
-		<div class="row h-100">
-			<nav class="col-md-3 col-lg-2 bg-light sidebar pl-3 pr-0 border-right" id="navbar-menu">
-				<div class="sidebar-sticky">
-					<ul class="nav nav-list flex-column">
-						<li class="nav-item border-bottom">
-							<a class="nav-link active" href="#" aria-expanded="false">
-								<span><i class="fa fa-home" aria-hidden="true"></i></span>
-								<span>Dashboard</span>
-							</a>
+<body class="fixed-nav sticky-footer" id="pageTop">
+
+	<!-- Left navigation menu-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-moderate-blue fixed-top p-0" id="sideMainMenu">
+		<a class="navbar-brand ml-3 mr-0 pl-0" href="/Dashboard">SHE Test - Applicable Regulations</a>
+		<button class="navbar-toggler navbar-toggler-right border mr-3" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
+			<i class="fa fa-list"></i>
+		</button>
+
+		<div class="navbar-collapse collapse bg-dark pl-3 pr-3" id="navbarResponsive">
+			<ul class="navbar-nav navbar-sidenav" id="menuRoot">
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" data-original-title="Dashboard" title="Dashboard">
+					<a class="nav-link" href="/Dashboard">
+						<i class="fa fa-fw fa-dashboard"></i>
+						<span class="nav-link-text">Dashboard</span>
+					</a>
+				</li>
+
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Reports">
+					<a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseReports" data-parent="#menuRoot" aria-expanded="false">
+						<i class="fa fa-fw fa-table"></i>
+						<span class="nav-link-text">Reports</span>
+					</a>
+					<ul class="sidenav-second-level collapse collapsed" id="collapseReports" style="">
+						<li>
+							<a href="#">Corrective Action</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link border-bottom" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>Orders</span>
-								<i class="fa fa-angle-down pt-1 float-right"></i>
-							</a>
-							<ul class="nav submenu bg-white collapse" id="collapseExample">
-								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link pl-1" href="Contact" role="button">
-										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
-										<span>Order 1</span>
-									</a>
-								</li>
-								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link pl-1" href="#" role="button">
-										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
-										<span>Order 2</span>
-									</a>
-								</li>
-								<li class="nav-item border-bottom col-12 pl-3">
-									<a class="nav-link pl-1" href="#" role="button">
-										<span><i class="fa fa-caret-right invisible" aria-hidden="true"></i></span>
-										<span>Order 3</span>
-									</a>
-								</li>
-							</ul>
+						<li>
+							<a href="#">General Environmental</a>
 						</li>
-						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#" role="button">
-								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>Products</span>
-								<i class="fa fa-angle-down pt-1 float-right"></i>
-							</a>
+						<li>
+							<a href="#">Solid Waste</a>
 						</li>
-						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#" role="button">
-								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>Customers</span>
-								<i class="fa fa-angle-down pt-1 float-right"></i>
-							</a>
+						<li>
+							<a href="#">HW - Part A-3 </a>
 						</li>
-						<li class="nav-item border-bottom">
-							<a class="nav-link" href="#" role="button">
-								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>
-									Reports
-									<i class="fa fa-angle-down pt-1 float-right"></i>
-								</span>
-							</a>
+						<li>
+							<a href="#">HW - Part D 	</a>
 						</li>
-						<li class="nav-item border-bottom d-inline-block text-truncate">
-							<a class="nav-link" href="#" role="button">
-								<span><i class="fa fa-list" aria-hidden="true"></i></span>
-								<span>
-									Integrations
-									<i class="fa fa-angle-down pt-1 float-right"></i>
-								</span>
-							</a>
+						<li>
+							<a href="#">HW - Part E  </a>
+						</li>
+						<li>
+							<a href="#">Materials Transportation  </a>
+						</li>
+						<li>
+							<a href="#">Recordkeeping and Posting Requirements</a>
+						</li>
+						<li>
+							<a href="#">Process Safety  </a>
+						</li>
+						<li>
+							<a href="#">Guide Notes  </a>
 						</li>
 					</ul>
-				</div>
+				</li>
 
-				<div class="text-center pt-2 pb-2 sidebar-collapse border-bottom" id="sidebar-collapse">
-					<span class="sidebar-toggle-button">
-						<i id="sidebar-toggle-icon" class="fa fa-angle-double-left sidebar-toggle-icon rounded-circle"></i>
-					</span>
-				</div>
-			</nav>
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Settings">
+					<a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
+						<i class="fa fa-fw fa-wrench"></i>
+						<span class="nav-link-text">Settings</span>
+					</a>
+					<ul class="sidenav-second-level collapse collapsed" id="collapseSettings" style="">
+						<li>
+							<a href="/Settings/FacilitySetup">Facility Setup</a>
+						</li>
+						<li>
+							<a href="/Settings/ScoringSetting">Scoring Settings</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 
-			<main role="main" class="col-md-9 col-lg-10 pt-1 pl-2 pr-2" id="main-body">
-				@RenderBody()
-			</main>
+			<ul class="navbar-nav sidenav-toggler">
+				<li class="nav-item">
+					<a class="nav-link text-center" id="sidenavToggler">
+						<i class="fa fa-fw fa-angle-left"></i>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="modal" data-target="#LogoutModalDialog">
+						<i class="fa fa-fw fa-sign-out"></i>Logout
+					</a>
+				</li>
+			</ul>
 		</div>
-		<hr class="mt-1 mb-1" />
-		<footer class="align-middle text-center font-italic mb-3">
-			&copy; 2017 - KentNoteBook.WebApp
+	</nav>
+
+	<!-- Main Body -->
+	<div class="content-wrapper">
+		<div class="container-fluid">
+			@RenderBody()
+		</div>
+		<footer class="sticky-footer">
+			<div class="container">
+				<div class="text-center align-middle">
+					<small>Copyright © 2018 Specialty Technical Publishers. All rights reserved.</small>
+				</div>
+			</div>
 		</footer>
+
+		<!-- Scroll to the top -->
+		<a class="scroll-to-top rounded" href="#pageTop">
+			<i class="fa fa-angle-up"></i>
+		</a>
+
+		<!-- Logout dialog -->
+		<div class="modal fade" id="LogoutModalDialog" tabindex="-1" role="dialog" aria-labelledby="LogoutModalLabel" style="display: none;" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="LogoutModalLabel">Ready to Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="Login">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<environment include="Development">
 		<script src="~/lib/jquery/dist/jquery-3.3.1.js"></script>
 		<script src="~/lib/popper/popper.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="~/lib/jquery-dataTables/js/jquery.dataTables.js"></script>
 		<script src="~/js/site.js" asp-append-version="true"></script>
 	</environment>
 	<environment exclude="Development">
 		<script src="~/lib/jquery/dist/jquery-3.3.1.js"></script>
 		<script src="~/lib/popper/popper.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="~/lib/jquery-dataTables/js/jquery.dataTables.js"></script>
 		<script src="~/js/site.min.js" asp-append-version="true"></script>
 	</environment>
 
 	@RenderSection("Scripts", required: false)
 
-	<script type="text/javascript">
+	<script>
+		$(function () {
 
-		$(".nav-list .submenu li").click(function () {
-			$(".nav-list .submenu li").removeClass("active");
-			$(this).addClass("active");
+			$('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+				template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+			});
+
+			$("#sidenavToggler").click(function (o) {
+				o.preventDefault(), $("body").toggleClass("sidenav-toggled"), $(".navbar-sidenav .nav-link-collapse").addClass("collapsed"), $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show")
+			});
+
+			$(".navbar-sidenav .nav-link-collapse").click(function (o) {
+				o.preventDefault(), $("body").removeClass("sidenav-toggled")
+			});
+
+			$("body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse").on("mousewheel DOMMouseScroll", function (e) {
+				var o = e.originalEvent, t = o.wheelDelta || -o.detail; this.scrollTop += 30 * (t < 0 ? 1 : -1), e.preventDefault()
+			});
+
+			$(document).scroll(function () {
+				$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
+			});
+			$('[data-toggle="tooltip"]').tooltip();
+
+			$(document).on("click", "a.scroll-to-top", function (o) {
+				var t = $(this);
+				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top }), o.preventDefault()
+			});
 		});
-
-		$("#sidebar-collapse .sidebar-toggle-button").click(function () {
-			var $toggleIcon = $(this).find(".sidebar-toggle-icon");
-
-			$toggleIcon.toggleClass("fa-angle-double-left").toggleClass("fa-angle-double-right");
-
-			if ($toggleIcon.hasClass("fa-angle-double-right")) {
-				$("#navbar-menu").removeClass("col-lg-2").addClass("col-lg-1");
-				$("#main-body").removeClass("col-lg-10").addClass("col-lg-11");
-
-			} else {
-				$("#navbar-menu").removeClass("col-lg-1").addClass("col-lg-2");
-				$("#main-body").removeClass("col-lg-11").addClass("col-lg-10");
-
-			}
-		});
-
-		function autoFitSidebarHeight() {
-			var maxHeight = $(window).height() - $(".navbar").height() - $("footer").height() - 20;
-			$(".sidebar").css({ height: maxHeight + "px" });
-		}
-		//autoFitSidebarHeight();
-
-		$('#exampleModal').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-			var recipient = button.data('whatever') // Extract info from data-* attributes
-			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-			var modal = $(this)
-			modal.find('.modal-title').text('New message to ' + recipient)
-			modal.find('.modal-body input').val(recipient)
-		})
 	</script>
 </body>
 
