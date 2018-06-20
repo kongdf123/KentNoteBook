@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.WebApp", "Kent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Service", "KentNoteBook.Service\KentNoteBook.Service.csproj", "{AEBE7E87-E94A-45AD-9145-851469C9539D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBook.Angular", "KentNoteBook.Angular\KentNoteBook.Angular.csproj", "{5C9457F1-C509-4E53-B5A3-D78F48443AA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AEBE7E87-E94A-45AD-9145-851469C9539D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEBE7E87-E94A-45AD-9145-851469C9539D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEBE7E87-E94A-45AD-9145-851469C9539D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9457F1-C509-4E53-B5A3-D78F48443AA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9457F1-C509-4E53-B5A3-D78F48443AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9457F1-C509-4E53-B5A3-D78F48443AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9457F1-C509-4E53-B5A3-D78F48443AA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{EB768D75-C88F-4BB7-8D96-C221674F3669} = {3149FDA8-F8EA-4269-AFFA-64E23435D57F}
 		{5267F474-22B9-4F94-8337-974A2515863A} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{AEBE7E87-E94A-45AD-9145-851469C9539D} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
+		{5C9457F1-C509-4E53-B5A3-D78F48443AA7} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A044423D-9157-4E20-AD11-5DA16A5B3F24}
