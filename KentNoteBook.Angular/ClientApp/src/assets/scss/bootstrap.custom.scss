@@ -1,0 +1,20 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+$moderate-blue: #438eb9;
+
+$theme-colors: ();
+$theme-colors: map-merge(( "moderate-blue":$moderate-blue ), $theme-colors);
+
+$breadcrumb-bg: rgba(#000, .03);
+$card-cap-bg: #F5F5F5;
+
+@import "bootstrap-4.1.1/scss/bootstrap";
+
+$modal-xl: 1200px;
+
+@include media-breakpoint-up(xl) {
+	.modal-xl {
+		max-width: $modal-xl;
+	}
+}

@@ -24,7 +24,76 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\" />
+    <None Remove="ClientApp\src\assets\css\site.css" />
+    <None Remove="ClientApp\src\assets\css\site.min.css" />
+    <None Remove="ClientApp\src\assets\js\site.js" />
+    <None Remove="ClientApp\src\assets\js\site.min.js" />
+    <None Remove="ClientApp\src\assets\lib\bootstrap\css\bootstrap.css" />
+    <None Remove="ClientApp\src\assets\lib\bootstrap\js\bootstrap.js" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\css\font-awesome.css" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\css\font-awesome.min.css" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.eot" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.svg" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.ttf" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.woff" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <None Remove="ClientApp\src\assets\lib\fontawesome\fonts\FontAwesome.otf" />
+    <None Remove="ClientApp\src\assets\lib\popper\popper.js" />
+    <None Remove="ClientApp\src\assets\scss\bootstrap.custom.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\src\assets\css\site.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\css\site.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\js\site.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\js\site.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\bootstrap\css\bootstrap.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\bootstrap\js\bootstrap.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\css\font-awesome.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\css\font-awesome.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.eot">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.ttf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.woff">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\fonts\fontawesome-webfont.woff2">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\fontawesome\fonts\FontAwesome.otf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\jquery\jquery-3.3.1.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\lib\popper\popper.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\assets\scss\bootstrap.custom.scss">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
