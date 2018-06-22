@@ -15,17 +15,6 @@
     <None Include="Pages\Dashboard.cshtml" />
     <None Include="Pages\Error.cshtml" />
     <None Include="Pages\Index.cshtml" />
-    <None Include="Pages\Reports\CorrectiveAction.cshtml" />
-    <None Include="Pages\Reports\GeneralEnvironmental.cshtml" />
-    <None Include="Pages\Reports\HazardousMaterialsTransportation.cshtml" />
-    <None Include="Pages\Reports\LargeQuantityGeneratorRequirements.cshtml" />
-    <None Include="Pages\Reports\ProcessSafety.cshtml" />
-    <None Include="Pages\Reports\RecordkeepingAndPostingRequirements.cshtml" />
-    <None Include="Pages\Reports\SolidWaste.cshtml" />
-    <None Include="Pages\Reports\UniversalWastes.cshtml" />
-    <None Include="Pages\Reports\UsedOilManagement.cshtml" />
-    <None Include="Pages\Settings\FacilitySetup.cshtml" />
-    <None Include="Pages\Settings\ScoringSetting.cshtml" />
     <None Include="Pages\_Layout.cshtml" />
     <None Include="Pages\_ValidationScriptsPartial.cshtml" />
     <None Include="Pages\_ViewImports.cshtml" />

@@ -4,12 +4,11 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>@ViewData["Title"] - SHE Test - Applicable Regulations</title>
+	<title>@ViewData["Title"] - Admin System V1.0</title>
 
 	<environment include="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
-		<link href="~/lib/jquery-dataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
@@ -17,175 +16,113 @@
 			  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
-		<link href="~/lib/jquery-dataTables/dataTables.bootstrap4.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
-<body class="fixed-nav sticky-footer" id="pageTop">
+<body class="push-right" id="pageBody">
 
-	<!-- Left navigation menu-->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-moderate-blue fixed-top p-0" id="sideMainMenu">
-		<a class="navbar-brand ml-3 mr-0 pl-0" href="/Dashboard">SHE Test - Applicable Regulations</a>
-		<button class="navbar-toggler navbar-toggler-right border mr-3" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
-			<i class="fa fa-list"></i>
+	<!-- header begin -->
+	<nav class="navbar navbar-expand-lg navbar-header border-bottom fixed-top">
+		<a class="navbar-brand" href="#">Admin System V1.0</a>
+		<button class="navbar-toggler" type="button" id="btnToggleSidebar">
+			<i class="fa fa-bars text-muted"></i>
 		</button>
-
-		<div class="navbar-collapse collapse bg-dark pl-3 pr-3" id="navbarResponsive">
-			<ul class="navbar-nav navbar-sidenav" id="menuRoot">
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" data-original-title="Dashboard" title="Dashboard">
-					<a class="nav-link" href="/Dashboard">
-						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Dashboard</span>
-					</a>
-				</li>
-
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Reports">
-					<a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseReports" data-parent="#menuRoot" aria-expanded="false">
-						<i class="fa fa-fw fa-table"></i>
-						<span class="nav-link-text">Reports</span>
-					</a>
-					<ul class="sidenav-second-level collapse collapsed" id="collapseReports" style="">
-						<li>
-							<a href="#">Corrective Action</a>
-						</li>
-						<li>
-							<a href="#">General Environmental</a>
-						</li>
-						<li>
-							<a href="#">Solid Waste</a>
-						</li>
-						<li>
-							<a href="#">HW - Part A-3 </a>
-						</li>
-						<li>
-							<a href="#">HW - Part D 	</a>
-						</li>
-						<li>
-							<a href="#">HW - Part E  </a>
-						</li>
-						<li>
-							<a href="#">Materials Transportation  </a>
-						</li>
-						<li>
-							<a href="#">Recordkeeping and Posting Requirements</a>
-						</li>
-						<li>
-							<a href="#">Process Safety  </a>
-						</li>
-						<li>
-							<a href="#">Guide Notes  </a>
-						</li>
-					</ul>
-				</li>
-
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Settings">
-					<a class="nav-link nav-link-collapse" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
-						<i class="fa fa-fw fa-wrench"></i>
-						<span class="nav-link-text">Settings</span>
-					</a>
-					<ul class="sidenav-second-level collapse collapsed" id="collapseSettings" style="">
-						<li>
-							<a href="/Settings/FacilitySetup">Facility Setup</a>
-						</li>
-						<li>
-							<a href="/Settings/ScoringSetting">Scoring Settings</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul class="navbar-nav sidenav-toggler">
-				<li class="nav-item">
-					<a class="nav-link text-center" id="sidenavToggler">
-						<i class="fa fa-fw fa-angle-left"></i>
-					</a>
-				</li>
-			</ul>
-
+		@*<div class="collapse navbar-collapse">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" data-toggle="modal" data-target="#LogoutModalDialog">
-						<i class="fa fa-fw fa-sign-out"></i>Logout
-					</a>
+				<li class="nav-item dropdown" ngbdropdown="">
+					<a aria-haspopup="true" class="nav-link dropdown-toggle" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+					<div class="dropdown-menu-right dropdown-menu" x-placement="bottom-left">
+						<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile </a>
+						<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
+						<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings </a>
+						<a class="dropdown-item" href="/login"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+					</div>
 				</li>
 			</ul>
+		</div>*@
+		<div class="btn-group ml-auto profile-setting">
+			<a class="nav-link btn btn-secondary dropdown-toggle bg-transparent border-0" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+			<div class="dropdown-menu dropdown-menu-right">
+				<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile </a>
+				<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
+				<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings </a>
+				<a class="dropdown-item" href="/login"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+			</div>
 		</div>
 	</nav>
+	<!-- header end -->
 
-	<!-- Main Body -->
-	<div class="content-wrapper">
-		<div class="container-fluid">
-			@RenderBody()
+	<!-- siderbar begin -->
+	<nav class="sidebar">
+		<div class="list-group">
+			<a class="list-group-item" href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text">&nbsp;Dashboard </span></a>
+			<a class="list-group-item" href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i><span class="nav-link-text">&nbsp;Charts </span></a>
+			<a class="list-group-item" href="/tables"><i class="fa fa-fw fa-table"></i><span class="nav-link-text">&nbsp;Tables</span> </a>
+			<a class="list-group-item router-link-active" href="/forms"><i class="fa fa-fw fa-edit"></i><span class="nav-link-text">&nbsp;Forms</span> </a>
+			<a class="list-group-item" href="/bs-element"><i class="fa fa-fw fa-desktop"></i><span class="nav-link-text">&nbsp;Bootstrap Element</span> </a>
+			<a class="list-group-item" href="/grid"><i class="fa fa-fw fa-wrench"></i><span class="nav-link-text">&nbsp;Bootstrap Grid</span> </a>
+			<a class="list-group-item" href="/components"><i class="fa fa-th-list"></i><span class="nav-link-text">&nbsp;Component</span> </a>
+			<div class="header-fields">
+				<div class="nested-menu">
+					<a class="nav-link nav-link-collapse list-group-item" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
+						<i class="fa fa-user"></i>
+						<span class="nav-link-text">&nbsp; John Smith</span>
+					</a>
+					<ul class="submenu collapse collapsed" id="collapseSettings" style="">
+						<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-user"></i> Profile</span></a></li>
+						<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-envelope"></i> Inbox</span></a></li>
+						<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-gear"></i> Settings</span></a></li>
+						<li><a href="/login"><span><i class="fa fa-fw fa-power-off"></i> Log Out</span></a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</nav>
+	<!-- siderbar end -->
+
+	<!-- main content begin -->
+	<section class="main-container">
+		@RenderBody()
+		
+		<!-- footer begin -->
 		<footer class="sticky-footer">
 			<div class="container">
 				<div class="text-center align-middle">
-					<small>Copyright © 2018 Specialty Technical Publishers. All rights reserved.</small>
+					<small>Copyright © 2018 XXX Corp. All rights reserved.</small>
 				</div>
 			</div>
 		</footer>
-
-		<!-- Scroll to the top -->
-		<a class="scroll-to-top rounded" href="#pageTop">
-			<i class="fa fa-angle-up"></i>
-		</a>
-
-		<!-- Logout dialog -->
-		<div class="modal fade" id="LogoutModalDialog" tabindex="-1" role="dialog" aria-labelledby="LogoutModalLabel" style="display: none;" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="LogoutModalLabel">Ready to Leave?</h5>
-						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">×</span>
-						</button>
-					</div>
-					<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-					<div class="modal-footer">
-						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="Login">Logout</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+		<!-- footer end -->
+	</section>
+	<!-- main content end -->
+	
+	<!-- Scroll to the top -->
+	<a class="scroll-to-top rounded" href="#pageBody">
+		<i class="fa fa-angle-up"></i>
+	</a>
 
 	<environment include="Development">
 		<script src="~/lib/jquery/dist/jquery-3.3.1.js"></script>
 		<script src="~/lib/popper/popper.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="~/lib/jquery-dataTables/js/jquery.dataTables.js"></script>
 		<script src="~/js/site.js" asp-append-version="true"></script>
 	</environment>
 	<environment exclude="Development">
 		<script src="~/lib/jquery/dist/jquery-3.3.1.js"></script>
 		<script src="~/lib/popper/popper.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="~/lib/jquery-dataTables/js/jquery.dataTables.js"></script>
 		<script src="~/js/site.min.js" asp-append-version="true"></script>
 	</environment>
 
 	@RenderSection("Scripts", required: false)
 
 	<script>
-		$(function () {
 
-			$('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
-				template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+		$(function() {
+			$("#btnToggleSidebar").click(function () {
+				$("body").toggleClass("push-right");
 			});
-
-			$("#sidenavToggler").click(function (o) {
-				o.preventDefault(), $("body").toggleClass("sidenav-toggled"), $(".navbar-sidenav .nav-link-collapse").addClass("collapsed"), $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show")
-			});
-
-			$(".navbar-sidenav .nav-link-collapse").click(function (o) {
-				o.preventDefault(), $("body").removeClass("sidenav-toggled")
-			});
-
-			$("body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse").on("mousewheel DOMMouseScroll", function (e) {
-				var o = e.originalEvent, t = o.wheelDelta || -o.detail; this.scrollTop += 30 * (t < 0 ? 1 : -1), e.preventDefault()
-			});
-
+							
 			$(document).scroll(function () {
 				$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
 			});
@@ -196,7 +133,37 @@
 				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top }), o.preventDefault()
 			});
 		});
-	</script>
+
+				//$(function () {
+
+				//	$('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
+				//		template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+				//	});
+
+				//	$("#sidenavToggler").click(function (o) {
+				//		o.preventDefault(), $("body").toggleClass("sidenav-toggled"), $(".navbar-sidenav .nav-link-collapse").addClass("collapsed"), $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show")
+				//	});
+
+				//	$(".navbar-sidenav .nav-link-collapse").click(function (o) {
+				//		o.preventDefault(), $("body").removeClass("sidenav-toggled")
+				//	});
+
+				//	$("body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse").on("mousewheel DOMMouseScroll", function (e) {
+				//		var o = e.originalEvent, t = o.wheelDelta || -o.detail; this.scrollTop += 30 * (t < 0 ? 1 : -1), e.preventDefault()
+				//	});
+
+				//	$(document).scroll(function () {
+				//		$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
+				//	});
+				//	$('[data-toggle="tooltip"]').tooltip();
+
+				//	$(document).on("click", "a.scroll-to-top", function (o) {
+				//		var t = $(this);
+				//		$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top }), o.preventDefault()
+				//	});
+				//});
+
+/**/</script>
 </body>
 
 </html>

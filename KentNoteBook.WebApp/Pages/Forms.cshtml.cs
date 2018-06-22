@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace KentNoteBook.WebApp.Pages.Settings
+namespace KentNoteBook.WebApp.Pages
 {
-    public class FacilitySetupModel : PageModel
+    public class FormModel : PageModel
     {
         public void OnGet()
         {
