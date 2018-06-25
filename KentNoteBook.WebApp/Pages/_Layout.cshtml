@@ -27,19 +27,6 @@
 		<button class="navbar-toggler" type="button" id="btnToggleSidebar">
 			<i class="fa fa-bars text-muted"></i>
 		</button>
-		@*<div class="collapse navbar-collapse">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item dropdown" ngbdropdown="">
-					<a aria-haspopup="true" class="nav-link dropdown-toggle" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-					<div class="dropdown-menu-right dropdown-menu" x-placement="bottom-left">
-						<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile </a>
-						<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
-						<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings </a>
-						<a class="dropdown-item" href="/login"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
-					</div>
-				</li>
-			</ul>
-		</div>*@
 		<div class="btn-group ml-auto profile-setting">
 			<a class="nav-link btn btn-secondary dropdown-toggle bg-transparent border-0" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
 			<div class="dropdown-menu dropdown-menu-right">
@@ -51,10 +38,9 @@
 		</div>
 	</nav>
 	<!-- header end -->
-
 	<!-- siderbar begin -->
 	<nav class="sidebar">
-		<div class="list-group">
+		<div class="list-group" id="menuRoot">
 			<a class="list-group-item" href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text">&nbsp;Dashboard </span></a>
 			<a class="list-group-item" href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i><span class="nav-link-text">&nbsp;Charts </span></a>
 			<a class="list-group-item" href="/tables"><i class="fa fa-fw fa-table"></i><span class="nav-link-text">&nbsp;Tables</span> </a>
@@ -62,28 +48,45 @@
 			<a class="list-group-item" href="/bs-element"><i class="fa fa-fw fa-desktop"></i><span class="nav-link-text">&nbsp;Bootstrap Element</span> </a>
 			<a class="list-group-item" href="/grid"><i class="fa fa-fw fa-wrench"></i><span class="nav-link-text">&nbsp;Bootstrap Grid</span> </a>
 			<a class="list-group-item" href="/components"><i class="fa fa-th-list"></i><span class="nav-link-text">&nbsp;Component</span> </a>
-			<div class="header-fields">
-				<div class="nested-menu">
-					<a class="nav-link nav-link-collapse list-group-item" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
-						<i class="fa fa-user"></i>
-						<span class="nav-link-text">&nbsp; John Smith</span>
-					</a>
-					<ul class="submenu collapse collapsed" id="collapseSettings" style="">
-						<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-user"></i> Profile</span></a></li>
-						<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-envelope"></i> Inbox</span></a></li>
-						<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-gear"></i> Settings</span></a></li>
-						<li><a href="/login"><span><i class="fa fa-fw fa-power-off"></i> Log Out</span></a></li>
-					</ul>
-				</div>
+
+			<div class="submenu" data-toggle="tooltip" data-placement="right">
+				<a class="nav-link nav-link-collapse list-group-item collapsed" data-toggle="collapse" href="#collapseReports" data-parent="#menuRoot" aria-expanded="false">
+					<i class="fa fa-fw fa-table"></i>
+					<span class="nav-link-text">Reports</span>
+				</a>
+				<ul class="collapse collapsed " id="collapseReports">
+					<li>
+						<a href="#">Corrective Action</a>
+					</li>
+					<li>
+						<a href="#">General Environmental</a>
+					</li>
+				</ul>
 			</div>
+
+			<div class="submenu side-profile" data-toggle="tooltip" data-placement="right">
+				<a class="nav-link nav-link-collapse list-group-item collapsed" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
+					<i class="fa fa-user"></i>
+					<span class="nav-link-text">&nbsp; John Smith</span>
+				</a>
+				<ul class="collapse collapsed" id="collapseSettings">
+					<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-user"></i> Profile</span></a></li>
+					<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-envelope"></i> Inbox</span></a></li>
+					<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-gear"></i> Settings</span></a></li>
+					<li><a href="/login"><span><i class="fa fa-fw fa-power-off"></i> Log Out</span></a></li>
+				</ul>
+			</div>
+
+			<a class="nav-link text-center list-group-item sidenav-toggler" id="btnCollopseSidenav">
+				<i class="fa fa-fw fa-angle-left"></i>
+			</a>
 		</div>
 	</nav>
 	<!-- siderbar end -->
-
 	<!-- main content begin -->
 	<section class="main-container">
 		@RenderBody()
-		
+
 		<!-- footer begin -->
 		<footer class="sticky-footer">
 			<div class="container">
@@ -95,7 +98,6 @@
 		<!-- footer end -->
 	</section>
 	<!-- main content end -->
-	
 	<!-- Scroll to the top -->
 	<a class="scroll-to-top rounded" href="#pageBody">
 		<i class="fa fa-angle-up"></i>
@@ -118,11 +120,23 @@
 
 	<script>
 
-		$(function() {
+		$(function () {
 			$("#btnToggleSidebar").click(function () {
-				$("body").toggleClass("push-right");
+				$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
 			});
-							
+
+			$("#btnCollopseSidenav").click(function () {
+				$(this).find(".fa").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
+
+				if ($(this).find(".fa").hasClass("fa-angle-right")) {
+					$(".sidebar").addClass("sidebar-collapsed");
+					$(".main-container").addClass("main-container-expanded");
+				} else {
+					$(".sidebar").removeClass("sidebar-collapsed");
+					$(".main-container").removeClass("main-container-expanded");
+				}
+			});
+
 			$(document).scroll(function () {
 				$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
 			});
@@ -130,40 +144,10 @@
 
 			$(document).on("click", "a.scroll-to-top", function (o) {
 				var t = $(this);
-				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top }), o.preventDefault()
+				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 50 }), o.preventDefault()
 			});
 		});
-
-				//$(function () {
-
-				//	$('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
-				//		template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip" style="pointer-events: none;"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
-				//	});
-
-				//	$("#sidenavToggler").click(function (o) {
-				//		o.preventDefault(), $("body").toggleClass("sidenav-toggled"), $(".navbar-sidenav .nav-link-collapse").addClass("collapsed"), $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show")
-				//	});
-
-				//	$(".navbar-sidenav .nav-link-collapse").click(function (o) {
-				//		o.preventDefault(), $("body").removeClass("sidenav-toggled")
-				//	});
-
-				//	$("body.fixed-nav .navbar-sidenav, body.fixed-nav .sidenav-toggler, body.fixed-nav .navbar-collapse").on("mousewheel DOMMouseScroll", function (e) {
-				//		var o = e.originalEvent, t = o.wheelDelta || -o.detail; this.scrollTop += 30 * (t < 0 ? 1 : -1), e.preventDefault()
-				//	});
-
-				//	$(document).scroll(function () {
-				//		$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
-				//	});
-				//	$('[data-toggle="tooltip"]').tooltip();
-
-				//	$(document).on("click", "a.scroll-to-top", function (o) {
-				//		var t = $(this);
-				//		$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top }), o.preventDefault()
-				//	});
-				//});
-
-/**/</script>
+	</script>
 </body>
 
 </html>
