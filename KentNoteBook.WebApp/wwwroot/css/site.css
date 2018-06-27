@@ -38,3 +38,8 @@
 footer { height: 56px; background-color: #e9ecef; line-height: 56px; }
 
 legend { margin-bottom: 15px; }
+
+
+/*  override kendo ui css */
+.k-grid-header .k-header { font-weight: 500; }
+.k-grid td, .k-grid th { padding: 0.5em; }

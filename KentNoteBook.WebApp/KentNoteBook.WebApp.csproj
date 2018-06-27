@@ -38,4 +38,7 @@
     <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
     <ProjectReference Include="..\KentNoteBook.Service\KentNoteBook.Service.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
 </Project>
