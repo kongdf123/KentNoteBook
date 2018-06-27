@@ -24,7 +24,6 @@
     <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
     <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.woff2" />
-    <None Include="wwwroot\lib\jquery-dataTables\jquery.dataTables.js" />
     <None Include="wwwroot\lib\jquery-dataTables\js\jquery.dataTables.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
