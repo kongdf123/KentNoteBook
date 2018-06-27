@@ -17,6 +17,6 @@ namespace KentNoteBook.Data.Entities
 
 
 		public List<UsersInRole> UsersInRoles { get; set; } = new List<UsersInRole>();
-		public List<ModulesInRole> ModulesInRoles { get; set; } = new List<ModulesInRole>();
+		public List<MenusInRole> ModulesInRoles { get; set; } = new List<MenusInRole>();
 	}
 }

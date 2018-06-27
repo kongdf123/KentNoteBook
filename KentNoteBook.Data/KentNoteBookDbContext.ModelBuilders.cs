@@ -15,10 +15,9 @@ namespace KentNoteBook.Data
 				map.HasOne(x => x.User).WithMany(x => x.UsersInRoles).HasForeignKey(x => x.UserId);
 			});
 
-			modelBuilder.Entity<ModulesInRole>(map => {
+			modelBuilder.Entity<MenusInRole>(map => {
 				map.HasKey(x => new { x.RoleId, x.SystemModuleId });
-				map.HasOne(x => x.Role).WithMany(x => x.ModulesInRoles).HasForeignKey(x => x.RoleId);
-				map.HasOne(x => x.SystemModule).WithMany(x => x.ModulesInRoles).HasForeignKey(x => x.SystemModuleId);
+				map.HasOne(x => x.Role).WithMany(x => x.ModulesInRoles).HasForeignKey(x => x.RoleId); 
 			});
 
 			modelBuilder.RemovePluralizingTableNameConvention();

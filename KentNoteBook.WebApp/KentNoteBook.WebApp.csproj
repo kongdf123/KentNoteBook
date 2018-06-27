@@ -37,6 +37,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
-    <ProjectReference Include="..\KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

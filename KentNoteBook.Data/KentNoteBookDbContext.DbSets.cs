@@ -8,9 +8,7 @@ namespace KentNoteBook.Data
 		// System
 		public DbSet<Role> Roles { get; set; }
 		public DbSet<User> Users { get; set; }
-		public DbSet<SystemAction> SystemActions { get; set; }
-		public DbSet<SystemModule> SystemModules { get; set; }
-		public DbSet<ModulesInRole> ModulesInRoles { get; set; }
+		public DbSet<MenusInRole> ModulesInRoles { get; set; }
 		public DbSet<UsersInRole> UsersInRoles { get; set; }
 
 
