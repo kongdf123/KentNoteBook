@@ -14,5 +14,16 @@ namespace KentNoteBook.Data.Entities
 		public int Level { get; set; }
 
 		public Status Status { get; set; }
+
+		public List<PermissionsInMenu> PermissionsInMenus { get; set; }
+	}
+
+	public class PermissionsInMenu
+	{
+		public Guid MenuId { get; set; }
+		public Guid PermissionId { get; set; }
+
+		public Menu Menu { get; set; }
+		public Permission Permission { get; set; }
 	}
 }

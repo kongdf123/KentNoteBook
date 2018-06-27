@@ -34,9 +34,5 @@ namespace KentNoteBook.Data.Entities
 		public bool IsActive { get; set; }
 
 		public Status Status { get; set; }
-
-
-		public List<UsersInRole> UsersInRoles { get; set; } = new List<UsersInRole>();
-
 	}
 }
