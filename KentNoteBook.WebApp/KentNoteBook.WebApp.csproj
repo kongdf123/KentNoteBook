@@ -39,6 +39,6 @@
     <ProjectReference Include="..\KentNoteBook.Service\KentNoteBook.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
 </Project>

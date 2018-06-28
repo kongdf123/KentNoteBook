@@ -16,7 +16,7 @@
 </ol>
 
 <div class="form-group row">
-	<button type="button" class="btn btn-primary ml-auto mr-3">Add</button>
+	<button type="button" class="btn btn-primary ml-auto mr-3"  data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit">Add</button>
 </div>
 
 <div id="tbUsers" class="mb-3" style="height:100%"></div>
@@ -24,55 +24,6 @@
 @section Scripts{
 
 <script type="text/javascript">
-
-	$(document).ready(function () {
-		$("#grid").kendoGrid({
-			dataSource: {
-				type: "odata",
-				transport: {
-					read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Orders"
-				},
-				schema: {
-					model: {
-						fields: {
-							OrderID: { type: "number" },
-							Freight: { type: "number" },
-							ShipName: { type: "string" },
-							OrderDate: { type: "date" },
-							ShipCity: { type: "string" }
-						}
-					}
-				},
-				pageSize: 20,
-				serverPaging: true,
-				serverFiltering: true,
-				serverSorting: true
-			},
-			height: 550,
-			filterable: true,
-			sortable: true,
-			pageable: true,
-			scrollable: true,
-			selectable: true,
-			columns: [{
-				field: "OrderID",
-				filterable: false
-			},
-				"Freight",
-			{
-				field: "OrderDate",
-				title: "Order Date",
-				format: "{0:MM/dd/yyyy}"
-			}, {
-				field: "ShipName",
-				title: "Ship Name"
-			}, {
-				field: "ShipCity",
-				title: "Ship City"
-			}
-			]
-		});
-	});
 
 
 </script>

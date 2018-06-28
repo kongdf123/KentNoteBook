@@ -78,7 +78,7 @@
 				</ul>
 			</div>
 
-			<a class="nav-link text-center list-group-item sidenav-toggler" id="btnCollopseSidenav">
+			<a class="nav-link text-center list-group-item sidenav-toggler" id="btnCollopseNavMenu">
 				<i class="fa fa-fw fa-angle-left"></i>
 			</a>
 		</div>
@@ -123,14 +123,36 @@
 
 	@RenderSection("Scripts", required: false)
 
-	<script>
+	<!-- modal dialog begin -->
+	<div class="modal" tabindex="-1" role="dialog" id="modal_dialog_layout">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- put some content here -->
+				</div>
+				<div class="modal-footer d-none">
+					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal dialog end -->
+
+	<script type="text/javascript">
 
 		$(function () {
 			$("#btnToggleSidebar").click(function () {
 				$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
 			});
 
-			$("#btnCollopseSidenav").click(function () {
+			$("#btnCollopseNavMenu").click(function () {
 				$(this).find(".fa").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
 
 				if ($(this).find(".fa").hasClass("fa-angle-right")) {
@@ -151,8 +173,41 @@
 				var t = $(this);
 				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 50 }), o.preventDefault()
 			});
+
+			// launch the modal dialog
+			$('#modal_dialog_layout').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget) // Button that triggered the modal
+				var modal = $(this);
+
+				modal.find(".modal-title").html(button.data("title"));
+
+				$.get(button.data("url"), function (result) {
+					modal.find(".modal-body").html(result);
+				});
+			});
 		});
+
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(function () {
+			'use strict';
+			window.addEventListener('load', function () {
+				// Fetch all the forms we want to apply custom Bootstrap validation styles to
+				var forms = document.getElementsByClassName('needs-validation');
+				// Loop over them and prevent submission
+				var validation = Array.prototype.filter.call(forms, function (form) {
+					form.addEventListener('submit', function (event) {
+						if (form.checkValidity() === false) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+						form.classList.add('was-validated');
+					}, false);
+				});
+			}, false);
+		})();
+
 	</script>
+
 </body>
 
 </html>

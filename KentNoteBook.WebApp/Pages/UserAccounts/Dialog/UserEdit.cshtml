@@ -1,0 +1,75 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.UserAccounts.Dialog.UserEditModel
+@{
+	Layout = null;
+
+	ViewData["Title"] = "UserEdit";
+}
+
+<form class="pl-3 needs-validation" novalidate>
+
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2" for="StartDate">Start Date</label>
+		<div class="col-sm-2">
+			<input id="StartDate" class="form-control form-control-sm" type="date" placeholder="Start Date" />
+		</div>
+		<label class="col-sm-1 col-form-label ml-2" for="End Date">Title</label>
+		<div class="col-sm-2">
+			<input id="EndDate" class="form-control form-control-sm" type="date" placeholder="End Date" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2" for="Managers">Lead Inspector</label>
+		<div class="col-sm-2">
+			<input id="LeadInspector" class="form-control form-control-sm" type="text" placeholder="Lead Inspector" disabled="" />
+		</div>
+		<label class="col-sm-1 col-form-label ml-2" for="LeadInspectorTitle">Title</label>
+		<div class="col-sm-2">
+			<input id="LeadInspectorTitle" class="form-control form-control-sm" type="text" placeholder="Lead Inspector Title" disabled="" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2" for="SiteInspector1">Site Inspector1</label>
+		<div class="col-sm-2">
+			<input id="SiteInspector1" class="form-control form-control-sm" type="text" placeholder="Site Inspector1" disabled="" />
+		</div>
+		<label class="col-sm-1 col-form-label ml-2" for="SiteInspector1Title">Title</label>
+		<div class="col-sm-2">
+			<input id="SiteInspector1Title" class="form-control form-control-sm" type="text" placeholder="Site Inspector1 Title" disabled="" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2" for="SiteInspector2">Site Inspector2</label>
+		<div class="col-sm-2">
+			<input id="SiteInspector2" class="form-control form-control-sm" type="text" placeholder="Site Inspector2" disabled="" />
+		</div>
+		<label class="col-sm-1 col-form-label ml-2" for="SiteInspector2Title">Title</label>
+		<div class="col-sm-2">
+			<input id="SiteInspector2Title" class="form-control form-control-sm" type="text" placeholder="Site Inspector2 Title" disabled="" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2" for="OtherSiteInspectors">Other Site Inspectors</label>
+		<div class="col-sm-2">
+			<input id="OtherSiteInspectors" class="form-control form-control-sm" type="text" placeholder="Other Site Inspectors" disabled="" />
+		</div>
+		<label class="col-sm-1 col-form-label ml-2" for="OtherSiteInspectorsTitle">Title</label>
+		<div class="col-sm-2">
+			<input id="OtherSiteInspectorsTitle" class="form-control form-control-sm" type="text" placeholder="Other Site Inspectors Title" disabled="" />
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2" for="Notes">Notes</label>
+		<div class="col-sm-6">
+			<textarea class="form-control form-control-sm" id="Notes" rows="3"></textarea>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-sm-1 col-form-label ml-2">&nbsp;</label>
+		<div class="col-sm-6">
+			<button type="submit" class="btn btn-primary">Save changes</button>
+			<button type="reset" class="btn btn-primary">Cancel</button>
+		</div>
+	</div>
+</form>

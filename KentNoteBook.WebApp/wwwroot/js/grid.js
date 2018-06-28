@@ -16,7 +16,7 @@ $.fn.extend({
 				});
 			}
 		});
-		
+
 		var options = {
 			columns: columns || [],
 			autoBind: true,
@@ -25,7 +25,7 @@ $.fn.extend({
 			scrollable: true,
 			resizable: true,
 			columnMenu: true,
-			
+
 			cancel: function (e) {
 				if (!e.model.dirty || confirm("Do you want to cancel changes without saving?")) {
 					e.sender.cancelChanges();
@@ -163,6 +163,10 @@ $.fn.extend({
 							url: dataSourceUrl,
 							type: "POST",
 							dataType: "json",
+
+							beforeSend: function (xhr) {
+								xhr.setRequestHeader("XSRF-TOKEN",$('input:hidden[name="__RequestVerificationToken"]').val());
+							},
 
 							success: function (d) {
 								o.success(d);
