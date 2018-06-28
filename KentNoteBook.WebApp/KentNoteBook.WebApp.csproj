@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
-    <ProjectReference Include="..\KentNoteBook.Service\KentNoteBook.Service.csproj" />
+    <ProjectReference Include="..\KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Handlers\" />

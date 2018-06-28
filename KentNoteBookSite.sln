@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Data", "KentNoteBook.Data\KentNoteBook.Data.csproj", "{98515875-314E-4824-A86E-FE29259F90AD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Data", "01-Data", "{17840A0F-AF22-48DC-A8E0-181F72EC74BC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Core", "01-Core", "{17840A0F-AF22-48DC-A8E0-181F72EC74BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Infrastructure", "02-Infrastructure", "{3149FDA8-F8EA-4269-AFFA-64E23435D57F}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Angular", "Ken
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Api", "KentNoteBook.WebApi\KentNoteBook.Api.csproj", "{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Service", "KentNoteBook.Service\KentNoteBook.Service.csproj", "{5DA8442C-9260-4AFC-83B8-8007748DD358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Infrastructure", "KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj", "{8E50889C-C64A-4C8D-B670-B37A4D650F38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DA8442C-9260-4AFC-83B8-8007748DD358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DA8442C-9260-4AFC-83B8-8007748DD358}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DA8442C-9260-4AFC-83B8-8007748DD358}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DA8442C-9260-4AFC-83B8-8007748DD358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,7 +54,7 @@ Global
 		{5267F474-22B9-4F94-8337-974A2515863A} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{5C9457F1-C509-4E53-B5A3-D78F48443AA7} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
-		{5DA8442C-9260-4AFC-83B8-8007748DD358} = {3149FDA8-F8EA-4269-AFFA-64E23435D57F}
+		{8E50889C-C64A-4C8D-B670-B37A4D650F38} = {3149FDA8-F8EA-4269-AFFA-64E23435D57F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A044423D-9157-4E20-AD11-5DA16A5B3F24}

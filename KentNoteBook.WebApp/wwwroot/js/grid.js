@@ -98,7 +98,7 @@ $.fn.extend({
 					});
 				});
 
-				$.traversal($(container).find("tbody"));
+				//$.traversal($(container).find("tbody"));
 			},
 
 			dataSource: new kendo.data.DataSource({
@@ -135,7 +135,7 @@ $.fn.extend({
 					}
 				},
 				sort: [
-					{ field: criteria.SortBy, dir: (criteria.SortDirection == "Descending" || criteria.SortDirection == 1 ? "desc" : "asc") }
+					{ field: criteria.SortBy, dir: (criteria.SortDirection === "Descending" || criteria.SortDirection === 1 ? "desc" : "asc") }
 				],
 				filter: (function () {
 					var given = [];
