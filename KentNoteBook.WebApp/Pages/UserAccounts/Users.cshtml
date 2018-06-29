@@ -16,16 +16,33 @@
 </ol>
 
 <div class="form-group row">
-	<button type="button" class="btn btn-primary ml-auto mr-3"  data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit">Add</button>
+	<button type="button" class="btn btn-primary ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit" data-size="lg">Add</button>
 </div>
 
 <div id="tbUsers" class="mb-3" style="height:100%"></div>
 
+<div class="container">
+	<div class="col-sm-6" style="height:130px;">
+		<div class="form-group">
+			<div class='input-group date' id='datetimepicker11'>
+				<input type='text' class="form-control" />
+				<span class="input-group-addon">
+					<span class="fa fa-calendar">
+					</span>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
 @section Scripts{
 
-<script type="text/javascript">
-
-
-</script>
+	<script type="text/javascript">
+		$(function () {
+			$('#datetimepicker11').datetimepicker({
+				daysOfWeekDisabled: [0, 6]
+			});
+		});
+	</script>
 }
 

@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="~/lib/kendo-ui/css/kendo.bootstrap.css" rel="stylesheet" />
-		<link href="~/lib/kendo-ui/css/kendo.bootstrap.mobile.min.css" rel="stylesheet" />
+		<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
@@ -19,7 +19,7 @@
 			  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="~/lib/kendo-ui/css/kendo.bootstrap.css" rel="stylesheet" />
-		<link href="~/lib/kendo-ui/css/kendo.bootstrap.mobile.min.css" rel="stylesheet" />
+		<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
@@ -109,6 +109,8 @@
 		<script src="~/lib/popper/popper.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="~/lib/kendo-ui/js/kendo.ui.grid.js"></script>
+		<script src="~/lib/bootstrap-datetimepicker/js/moment.js"></script>
+		<script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
 		<script src="~/js/site.js" asp-append-version="true"></script>
 	</environment>
@@ -117,6 +119,8 @@
 		<script src="~/lib/popper/popper.js"></script>
 		<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="~/lib/kendo-ui/js/kendo.ui.grid.js"></script>
+		<script src="~/lib/bootstrap-datetimepicker/js/moment.js"></script>
+		<script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
 		<script src="~/js/site.min.js" asp-append-version="true"></script>
 	</environment>
@@ -125,7 +129,7 @@
 
 	<!-- modal dialog begin -->
 	<div class="modal" tabindex="-1" role="dialog" id="modal_dialog_layout">
-		<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Modal title</h5>
@@ -180,11 +184,39 @@
 				var modal = $(this);
 
 				modal.find(".modal-title").html(button.data("title"));
+				if (button.data("size")) {
+					modal.find(".modal-dialog").addClass("modal-" + button.data("size"));
+				}
 
 				$.get(button.data("url"), function (result) {
 					modal.find(".modal-body").html(result);
+
+					// initialize the datepicker
+					$(".date-picker").datetimepicker({
+						icons: {
+							time: "fa fa-clock-o",
+							date: "fa fa-calendar",
+							up: "fa fa-arrow-up",
+							down: "fa fa-arrow-down"
+						}
+					});
+
+					$('#datetimepicker11').datetimepicker({
+						daysOfWeekDisabled: [0, 6]
+					});
 				});
 			});
+
+			// initialize the datepicker
+			$(".date-picker").datetimepicker({
+				icons: {
+					time: "fa fa-clock-o",
+					date: "fa fa-calendar",
+					up: "fa fa-arrow-up",
+					down: "fa fa-arrow-down"
+				}
+			});
+
 		});
 
 		// Example starter JavaScript for disabling form submissions if there are invalid fields
