@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
-<body id="pageBody">
+<body id="pageBody" style="height:calc(100% - 56px);">
 
 	<!-- header begin -->
 	<nav class="navbar navbar-expand-lg navbar-header border-bottom fixed-top">
@@ -78,27 +78,26 @@
 				</ul>
 			</div>
 
-			<a class="nav-link text-center list-group-item sidenav-toggler" id="btnCollopseNavMenu">
+			<a class="nav-link text-center list-group-item sidenav-toggler" id="btnCollopseLeftNavMenu">
 				<i class="fa fa-fw fa-angle-left"></i>
 			</a>
 		</div>
 	</nav>
 	<!-- siderbar end -->
 	<!-- main content begin -->
-	<section class="main-container">
+	<section class="main-container" style="min-height: calc(100% - 57px);">
 		@RenderBody()
-
-		<!-- footer begin -->
-		<footer class="sticky-footer mt-3">
-			<div class="container">
-				<div class="text-center align-middle">
-					<small>Copyright © 2018 XXX Corp. All rights reserved.</small>
-				</div>
-			</div>
-		</footer>
-		<!-- footer end -->
 	</section>
 	<!-- main content end -->
+	<!-- footer begin -->
+	<footer class="sticky-footer">
+		<div class="container">
+			<div class="text-center align-middle">
+				<small>Copyright © 2018 XXX Corp. All rights reserved.</small>
+			</div>
+		</div>
+	</footer>
+	<!-- footer end -->
 	<!-- Scroll to the top -->
 	<a class="scroll-to-top rounded" href="#pageBody">
 		<i class="fa fa-angle-up"></i>
@@ -155,8 +154,11 @@
 			$("#btnToggleSidebar").click(function () {
 				$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
 			});
+			$("section.main-container").click(function () { 
+				$("body").removeClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
+			});
 
-			$("#btnCollopseNavMenu").click(function () {
+			$("#btnCollopseLeftNavMenu").click(function () {
 				$(this).find(".fa").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
 
 				if ($(this).find(".fa").hasClass("fa-angle-right")) {
@@ -210,10 +212,10 @@
 						}
 					});
 
-					 
+
 				});
 			});
-			
+
 		});
 
 		// Example starter JavaScript for disabling form submissions if there are invalid fields

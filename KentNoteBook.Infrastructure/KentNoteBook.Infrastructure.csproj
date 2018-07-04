@@ -5,13 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Authentication\" />
+    <Compile Remove="Authentication\AppPrincipal.cs" />
+    <Compile Remove="Authentication\IPermissionProvider.cs" />
+    <Compile Remove="Authentication\PermissionProvider.cs" />
+    <Compile Remove="Authentication\RequiresPermissionAttribute.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Utility\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +34,10 @@
     <Reference Include="Microsoft.AspNetCore.Mvc.RazorPages">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.razorpages\2.0.2\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.RazorPages.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
