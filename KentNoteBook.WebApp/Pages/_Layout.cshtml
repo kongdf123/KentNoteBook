@@ -192,31 +192,28 @@
 					modal.find(".modal-body").html(result);
 
 					// initialize the datepicker
-					$(".date-picker").datetimepicker({
-						icons: {
-							time: "fa fa-clock-o",
-							date: "fa fa-calendar",
-							up: "fa fa-arrow-up",
-							down: "fa fa-arrow-down"
+					$(".date-picker").daterangepicker({
+						singleDatePicker: true,
+						timePicker: true,
+						timePickerIncrement: 30,
+						locale: {
+							format: 'MM/DD/YYYY h:mm A'
 						}
 					});
 
-					$('#datetimepicker11').datetimepicker({
-						daysOfWeekDisabled: [0, 6]
+					$('#datetimepicker8').daterangepicker({
+						singleDatePicker: true,
+						timePicker: true,
+						timePickerIncrement: 30,
+						locale: {
+							format: 'MM/DD/YYYY h:mm A'
+						}
 					});
+
+					 
 				});
 			});
-
-			// initialize the datepicker
-			$(".date-picker").datetimepicker({
-				icons: {
-					time: "fa fa-clock-o",
-					date: "fa fa-calendar",
-					up: "fa fa-arrow-up",
-					down: "fa fa-arrow-down"
-				}
-			});
-
+			
 		});
 
 		// Example starter JavaScript for disabling form submissions if there are invalid fields

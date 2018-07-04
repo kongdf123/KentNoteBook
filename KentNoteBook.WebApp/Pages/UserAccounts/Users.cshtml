@@ -24,25 +24,35 @@
 <div class="container">
 	<div class="col-sm-6" style="height:130px;">
 		<div class="form-group">
-			<div class='input-group date' id='datetimepicker11'>
-				<input type='text' class="form-control" />
-				<span class="input-group-addon">
-					<span class="fa fa-calendar">
-					</span>
-				</span>
-			</div>
+			<input type='text' class="form-control" id='datetimepicker11' />
 		</div>
 	</div>
 </div>
 
 @section Scripts{
 
-	<script type="text/javascript">
-		$(function () {
-			$('#datetimepicker11').datetimepicker({
-				daysOfWeekDisabled: [0, 6]
-			});
+<script type="text/javascript">
+	$(function () {
+		$('#datetimepicker11').daterangepicker({
+			autoApply: true,
+			autoUpdateInput: true,
+			singleDatePicker: true,
+			showDropdowns: true,
+			timePicker: true,
+			timePicker24Hour: true,
+			timePickerSeconds: true,
+			timePickerIncrement: 1,
+			locale: {
+				cancelLabel: 'Clear',
+				format: 'YYYY/MM/DD H:mm:ss'
+			}
 		});
-	</script>
+
+		$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
+			//debugger;
+			//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+		});
+	});
+</script>
 }
 
