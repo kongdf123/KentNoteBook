@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
+using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace KentNoteBook.WebApp
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration, IHostingEnvironment env) {
+		public Startup(ILoggerFactory loggerFactory, IConfiguration configuration, IHostingEnvironment env) {
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
 				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -25,8 +26,11 @@ namespace KentNoteBook.WebApp
 				.AddUserSecrets<Startup>();
 
 			Configuration = builder.Build();
+
+			_logger = loggerFactory.CreateLogger("GlobalFiltersLogger");
 		}
 
+		ILogger _logger;
 		public IConfiguration Configuration { get; }
 
 		// This method gets called by the runtime. Use this method to add services to the container.
@@ -34,7 +38,7 @@ namespace KentNoteBook.WebApp
 			// Setup options service
 			services.AddOptions();
 
-			services.AddMvc();
+			services.AddMvc(options => { options.Filters.Add(new RazorPageFilter(_logger)); });
 			services.AddDbContextPool<KentNoteBookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KentNoteBook")));
 		}
 
