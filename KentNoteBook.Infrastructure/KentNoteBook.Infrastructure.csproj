@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Authentication\" />
+    <Folder Include="Utility\" />
     <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +21,9 @@
   <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.0.2\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.RazorPages">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.razorpages\2.0.2\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.RazorPages.dll</HintPath>
     </Reference>
   </ItemGroup>
 
