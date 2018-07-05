@@ -33,7 +33,7 @@ namespace KentNoteBook.Service
 		public void ConfigureServices(IServiceCollection services) {
 
 			services.AddDbContextPool<KentNoteBookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KentNoteBook")));
-
+			
 			services.AddAuthentication(x => {
 				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -47,6 +47,8 @@ namespace KentNoteBook.Service
 					ValidAudience = "api",
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
 				};
+
+
 			});
 
 			services.AddMvc(options => {
