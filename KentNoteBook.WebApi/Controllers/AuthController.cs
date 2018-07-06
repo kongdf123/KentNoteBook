@@ -26,9 +26,9 @@ namespace KentNoteBook.Service.Controllers
 
 		readonly KentNoteBookDbContext _db;
 		readonly IConfiguration _configuration;
-		
-		[HttpPost("Token")]
-		public IActionResult Token(LoginModel login) {
+
+		[HttpPost]
+		public IActionResult CreateToken([FromForm]LoginModel login) {
 			if ( !ModelState.IsValid ) {
 				return BadRequest(ModelState);
 			}
@@ -77,6 +77,14 @@ namespace KentNoteBook.Service.Controllers
 				}
 			});
 
+		}
+
+		[HttpPost]
+		public IActionResult VerifyToken() {
+
+			// TODO
+
+			return Ok();
 		}
 	}
 }
