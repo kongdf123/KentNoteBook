@@ -17,16 +17,16 @@ namespace KentNoteBook.Service.Controllers
 	[Route("api/[controller]")]
 	[AllowAnonymous]
 	[ApiController]
-	public class AuthenticationController : ControllerBase
+	public class AuthController : ControllerBase
 	{
-		public AuthenticationController(KentNoteBookDbContext db, IConfiguration configuration) {
+		public AuthController(KentNoteBookDbContext db, IConfiguration configuration) {
 			_db = db;
 			_configuration = configuration;
 		}
 
 		readonly KentNoteBookDbContext _db;
 		readonly IConfiguration _configuration;
-
+		
 		[HttpPost("Token")]
 		public IActionResult Token(LoginModel login) {
 			if ( !ModelState.IsValid ) {

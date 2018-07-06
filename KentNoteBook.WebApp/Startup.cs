@@ -7,9 +7,11 @@ using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Authentication;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,6 +46,25 @@ namespace KentNoteBook.WebApp
 			// Setup options service
 			services.AddOptions();
 
+			ConfigureJwtAuthService(services);
+
+			services.AddMvc(options => {
+				options.Filters.Add(new RazorPageFilter(_logger));
+
+				var policy = new AuthorizationPolicyBuilder()
+					.RequireAuthenticatedUser()
+					.Build();
+				options.Filters.Add(new AuthorizeFilter(policy));
+			})
+			.AddRazorPagesOptions(options => {
+				options.Conventions.AuthorizeFolder("/"); // Require users to be authenticated.
+														  //options.Conventions.AuthorizeFolder("/", "YourPolicyName"); // Require a policy to be full filled globally.
+			});
+			services.AddDbContextPool<KentNoteBookDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("KentNoteBook")));
+		}
+
+		void ConfigureJwtAuthService(IServiceCollection services) {
+
 			services.AddAuthentication(x => {
 				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -66,7 +87,13 @@ namespace KentNoteBook.WebApp
 					ValidateAudience = true,
 					ValidAudience = _configuration["JwtValidAudience"],
 
+					// Validate the token expiry  
+					ValidateLifetime = true,
+
+					// The signing key must match! 
 					ValidateIssuerSigningKey = true,
+
+					ClockSkew = TimeSpan.Zero,
 
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSecurityKey"]))
 				};
@@ -84,12 +111,12 @@ namespace KentNoteBook.WebApp
 				};
 			});
 
-			services.AddMvc(options => { options.Filters.Add(new RazorPageFilter(_logger)); });
-			services.AddDbContextPool<KentNoteBookDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("KentNoteBook")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
+			app.UseAuthentication();
+
 			if ( env.IsDevelopment() ) {
 				app.UseBrowserLink();
 				app.UseDeveloperExceptionPage();
@@ -98,9 +125,7 @@ namespace KentNoteBook.WebApp
 				app.UseExceptionHandler("/Error");
 			}
 
-			app.UseAuthentication();
 			app.UseStaticFiles();
-			app.UseCookiePolicy();
 
 			app.UseMvc();
 		}
