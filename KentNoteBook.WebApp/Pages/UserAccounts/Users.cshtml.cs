@@ -2,19 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace KentNoteBook.WebApp.Pages.UserAccounts
 {
-	[Authorize(JwtBearerDefaults.AuthenticationScheme)]
 	public class UsersModel : PageModel
-    {
-        public void OnGet()
-        {
+	{
+		public UsersModel(IDistributedCache cache) {
+			this._cache = cache;
+		}
 
-        }
-    }
+		readonly IDistributedCache _cache;
+
+		public class UsersQueryCriterias
+		{
+			public string Key { get; set; }
+			public string Value { get; set; }
+		}
+
+		public void OnGet() {
+			var criterias = new UsersQueryCriterias { Key = "test", Value = "teest" };
+
+			_cache.SetCache("UsersQueryCriterias", criterias);
+
+		}
+	}
 }

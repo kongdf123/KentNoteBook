@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Authentication;
 using KentNoteBook.Infrastructure.Mvc;
@@ -17,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace KentNoteBook.WebApp
 {
@@ -48,11 +45,14 @@ namespace KentNoteBook.WebApp
 
 			ConfigureJwtAuthService(services);
 
+			ConfigureDistributedCacheService(services);
+
 			services.AddMvc(options => {
 				options.Filters.Add(new RazorPageFilter(_logger));
 
 				var policy = new AuthorizationPolicyBuilder()
 					.RequireAuthenticatedUser()
+					.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
 					.Build();
 				options.Filters.Add(new AuthorizeFilter(policy));
 			})
@@ -73,8 +73,7 @@ namespace KentNoteBook.WebApp
 
 				if ( _env.IsDevelopment() ) {
 					x.RequireHttpsMetadata = false;
-				}
-
+				} 
 				x.SaveToken = true;
 
 				x.TokenValidationParameters = new TokenValidationParameters {
@@ -113,8 +112,26 @@ namespace KentNoteBook.WebApp
 
 		}
 
+		void ConfigureDistributedCacheService(IServiceCollection services) {
+			services.AddDistributedSqlServerCache(options => {
+				options.ConnectionString = _configuration.GetConnectionString("KentNoteBookCache");
+				options.SchemaName = "dbo";
+				options.TableName = "SiteDataCache";
+			});
+		}
+
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
+			app.UseStatusCodePages("text/plain", "The server returned HTTP {0} status code.");
+
+			//app.UseStatusCodePages(async context => {
+			//	var response = context.HttpContext.Response;
+			//	if ( response.StatusCode == (int)HttpStatusCode.Unauthorized ||
+			//	response.StatusCode == (int)HttpStatusCode.Forbidden ) {
+			//		response.Redirect("/Login");
+			//	}
+			//});
+
 			app.UseAuthentication();
 
 			if ( env.IsDevelopment() ) {
@@ -126,8 +143,8 @@ namespace KentNoteBook.WebApp
 			}
 
 			app.UseStaticFiles();
-
 			app.UseMvc();
+
 		}
 	}
 }

@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Authentication;
+using KentNoteBook.Infrastructure.Mvc;
+using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -21,16 +24,21 @@ namespace KentNoteBook.WebApp.Pages
 	[AllowAnonymous]
 	public class LoginModel : PageModel
 	{
-		public LoginModel(KentNoteBookDbContext db, IConfiguration configuration) {
-			_db = db;
-			_configuration = configuration;
+		public LoginModel(KentNoteBookDbContext db, IConfiguration configuration, IDistributedCache cache) {
+			this._db = db;
+			this._configuration = configuration;
+			this._cache = cache;
 		}
 
 		readonly KentNoteBookDbContext _db;
 		readonly IConfiguration _configuration;
+		readonly IDistributedCache _cache;
 
-		[FromForm, BindProperty]
+		[FromForm, FromQuery, BindProperty]
 		public UserModel User { get; set; }
+
+		[BindProperty(SupportsGet = true)]
+		public string JwtToken { get; set; }
 
 		public class UserModel
 		{
@@ -47,10 +55,13 @@ namespace KentNoteBook.WebApp.Pages
 
 			this.User = new UserModel();
 
+
+			_cache.SetCache("UserModel", User);
+
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostLoginAsync() {
+		public async Task<IActionResult> OnPostLoginInAsync() {
 			if ( !ModelState.IsValid ) {
 				return BadRequest(ModelState);
 			}
@@ -88,7 +99,7 @@ namespace KentNoteBook.WebApp.Pages
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			var tokenString = tokenHandler.WriteToken(token);
-			return new JsonResult(new {
+			var jwtTokenJson = new {
 				access_token = tokenString,
 				token_type = JwtBearerDefaults.AuthenticationScheme,
 				profile = new {
@@ -97,7 +108,9 @@ namespace KentNoteBook.WebApp.Pages
 					auth_time = new DateTimeOffset(authTime).ToUnixTimeSeconds(),
 					expires_at = new DateTimeOffset(expiredAt).ToUnixTimeSeconds()
 				}
-			});
+			};
+
+			return new CustomResult<object>(1, jwtTokenJson);
 		}
 	}
 }
