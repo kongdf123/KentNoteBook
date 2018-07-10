@@ -111,11 +111,13 @@
 								xhr.setRequestHeader("Authorization", "Bearer " + data.Data.access_token);
 							},
 						}).done(function (data, textStatus, jqXHR) {
-							debugger;
-							$("body .container").hide();
-							$("body").append(data);
+							//debugger;
+							//$("body .container").hide();
+							//$("body").append(data);
+							location.href = "Index";
 						}).fail(function (jqXHR, textStatus, errorThrown) {
-							debugger;
+							//debugger;
+
 							$("#alert_panel")
 								.addClass("alert-danger")
 								.removeClass("d-none")

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 {
+	[AllowAnonymous]
 	public class UserEditModel : PageModel
 	{
 		readonly KentNoteBookDbContext _db;

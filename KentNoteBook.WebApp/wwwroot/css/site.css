@@ -1,9 +1,9 @@
-.navbar-header { background-color: #222; }
+.navbar-header { background-color: #3f51b5; }
 .navbar-header .navbar-brand { color: #fff; }
 .navbar-header .nav-item > a { color: #999; }
 
-.sidebar { border-radius: 0; position: fixed; z-index: 1000; top: 56px; left: 235px; width: 235px; margin-left: -235px; border: none; border-radius: 0; overflow-y: auto; background-color: #343a40; bottom: 0; overflow-x: hidden; padding-bottom: 40px; transition: all 0.2s ease-in-out; }
-.sidebar .list-group a { background: #343a40; border: 0; border-radius: 0; color: #999; text-decoration: none; }
+.sidebar { border-radius: 0; position: fixed; z-index: 1000; top: 56px; left: 235px; width: 235px; margin-left: -235px; border-right: 1px solid rgba(0,0,0,.1); border-radius: 0; overflow-y: auto; background-color: white; bottom: 0; overflow-x: hidden; padding-bottom: 40px; transition: all 0.2s ease-in-out; }
+.sidebar .list-group a { border: 0; border-radius: 0; color: rgba(0,0,0,.65); text-decoration: none; font-weight: 400; }
 .sidebar .list-group a.list-group-item .fa { margin-right: 10px; }
 
 .sidebar .submenu ul li { padding-top: 10px; list-style-type: none; }
@@ -11,8 +11,7 @@
 .sidebar .submenu > a.collapsed:after { content: '\f105'; }
 
 .sidebar .side-profile { display: none; }
-.sidebar .sidenav-toggler { display: block; background-color: #222 !important; color: #adb5bd; cursor: pointer; margin-top: 15px; }
-.sidebar .sidenav-toggler .fa { color: #adb5bd; }
+.sidebar .sidenav-toggler { display: block; cursor: pointer; margin-top: 15px; border-top: 1px solid rgba(0,0,0,.1) !important; border-bottom: 1px solid rgba(0,0,0,.1) !important; }
 
 .sidebar-collapsed { width: 68px; }
 .sidebar-collapsed ul, .sidebar-collapsed span { display: none; }
@@ -35,7 +34,7 @@
 
 .scroll-to-top { position: fixed; right: 15px; bottom: 3px; display: none; width: 50px; height: 50px; text-align: center; color: white; background: rgba(52, 58, 64, 0.5); line-height: 45px; }
 
-footer.sticky-footer { height: 56px; background-color: #e9ecef; line-height: 56px; }
+footer.sticky-footer { height: 56px; background-color: #e9ecef; line-height: 56px;}
 
 legend { margin-bottom: 15px; }
 

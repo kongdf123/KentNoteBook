@@ -28,11 +28,11 @@
 	<!-- header begin -->
 	<nav class="navbar navbar-expand-lg navbar-header border-bottom fixed-top">
 		<a class="navbar-brand" href="#">Admin System V1.0</a>
-		<button class="navbar-toggler" type="button" id="btnToggleSidebar">
-			<i class="fa fa-bars text-muted"></i>
+		<button class="navbar-toggler border text-white" type="button" id="btnToggleSidebar">
+			<i class="fa fa-bars"></i>
 		</button>
 		<div class="btn-group ml-auto profile-setting">
-			<a class="nav-link btn btn-secondary dropdown-toggle bg-transparent border-0" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+			<a class="nav-link btn btn-secondary dropdown-toggle bg-transparent border-0" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Admin User <b class="caret"></b></a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile </a>
 				<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
@@ -67,8 +67,8 @@
 
 			<div class="submenu side-profile" data-toggle="tooltip" data-placement="right">
 				<a class="nav-link nav-link-collapse list-group-item collapsed" data-toggle="collapse" href="#collapseSettings" data-parent="#menuRoot" aria-expanded="false">
-					<i class="fa fa-user"></i>
-					<span class="nav-link-text">&nbsp; John Smith</span>
+					<i class="fa fa-fw fa-user"></i>
+					<span class="nav-link-text">Admin User</span>
 				</a>
 				<ul class="collapse collapsed" id="collapseSettings">
 					<li><a href="javascript:void(0)"><span><i class="fa fa-fw fa-user"></i> Profile</span></a></li>
@@ -154,7 +154,7 @@
 			$("#btnToggleSidebar").click(function () {
 				$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
 			});
-			$("section.main-container").click(function () { 
+			$("section.main-container").click(function () {
 				$("body").removeClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
 			});
 
@@ -177,7 +177,7 @@
 
 			$(document).on("click", "a.scroll-to-top", function (o) {
 				var t = $(this);
-				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 50 }), o.preventDefault()
+				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 70 }), o.preventDefault()
 			});
 
 			// launch the modal dialog

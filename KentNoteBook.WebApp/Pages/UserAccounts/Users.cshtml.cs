@@ -11,6 +11,7 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace KentNoteBook.WebApp.Pages.UserAccounts
 {
+	[AllowAnonymous]
 	public class UsersModel : PageModel
 	{
 		public UsersModel(IDistributedCache cache) {
