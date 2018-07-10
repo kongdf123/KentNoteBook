@@ -110,7 +110,7 @@ namespace KentNoteBook.WebApp.Pages
 				}
 			};
 
-			return new CustomResult<object>(1, jwtTokenJson);
+			return new JsonResult(new { Code = 1, Data = jwtTokenJson });
 		}
 	}
 }

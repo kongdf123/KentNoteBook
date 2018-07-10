@@ -15,6 +15,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace KentNoteBook.WebApp
 {
@@ -59,7 +61,13 @@ namespace KentNoteBook.WebApp
 			.AddRazorPagesOptions(options => {
 				options.Conventions.AuthorizeFolder("/"); // Require users to be authenticated.
 														  //options.Conventions.AuthorizeFolder("/", "YourPolicyName"); // Require a policy to be full filled globally.
+			})
+			.AddJsonOptions(options => {
+				options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+				options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+				options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
 			});
+
 			services.AddDbContextPool<KentNoteBookDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("KentNoteBook")));
 		}
 
@@ -73,7 +81,7 @@ namespace KentNoteBook.WebApp
 
 				if ( _env.IsDevelopment() ) {
 					x.RequireHttpsMetadata = false;
-				} 
+				}
 				x.SaveToken = true;
 
 				x.TokenValidationParameters = new TokenValidationParameters {

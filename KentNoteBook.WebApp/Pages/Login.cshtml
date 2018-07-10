@@ -86,7 +86,7 @@
 		<script src="~/js/site.min.js" asp-append-version="true"></script>
 	</environment>
 
-	<script>
+	<script type="text/javascript">
 		$(function () {
 			$("#btnLogin").click(function () {
 				debugger;
@@ -94,8 +94,7 @@
 					method: 'POST',
 					url: $("#btnLogin").attr("formaction"),
 					data: $("#formLogin").serialize(),
-					cache: false,
-					dataType: "json"
+					cache: false, 
 				}).done(function (data, textStatus, jqXHR) {
 					debugger;
 					if (data && data.Code) {
