@@ -89,21 +89,38 @@
 	<script type="text/javascript">
 		$(function () {
 			$("#btnLogin").click(function () {
-				debugger;
 				$.ajax({
 					method: 'POST',
 					url: $("#btnLogin").attr("formaction"),
 					data: $("#formLogin").serialize(),
-					cache: false, 
+					cache: false,
 				}).done(function (data, textStatus, jqXHR) {
-					debugger;
 					if (data && data.Code) {
 						$("#alert_panel")
 							.addClass("alert-success")
 							.removeClass("d-none")
 							.html("Successful.");
 						localStorage.setItem("access_token", data.Data.access_token);
-						location.href = "Index";
+						//location.href = "Index";
+
+						$.ajax({
+							method: 'GET',
+							url: "Index",
+							cache: false,
+							beforeSend: function (xhr) {
+								xhr.setRequestHeader("Authorization", "Bearer " + data.Data.access_token);
+							},
+						}).done(function (data, textStatus, jqXHR) {
+							debugger;
+							$("body .container").hide();
+							$("body").append(data);
+						}).fail(function (jqXHR, textStatus, errorThrown) {
+							debugger;
+							$("#alert_panel")
+								.addClass("alert-danger")
+								.removeClass("d-none")
+								.html("Failure.");
+						});
 					} else {
 						$("#alert_panel")
 							.addClass("alert-danger")
@@ -111,7 +128,6 @@
 							.html("Failure.");
 					}
 				}).fail(function (jqXHR, textStatus, errorThrown) {
-					debugger;
 					$("#alert_panel")
 						.addClass("alert-danger")
 						.removeClass("d-none")

@@ -130,15 +130,21 @@ namespace KentNoteBook.WebApp
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
-			app.UseStatusCodePages("text/plain", "The server returned HTTP {0} status code.");
+			//app.UseStatusCodePages("text/plain", "The server returned HTTP {0} status code.");
 
-			//app.UseStatusCodePages(async context => {
-			//	var response = context.HttpContext.Response;
-			//	if ( response.StatusCode == (int)HttpStatusCode.Unauthorized ||
-			//	response.StatusCode == (int)HttpStatusCode.Forbidden ) {
-			//		response.Redirect("/Login");
-			//	}
-			//});
+			app.UseStatusCodePages(async context => {
+				var response = context.HttpContext.Response;
+
+				if ( response.StatusCode == (int)HttpStatusCode.Unauthorized ||
+				response.StatusCode == (int)HttpStatusCode.Forbidden ) {
+					var result = new CustomResult<string> {
+						Code = CustomResultCode.Failure,
+						Data = $"The server returned HTTP {response.StatusCode} status code."
+					};
+
+					await response.WriteAsync(result.ToJson());
+				}
+			});
 
 			app.UseAuthentication();
 

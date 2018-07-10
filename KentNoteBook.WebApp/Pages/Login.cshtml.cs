@@ -81,32 +81,33 @@ namespace KentNoteBook.WebApp.Pages
 			var key = Encoding.ASCII.GetBytes(_configuration["JwtSecurityKey"]);
 
 			var authTime = DateTime.UtcNow;
-			var expiredAt = authTime.AddDays(7);
 
 			var tokenDescriptor = new SecurityTokenDescriptor {
+				Issuer = _configuration["JwtValidIssuer"],
+				Audience = _configuration["JwtValidAudience"],
 				Subject = new ClaimsIdentity(new Claim[]
 				{
-					new Claim(JwtClaimTypes.Audience,_configuration["JwtAudience"]),
+					new Claim(JwtClaimTypes.Audience,_configuration["JwtValidAudience"]),
 					new Claim(JwtClaimTypes.Issuer, _configuration["JwtValidIssuer"]),
 					new Claim(JwtClaimTypes.Id, user.Id.ToString()),
 					new Claim(JwtClaimTypes.Name, user.Name),
 					new Claim(JwtClaimTypes.Email, user.Email),
 					new Claim(JwtClaimTypes.Mobile, user.Mobile)
 				}),
-				Expires = expiredAt,
+				Expires = authTime.AddDays(7),
 				SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
 			};
 
 			var token = tokenHandler.CreateToken(tokenDescriptor);
-			var tokenString = tokenHandler.WriteToken(token);
+
 			var jwtTokenJson = new {
-				access_token = tokenString,
+				access_token = tokenHandler.WriteToken(token),
 				token_type = JwtBearerDefaults.AuthenticationScheme,
 				profile = new {
 					sid = user.Id,
 					name = user.Name,
 					auth_time = new DateTimeOffset(authTime).ToUnixTimeSeconds(),
-					expires_at = new DateTimeOffset(expiredAt).ToUnixTimeSeconds()
+					expires_at = new DateTimeOffset(authTime.AddDays(7)).ToUnixTimeSeconds()
 				}
 			};
 
