@@ -18,7 +18,7 @@ namespace KentNoteBook.Infrastructure.Utility
 
 			var json = JsonConvert.SerializeObject(value);
 			options = options ?? new DistributedCacheEntryOptions {
-				AbsoluteExpiration = DateTime.Now.AddMinutes(20)
+				AbsoluteExpiration = DateTime.Now.AddMinutes(20) // keep the cache data for 20 minutes by default.
 			};
 
 			cache.SetString(key, json, options);
