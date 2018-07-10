@@ -28,12 +28,15 @@ namespace KentNoteBook.WebApp
 				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
 				.AddJsonFile("appsettings.Deployment.json", optional: true, reloadOnChange: true)
-				.AddEnvironmentVariables()
-				.AddUserSecrets<Startup>();
+				.AddEnvironmentVariables();
 
-			_env = env;
-			_configuration = builder.Build();
-			_logger = loggerFactory.CreateLogger("GlobalFiltersLogger");
+			if ( env.IsDevelopment() ) {
+				builder.AddUserSecrets<Startup>();
+			}
+
+			this._env = env;
+			this._configuration = builder.Build();
+			this._logger = loggerFactory.CreateLogger("GlobalFiltersLogger");
 		}
 
 		IHostingEnvironment _env;
