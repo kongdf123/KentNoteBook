@@ -39,7 +39,6 @@ footer.sticky-footer { height: 56px; background-color: #e9ecef; line-height: 56p
 legend { margin-bottom: 15px; }
 
 .login-card { max-width: 25em; }
-.spinner { }
 
 
 /*  override kendo ui css */

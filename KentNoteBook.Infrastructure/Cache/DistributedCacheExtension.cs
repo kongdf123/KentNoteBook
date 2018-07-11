@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 
-namespace KentNoteBook.Infrastructure.Utility
+namespace KentNoteBook.Infrastructure.Cache
 {
 	public static class DistributedCacheExtension
 	{

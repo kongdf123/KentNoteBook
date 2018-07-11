@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Authentication;
+using KentNoteBook.Infrastructure.Cache;
 using KentNoteBook.Infrastructure.Mvc;
 using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
