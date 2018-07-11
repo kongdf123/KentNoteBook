@@ -1,21 +1,9 @@
 ﻿/*
-	dataSourceUrl:	an action URL, populates in Ppcs.Portal.Jsons.GridDataSourceController
-	criteria:		an instance of QueryCriteria from C#
-	columns:		grid column declarations, auto-created
+	Kendo UI grid extend method
 */
 $.fn.extend({
-	loadGrid: function (dataSourceUrl, criteria, columns) {
+	bindGrid: function (dataSourceUrl, criteria, columns) {
 		var container = this;
-
-		columns.forEach(function (col, i) {
-			col.editable = function () { return col.editableFlag };
-
-			if (col.columns) {
-				col.columns.forEach(function (nestedCol, j) {
-					nestedCol.editable = function () { return nestedCol.editableFlag };
-				});
-			}
-		});
 
 		var options = {
 			columns: columns || [],
@@ -25,15 +13,6 @@ $.fn.extend({
 			scrollable: true,
 			resizable: true,
 			columnMenu: true,
-
-			cancel: function (e) {
-				if (!e.model.dirty || confirm("Do you want to cancel changes without saving?")) {
-					e.sender.cancelChanges();
-				}
-				else {
-					e.preventDefault();
-				}
-			},
 
 			filterable: {
 				mode: "menu",
@@ -164,9 +143,9 @@ $.fn.extend({
 							type: "POST",
 							dataType: "json",
 
-							beforeSend: function (xhr) {
-								xhr.setRequestHeader("XSRF-TOKEN",$('input:hidden[name="__RequestVerificationToken"]').val());
-							},
+							//beforeSend: function (xhr) {
+							//	xhr.setRequestHeader("XSRF-TOKEN",$('input:hidden[name="__RequestVerificationToken"]').val());
+							//},
 
 							success: function (d) {
 								o.success(d);
