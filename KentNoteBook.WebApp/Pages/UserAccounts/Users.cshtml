@@ -1,4 +1,5 @@
 ﻿@page
+@using KentNoteBook.Service.Html
 @model KentNoteBook.WebApp.Pages.UserAccounts.UsersModel
 @{
 	ViewData["Title"] = "Users";
@@ -15,45 +16,55 @@
 	<li class="breadcrumb-item active">Users</li>
 </ol>
 
-<div class="form-group row">
-	<button type="button" class="btn btn-primary ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit" data-size="lg">Add</button>
-</div>
-
-<div id="tbUsers" class="mb-3" style="height:100%"></div>
-
-<div class="container">
-	<div class="col-sm-6" style="height:130px;">
-		<div class="form-group">
-			<input type='text' class="form-control" id='datetimepicker11' />
-		</div>
+<form class="pl-3" data-ajax-request="true" method="post">
+	<div class="form-group row">
+		<button type="button" class="btn btn-primary ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit" data-size="lg">Add</button>
 	</div>
-</div>
 
+	<div id="tbUsers" class="mb-3" style="min-height: calc(100% - 157px);"></div>
+	@*<div class="container">
+			<div class="col-sm-6" style="height:130px;">
+				<div class="form-group">
+					<input type='text' class="form-control" id='datetimepicker11' />
+				</div>
+			</div>
+		</div>*@
+</form>
 
 @section Scripts{
 
-<script type="text/javascript">
-	$(function () {
-		$('#datetimepicker11').daterangepicker({
-			autoApply: true,
-			autoUpdateInput: true,
-			singleDatePicker: true,
-			showDropdowns: true,
-			timePicker: true,
-			timePicker24Hour: true,
-			timePickerSeconds: true,
-			timePickerIncrement: 1,
-			locale: {
-				cancelLabel: 'Clear',
-				format: 'YYYY/MM/DD H:mm:ss'
-			}
-		});
+	@Html.DataGrid(
+		name:"tbUsers",
+		dataSourceUrl:"/UserAccounts/Users?handler=Users",
+		columns : new List<Infrastructure.Html.Grid.GridColumn>{
+			new Infrastructure.Html.Grid.GridColumn{ Field="Name", DataType=Infrastructure.Html.Grid.GridColumnDataType.String,Width=160},
+			new Infrastructure.Html.Grid.GridColumn{ Field="Email", DataType=Infrastructure.Html.Grid.GridColumnDataType.String,Width=180},
+			new Infrastructure.Html.Grid.GridColumn{ Field="CreatedDate", DataType=Infrastructure.Html.Grid.GridColumnDataType.String,Width=180},
+		})
 
-		$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
-			//debugger;
-			//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
-		});
-	});
-</script>
+	<script type="text/javascript">
+
+						//$(function () {
+						//	$('#datetimepicker11').daterangepicker({
+						//		autoApply: true,
+						//		autoUpdateInput: true,
+						//		singleDatePicker: true,
+						//		showDropdowns: true,
+						//		timePicker: true,
+						//		timePicker24Hour: true,
+						//		timePickerSeconds: true,
+						//		timePickerIncrement: 1,
+						//		locale: {
+						//			cancelLabel: 'Clear',
+						//			format: 'YYYY/MM/DD H:mm:ss'
+						//		}
+						//	});
+
+						//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
+						//		//debugger;
+						//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+						//	});
+						//});
+	</script>
 }
 

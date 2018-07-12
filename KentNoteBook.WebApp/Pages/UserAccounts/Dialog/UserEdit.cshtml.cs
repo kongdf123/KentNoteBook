@@ -76,6 +76,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 				if ( this.Data == null ) {
 					return new BadRequestResult();
 				}
+
 			}
 
 			return Page();

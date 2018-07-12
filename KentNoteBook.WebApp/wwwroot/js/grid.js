@@ -2,7 +2,7 @@
 	Kendo UI grid extend method
 */
 $.fn.extend({
-	bindGrid: function (dataSourceUrl, criteria, columns) {
+	dataGridBind: function (dataSourceUrl, criteria, columns) {
 		var container = this;
 
 		var options = {
@@ -88,12 +88,20 @@ $.fn.extend({
 				pageSize: criteria.Limit,
 				schema: {
 					model: (function () {
+						var dataTypes = {
+							"0": "object",
+							"1": "string",
+							"2": "date",
+							"3": "number",
+							"4": "boolean",
+						};
+
 						var m = {};
 						m.fields = {};
 						for (var i = 0; i < columns.length; i++) {
 							var col = columns[i];
-							if (col.type) {
-								m.fields[col.field] = { type: col.type };
+							if (col.DataType) {
+								m.fields[col.field] = { type: dataTypes[col.type + ""] };
 							}
 							if (col.columns) {
 								for (var j = 0; j < col.columns.length; j++) {
@@ -143,9 +151,10 @@ $.fn.extend({
 							type: "POST",
 							dataType: "json",
 
-							//beforeSend: function (xhr) {
-							//	xhr.setRequestHeader("XSRF-TOKEN",$('input:hidden[name="__RequestVerificationToken"]').val());
-							//},
+							beforeSend: function (xhr) {
+								// send the JWT to server
+								xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("access_token"));
+							},
 
 							success: function (d) {
 								o.success(d);
@@ -174,6 +183,11 @@ $.fn.extend({
 								if (dataSource.sort && dataSource.sort.length > 0) {
 									criteria.SortBy = dataSource.sort[0].field;
 									criteria.SortDirection = dataSource.sort[0].dir + "ending";
+								}
+
+								// support the paging function in razor page
+								if ($(container).parents("form").length) {
+									criteria.__RequestVerificationToken = $(container).parents("form").find('input:hidden[name="__RequestVerificationToken"]').val();
 								}
 								return criteria;
 							})()
