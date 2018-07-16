@@ -5,16 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using KentNoteBook.Infrastructure.Linq;
 
 namespace KentNoteBook.Infrastructure.Html.Grid
 {
 	public static class GridDataSourceExtension
 	{
-		public static async Task<IActionResult> ToDataSourceJsonResultAsync<T>(this IQueryable<T> query, GridCriteria criteria) {
+		public static async Task<IActionResult> ToDataSourceJsonResultAsync<T>(this IQueryable<T> source, GridCriteria criteria) where T : class {
 
-			// TODO : apply the criterias from the client
+			if ( criteria.PostFilters != null && criteria.PostFilters.Count > 0 ) {
+				foreach ( var item in criteria.PostFilters ) {
+					source = source.Where(item.Field, item.Value, item.Operator);
+				}
+			}
 
-			return new JsonResult(new { TotalCount = await query.CountAsync(), Data = await query.ToListAsync() });
+			var count = await source.CountAsync();
+
+			if ( !string.IsNullOrEmpty(criteria.SortBy) ) {
+				source = source.OrderBy(criteria.SortBy, criteria.SortDirection);
+			}
+
+			var items = await source.Skip(criteria.Offset).Take(criteria.Limit).ToListAsync();
+
+			return new JsonResult(new { TotalCount = count, Data = items });
 		}
 	}
 }

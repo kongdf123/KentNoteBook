@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using KentNoteBook.Infrastructure.Linq;
 
 namespace KentNoteBook.Infrastructure.Html.Grid
 {
@@ -11,7 +12,7 @@ namespace KentNoteBook.Infrastructure.Html.Grid
 		public int Offset { get; set; }
 
 		public string SortBy { get; set; }
-		public GridSortDirection SortDirection { get; set; }
+		public SortDirection SortDirection { get; set; }
 
 		public List<GridColumnFilter> PostFilters { get; set; } = new List<GridColumnFilter>();
 	}
@@ -20,23 +21,6 @@ namespace KentNoteBook.Infrastructure.Html.Grid
 	{
 		public string Field { get; set; }
 		public string Value { get; set; }
-		public GridFilterOperator Operator { get; set; }
-	}
-
-	public enum GridSortDirection
-	{
-		Ascending = 0,
-		Descending = 1,
-	}
-
-	public enum GridFilterOperator
-	{
-		Equal = 0,
-		NotEqual = 1,
-		Contains = 2,
-		GreaterThan = 3,
-		GreaterThanOrEqual = 4,
-		LessThan = 5,
-		LessThanOrEqual = 6,
+		public FilterOperator Operator { get; set; }
 	}
 }
