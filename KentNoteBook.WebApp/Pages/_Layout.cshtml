@@ -214,6 +214,36 @@
 						}
 					});
 
+					// ajax form request
+					$(document).on("click", "button[type='submit'][data-ajax-request]", function () { 
+						var $form = $(this).parents("form");
+
+						$.ajax({
+							method: 'POST',
+							url: $form.attr("action"),
+							data: $form.serialize(),
+							cache: false,
+						}).done(function (data, textStatus, jqXHR) {
+							if (data && data.Code) {
+								$("#alert_panel")
+									.addClass("alert-success")
+									.removeClass("d-none")
+									.html("Successful.");
+							} else {
+								$("#alert_panel")
+									.addClass("alert-danger")
+									.removeClass("d-none")
+									.html("Failure:" + data.Data);
+							}
+						}).fail(function (jqXHR, textStatus, errorThrown) {
+							$("#alert_panel")
+								.addClass("alert-danger")
+								.removeClass("d-none")
+								.html("Failure.");
+						});
+
+						return false;
+					});
 
 				});
 			});

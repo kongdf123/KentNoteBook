@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Mvc;
+using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -82,12 +83,50 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync() {
+		public async Task<IActionResult> OnPostSaveAsync() {
 
+			if ( !ModelState.IsValid ) {
 
+				var errors = ModelState.Values
+					.SelectMany(m => m.Errors)
+					.Select(e => e.ErrorMessage)
+					.ToList();
 
+				return new JsonResult(new { Code = 0, Data = string.Join("<br/>", errors) });
+			}
 
-			return new SuccessResult();
+			var entity = await _db.Users
+				.Where(x => x.Id == this.Id)
+				.SingleOrDefaultAsync();
+
+			if ( entity == null ) {
+
+				var saltString = Crypto.GeneratePasswordSalt();
+
+				entity = new Data.Entities.User {
+					Id = this.Id ?? Guid.NewGuid(),
+
+					PasswordSalt = saltString,
+					Password = Crypto.HashPassword(saltString, "123456"),
+
+					CreatedBy = "Admin",
+					CreatedDate = DateTime.Now,
+				};
+
+				_db.Users.Add(entity);
+			}
+
+			entity.Name = this.Data.Name;
+			entity.NickName = this.Data.NickName;
+			entity.Email = this.Data.Email;
+			entity.Mobile = this.Data.Mobile;
+
+			entity.UpdatedBy = "Admin";
+			entity.UpdatedDate = DateTime.Now;
+
+			await _db.SaveChangesAsync();
+
+			return new JsonResult(new { Code = 1, Data = "Successful." });
 		}
 	}
 }
