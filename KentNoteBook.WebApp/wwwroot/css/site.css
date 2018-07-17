@@ -1,3 +1,6 @@
+body { font-size: 0.86rem; }
+.btn { font-size: 0.86rem; }
+
 .navbar-header { background-color: #3f51b5; }
 .navbar-header .navbar-brand { color: #fff; }
 .navbar-header .nav-item > a { color: #999; }
@@ -34,13 +37,15 @@
 
 .scroll-to-top { position: fixed; right: 15px; bottom: 3px; display: none; width: 50px; height: 50px; text-align: center; color: white; background: rgba(52, 58, 64, 0.5); line-height: 45px; }
 
-footer.sticky-footer { height: 56px; background-color: #e9ecef; line-height: 56px;}
+footer.sticky-footer { height: 56px; background-color: #e9ecef; line-height: 56px; }
 
 legend { margin-bottom: 15px; }
 
-.login-card { max-width: 25em; }
+.login-card { max-width: 25rem; }
 
 
 /*  override kendo ui css */
 /*.k-grid-header .k-header { font-weight: 500; }*/
 /*.k-grid td, .k-grid th { padding: 0.5em; }*/
+.k-menu:not(.k-context-menu) > .k-item { font-weight: 400; color: #222; }
+.k-widget { font-size: 0.86rem; }
