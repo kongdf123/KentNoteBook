@@ -11,13 +11,20 @@ namespace KentNoteBook.Infrastructure.Linq
 	{
 		public static IQueryable<T> Where<T>(this IQueryable<T> source, string field, object value, FilterOperator filterOperator) where T : class {
 
-			var property = typeof(T).GetProperties().Where(x => x.Name == field);
+			var property = typeof(T).GetProperties().SingleOrDefault(x => x.Name == field);
 			if ( property == null ) {
 				throw new NullReferenceException("No such field name.");
 			}
 
-			var left = Expression.Parameter(property.GetType());
-			var right = Expression.Convert(Expression.Constant(value, typeof(object)), property.GetType());
+			var parameter = Expression.Parameter(typeof(T));
+
+			var converter = System.ComponentModel.TypeDescriptor.GetConverter(property.PropertyType);
+			if ( converter.IsValid(value) ) {
+				value = converter.ConvertFromString(value.ToString());
+			}
+
+			var left = Expression.Property(parameter, field);
+			var right = Expression.Convert(Expression.Constant(value, property.PropertyType), property.PropertyType);
 
 			Expression body = null;
 
@@ -29,8 +36,10 @@ namespace KentNoteBook.Infrastructure.Linq
 					body = Expression.NotEqual(left, right);
 					break;
 				case FilterOperator.Contains:
-					var contains = property.GetType().GetMethod("Contains", new Type[] { property.GetType() });
-					body = Expression.Call(left, contains, right);
+					if ( property.PropertyType == typeof(string) ) {
+						var contains = typeof(string).GetMethod("Contains", new Type[] { typeof(string) });
+						body = Expression.Call(left, contains, right);
+					}
 					break;
 				case FilterOperator.GreaterThan:
 					body = Expression.GreaterThan(left, right);
@@ -49,16 +58,16 @@ namespace KentNoteBook.Infrastructure.Linq
 			}
 
 			if ( body == null ) {
-				throw new NotImplementedException("No such operator type.");
+				return source;
 			}
 
-			return source.Where(Expression.Lambda<Func<T, bool>>(body, left));
+			return source.Where(Expression.Lambda<Func<T, bool>>(body, new ParameterExpression[] { parameter }));
 
 		}
 
 		public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string field, SortDirection direction) where T : class {
 
-			var property = typeof(T).GetProperties().Where(x => x.Name == field);
+			var property = typeof(T).GetProperties().SingleOrDefault(x => x.Name == field);
 			if ( property == null ) {
 				throw new NullReferenceException("No such field name.");
 			}

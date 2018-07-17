@@ -20,6 +20,19 @@ namespace KentNoteBook.Infrastructure
 					IsActive = true,
 					Status = Status.Enabled
 				});
+
+				for ( int i = 0; i < 30; i++ ) {
+					db.Users.Add(new Data.Entities.User {
+						Id = Guid.NewGuid(),
+						Name = "User" + i,
+						NickName = "User " + i,
+						Password = "123456",
+						Email = "User@User.com",
+						Mobile = "13811111111",
+						IsActive = true,
+						Status = Status.Enabled
+					});
+				}
 			}
 
 			db.SaveChanges();
