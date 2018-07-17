@@ -8,7 +8,7 @@ namespace KentNoteBook.Infrastructure.Html.Grid
 	public class GridCriteria
 	{
 		public bool PaginationEnabled { get; set; } = true;
-		public int Limit { get; set; } = 20;
+		public int Limit { get; set; } = 10;
 		public int Offset { get; set; }
 
 		public string SortBy { get; set; }

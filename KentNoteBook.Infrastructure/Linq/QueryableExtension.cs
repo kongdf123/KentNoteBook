@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using KentNoteBook.Infrastructure.Html.Grid;
+using Newtonsoft.Json;
 
 namespace KentNoteBook.Infrastructure.Linq
 {
@@ -29,10 +30,10 @@ namespace KentNoteBook.Infrastructure.Linq
 			Expression body = null;
 
 			switch ( filterOperator ) {
-				case FilterOperator.Equal:
+				case FilterOperator.Eq:
 					body = Expression.Equal(left, right);
 					break;
-				case FilterOperator.NotEqual:
+				case FilterOperator.Neq:
 					body = Expression.NotEqual(left, right);
 					break;
 				case FilterOperator.Contains:
@@ -41,16 +42,16 @@ namespace KentNoteBook.Infrastructure.Linq
 						body = Expression.Call(left, contains, right);
 					}
 					break;
-				case FilterOperator.GreaterThan:
+				case FilterOperator.Gt:
 					body = Expression.GreaterThan(left, right);
 					break;
-				case FilterOperator.GreaterThanOrEqual:
+				case FilterOperator.Gte:
 					body = Expression.GreaterThanOrEqual(left, right);
 					break;
-				case FilterOperator.LessThan:
+				case FilterOperator.Lt:
 					body = Expression.LessThan(left, right);
 					break;
-				case FilterOperator.LessThanOrEqual:
+				case FilterOperator.Lte:
 					body = Expression.LessThanOrEqual(left, right);
 					break;
 				default:
@@ -94,12 +95,12 @@ namespace KentNoteBook.Infrastructure.Linq
 
 	public enum FilterOperator
 	{
-		Equal = 0,
-		NotEqual = 1,
+		Eq = 0,
+		Neq = 1,
 		Contains = 2,
-		GreaterThan = 3,
-		GreaterThanOrEqual = 4,
-		LessThan = 5,
-		LessThanOrEqual = 6,
+		Gt = 3,
+		Gte = 4,
+		Lt = 5,
+		Lte = 6,
 	}
 }

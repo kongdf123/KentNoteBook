@@ -5,6 +5,18 @@ $.fn.extend({
 	dataGridBind: function (dataSourceUrl, criteria, columns) {
 		var container = this;
 
+		columns.forEach(function (item, index) {
+			if (item.type === 2) { // date
+				item.filterable = {
+					ui: function (element) {
+						element.kendoDatePicker({
+							format: "yyyy-MM-dd HH:mm:ss"
+						});
+					}
+				};
+			}
+		});
+
 		var options = {
 			columns: columns || [],
 			autoBind: true,
@@ -100,7 +112,7 @@ $.fn.extend({
 						m.fields = {};
 						for (var i = 0; i < columns.length; i++) {
 							var col = columns[i];
-							if (col.DataType) {
+							if (col.type) {
 								m.fields[col.field] = { type: dataTypes[col.type + ""] };
 							}
 							if (col.columns) {
@@ -175,8 +187,16 @@ $.fn.extend({
 								// filtering
 								criteria.PostFilters.splice(0);
 								if (dataSource.filter && dataSource.filter.filters) {
-									dataSource.filter.filters.forEach(function (item, index) {
-										criteria.PostFilters.push(item);
+									dataSource.filter.filters.forEach(function (filterItem, index) {
+
+										// To convert the date object to string
+										columns.forEach(function (column, index) {
+											if (column.type === 2 && column.field === filterItem.field) { // date
+												filterItem.value = kendo.toString(filterItem.value, 'yyyy-MM-dd HH:mm:ss');
+											}
+										});
+
+										criteria.PostFilters.push(filterItem);
 									});
 								}
 								// ordering

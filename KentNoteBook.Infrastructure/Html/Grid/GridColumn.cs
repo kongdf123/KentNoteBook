@@ -11,11 +11,14 @@ namespace KentNoteBook.Infrastructure.Html.Grid
 		[JsonProperty("field")]
 		public string Field { get; set; }
 
+		[JsonProperty("title")]
+		public string Title { get; set; }
+
 		[JsonProperty("type")]
 		public GridColumnDataType DataType { get; set; }
 
 		[JsonProperty("width")]
-		public int Width { get; set; } = 20;
+		public int Width { get; set; }
 
 		[JsonProperty("hidden")]
 		public bool Hidden { get; set; }
