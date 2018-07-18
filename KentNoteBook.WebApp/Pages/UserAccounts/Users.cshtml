@@ -18,7 +18,7 @@
 
 <form data-ajax-request="true" method="post">
 	<div class="form-group row">
-		<button type="button" class="btn btn-primary ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit" data-size="lg">Add</button>
+		<button type="button" class="btn btn-primary btn-sm ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit" data-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
 	</div>
 
 	<div id="tbUsers" class="mb-3" style="min-height: calc(100% - 157px);"></div>
@@ -33,31 +33,35 @@
 			new GridColumn{ Field="Name", DataType=GridColumnDataType.String,Width=160},
 			new GridColumn{ Field="Email", DataType=GridColumnDataType.String,Width=180},
 			new GridColumn{ Field="CreatedDate", DataType=GridColumnDataType.Date,Format="{0:yyyy-MM-dd HH:mm:ss}"},
+		},
+		criteria :new GridCriteria {
+			SortBy="CreatedDate",
+			SortDirection=Infrastructure.Linq.SortDirection.Descending
 		})
 
 	<script type="text/javascript">
 
-			//$(function () {
-			//	$('#datetimepicker11').daterangepicker({
-			//		autoApply: true,
-			//		autoUpdateInput: true,
-			//		singleDatePicker: true,
-			//		showDropdowns: true,
-			//		timePicker: true,
-			//		timePicker24Hour: true,
-			//		timePickerSeconds: true,
-			//		timePickerIncrement: 1,
-			//		locale: {
-			//			cancelLabel: 'Clear',
-			//			format: 'YYYY/MM/DD H:mm:ss'
-			//		}
-			//	});
+									//$(function () {
+									//	$('#datetimepicker11').daterangepicker({
+									//		autoApply: true,
+									//		autoUpdateInput: true,
+									//		singleDatePicker: true,
+									//		showDropdowns: true,
+									//		timePicker: true,
+									//		timePicker24Hour: true,
+									//		timePickerSeconds: true,
+									//		timePickerIncrement: 1,
+									//		locale: {
+									//			cancelLabel: 'Clear',
+									//			format: 'YYYY/MM/DD H:mm:ss'
+									//		}
+									//	});
 
-			//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
-			//		//debugger;
-			//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
-			//	});
-			//});
+									//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
+									//		//debugger;
+									//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+									//	});
+									//});
 	</script>
 }
 

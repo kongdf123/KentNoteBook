@@ -215,7 +215,7 @@
 					});
 
 					// ajax form request
-					$(document).on("click", "button[type='submit'][data-ajax-request]", function () { 
+					$(document).on("click", "button[type='submit'][data-ajax-request]", function () {
 						var $form = $(this).parents("form");
 
 						$.ajax({
@@ -227,17 +227,23 @@
 							if (data && data.Code) {
 								$("#alert_panel")
 									.addClass("alert-success")
+									.removeClass("alert-danger")
 									.removeClass("d-none")
 									.html("Successful.");
+
+								$('[data-role="grid"]').data("kendoGrid").dataSource.read();
+
 							} else {
 								$("#alert_panel")
 									.addClass("alert-danger")
+									.removeClass("alert-success")
 									.removeClass("d-none")
 									.html("Failure:" + data.Data);
 							}
 						}).fail(function (jqXHR, textStatus, errorThrown) {
 							$("#alert_panel")
 								.addClass("alert-danger")
+								.removeClass("alert-success")
 								.removeClass("d-none")
 								.html("Failure.");
 						});
