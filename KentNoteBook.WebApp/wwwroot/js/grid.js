@@ -4,13 +4,15 @@
 $.fn.extend({
 	dataGridBind: function (dataSourceUrl, criteria, columns) {
 		var container = this;
+		var dateFormat = "yyyy-MM-dd HH:mm:ss";
 
+		// Set the column menu filter
 		columns.forEach(function (item, index) {
 			if (item.type === 2) { // date
 				item.filterable = {
 					ui: function (element) {
 						element.kendoDatePicker({
-							format: "yyyy-MM-dd HH:mm:ss"
+							format: item.format || dateFormat
 						});
 					}
 				};
@@ -192,7 +194,7 @@ $.fn.extend({
 										// To convert the date object to string
 										columns.forEach(function (column, index) {
 											if (column.type === 2 && column.field === filterItem.field) { // date
-												filterItem.value = kendo.toString(filterItem.value, 'yyyy-MM-dd HH:mm:ss');
+												filterItem.value = kendo.toString(filterItem.value, column.format || dateFormat);
 											}
 										});
 
@@ -206,8 +208,11 @@ $.fn.extend({
 								}
 
 								// support the paging function in razor page
-								if ($(container).parents("form").length) {
-									criteria.__RequestVerificationToken = $(container).parents("form").find('input:hidden[name="__RequestVerificationToken"]').val();
+								var $form = $(container).parents("form");
+								var $antiForgeryToken = $form.find('input:hidden[name="__RequestVerificationToken"]');
+
+								if ($form.length && $antiForgeryToken.length) {
+									criteria.__RequestVerificationToken = $antiForgeryToken.val();
 								}
 								return criteria;
 							})()

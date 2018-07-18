@@ -39,7 +39,7 @@
 				Login
 			</div>
 			<div class="card-body pb-1">
-				<form id="formLogin" data-ajax-request="true" method="post">
+				<form id="formLogin" method="post" data-alert-panel="#alert_panel" asp-page-handler="Login">
 					<div class="form-group row">
 						<label class="col-sm-12 col-form-label" for="UserName">User Name </label>
 						<div class="col-sm-12">
@@ -55,10 +55,10 @@
 
 					<div class="form-group row">
 						<div class="col-sm-12">
-							<button id="btnLogin" type="submit" class="btn btn-primary btn-block" asp-page-handler="LoginIn">Login</button>
+							<button id="btnLogin" type="submit" class="btn btn-primary btn-block" data-ajax-request="true">Login</button>
 						</div>
 					</div>
-					<div class="alert d-none " role="alert" id="alert_panel">
+					<div id="alert_panel">
 					</div>
 				</form>
 			</div>
@@ -88,57 +88,14 @@
 
 	<script type="text/javascript">
 		$(function () {
-			$("#btnLogin").click(function () {
-				$.ajax({
-					method: 'POST',
-					url: $("#btnLogin").attr("formaction"),
-					data: $("#formLogin").serialize(),
-					cache: false,
-				}).done(function (data, textStatus, jqXHR) {
-					if (data && data.Code) {
-						$("#alert_panel")
-							.addClass("alert-success")
-							.removeClass("d-none")
-							.html("Successful.");
-						localStorage.setItem("access_token", data.Data.access_token);
-						//location.href = "Index";
 
-						$.ajax({
-							method: 'GET',
-							url: "Index",
-							cache: false,
-							beforeSend: function (xhr) {
-								xhr.setRequestHeader("Authorization", "Bearer " + data.Data.access_token);
-							},
-						}).done(function (data, textStatus, jqXHR) {
-							//debugger;
-							//$("body .container").hide();
-							//$("body").append(data);
-							location.href = "Index";
-						}).fail(function (jqXHR, textStatus, errorThrown) {
-							//debugger;
+			$("#formLogin").data("ajaxCallback", function (data) {
+				if (data && data.Code) {
+					localStorage.setItem("access_token", data.Data.access_token);
 
-							$("#alert_panel")
-								.addClass("alert-danger")
-								.removeClass("d-none")
-								.html("Failure.");
-						});
-					} else {
-						$("#alert_panel")
-							.addClass("alert-danger")
-							.removeClass("d-none")
-							.html("Failure.");
-					}
-				}).fail(function (jqXHR, textStatus, errorThrown) {
-					$("#alert_panel")
-						.addClass("alert-danger")
-						.removeClass("d-none")
-						.html("Failure.");
-				});
-
-				return false;
+					location.href = "index";
+				}
 			});
-
 		});
 	</script>
 </body>

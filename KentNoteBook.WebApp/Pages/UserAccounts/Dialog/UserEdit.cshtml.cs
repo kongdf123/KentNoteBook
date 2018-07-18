@@ -21,7 +21,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 			this._db = db;
 		}
 
-		[BindProperty]
+		[BindProperty(SupportsGet = true)]
 		public Guid? Id { get; set; }
 
 		[FromForm, BindProperty]
@@ -120,6 +120,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 			entity.NickName = this.Data.NickName;
 			entity.Email = this.Data.Email;
 			entity.Mobile = this.Data.Mobile;
+			entity.Status = this.Data.Status;
 
 			entity.UpdatedBy = "Admin";
 			entity.UpdatedDate = DateTime.Now;

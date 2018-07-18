@@ -18,7 +18,7 @@
 
 <form data-ajax-request="true" method="post">
 	<div class="form-group row">
-		<button type="button" class="btn btn-primary btn-sm ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-title="Add User" data-url="Dialog/UserEdit" data-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
+		<button type="button" class="btn btn-primary btn-sm ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-modal-title="Add User" data-modal-url="Dialog/UserEdit" data-modal-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
 	</div>
 
 	<div id="tbUsers" class="mb-3" style="min-height: calc(100% - 157px);"></div>
@@ -30,10 +30,17 @@
 		name:"tbUsers",
 		dataSourceUrl:"/UserAccounts/Users?handler=Users",
 		columns : new List<GridColumn>{
-			new GridColumn{ Field="", Title="<input type='checkbox' id='checkAll_tbUsers' />",Template="<input type='checkbox' class='checkbox' name='UserId' value='#=Id #' />",Width=35,},
+			new GridColumn{ Field="", Title="<input type='checkbox' id='checkAll' />",Template="<input type='checkbox' class='checkbox' name='UserId' value='#=Id #' />",Width=35,},
 			new GridColumn{ Field=nameof( SystemUser.Name), DataType=GridColumnDataType.String,Width=160},
 			new GridColumn{ Field=nameof( SystemUser.Email), DataType=GridColumnDataType.String,Width=180},
+			new GridColumn{ Field=nameof(SystemUser.Status),DataType=GridColumnDataType.Boolean,Width=100},
 			new GridColumn{ Field=nameof( SystemUser.CreatedDate), DataType=GridColumnDataType.Date,Format="{0:yyyy-MM-dd HH:mm:ss}"},
+			new GridColumn{
+				Title ="Actions",
+				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-3' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit User' data-modal-url='Dialog/UserEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
+				"<button type='button' class='btn btn-danger btn-sm mr-3' data-modal-url='Dialog/Users?handler=remove' data-modal-size='lg'><i class='fa fa-fw fa-remove mr-1'></i>Remove</button>",
+				Width =200
+			},
 		},
 		criteria :new GridCriteria {
 			SortBy="CreatedDate",
@@ -42,27 +49,27 @@
 
 	<script type="text/javascript">
 
-						//$(function () {
-						//	$('#datetimepicker11').daterangepicker({
-						//		autoApply: true,
-						//		autoUpdateInput: true,
-						//		singleDatePicker: true,
-						//		showDropdowns: true,
-						//		timePicker: true,
-						//		timePicker24Hour: true,
-						//		timePickerSeconds: true,
-						//		timePickerIncrement: 1,
-						//		locale: {
-						//			cancelLabel: 'Clear',
-						//			format: 'YYYY/MM/DD H:mm:ss'
-						//		}
-						//	});
+		//$(function () {
+		//	$('#datetimepicker11').daterangepicker({
+		//		autoApply: true,
+		//		autoUpdateInput: true,
+		//		singleDatePicker: true,
+		//		showDropdowns: true,
+		//		timePicker: true,
+		//		timePicker24Hour: true,
+		//		timePickerSeconds: true,
+		//		timePickerIncrement: 1,
+		//		locale: {
+		//			cancelLabel: 'Clear',
+		//			format: 'YYYY/MM/DD H:mm:ss'
+		//		}
+		//	});
 
-						//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
-						//		//debugger;
-						//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
-						//	});
-						//});
+		//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
+		//		//debugger;
+		//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+		//	});
+		//});
 	</script>
 }
 

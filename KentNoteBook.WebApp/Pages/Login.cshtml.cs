@@ -56,13 +56,12 @@ namespace KentNoteBook.WebApp.Pages
 
 			this.User = new UserModel();
 
-
 			_cache.SetCache("UserModel", User);
 
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostLoginInAsync() {
+		public async Task<IActionResult> OnPostLoginAsync() {
 			if ( !ModelState.IsValid ) {
 				return BadRequest(ModelState);
 			}
