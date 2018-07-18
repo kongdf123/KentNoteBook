@@ -6,7 +6,7 @@ using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-    public class Operation : BaseEntity
+    public class SystemOperation : BaseEntity
 	{
 		[MaxLength(50), Required]
 		public string Name { get; set; }

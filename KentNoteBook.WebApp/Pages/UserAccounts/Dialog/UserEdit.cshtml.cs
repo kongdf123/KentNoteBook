@@ -103,7 +103,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 
 				var saltString = Crypto.GeneratePasswordSalt();
 
-				entity = new Data.Entities.User {
+				entity = new Data.Entities.SystemUser {
 					Id = this.Id ?? Guid.NewGuid(),
 
 					PasswordSalt = saltString,

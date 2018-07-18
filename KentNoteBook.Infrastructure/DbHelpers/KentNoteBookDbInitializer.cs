@@ -10,7 +10,7 @@ namespace KentNoteBook.Infrastructure
 	{
 		public static void SeedData(this KentNoteBookDbContext db) {
 			if ( !db.Users.Any() ) {
-				db.Users.Add(new Data.Entities.User {
+				db.Users.Add(new Data.Entities.SystemUser {
 					Id = Guid.NewGuid(),
 					Name = "Admin",
 					NickName = "Admin",
@@ -22,7 +22,7 @@ namespace KentNoteBook.Infrastructure
 				});
 
 				for ( int i = 0; i < 30; i++ ) {
-					db.Users.Add(new Data.Entities.User {
+					db.Users.Add(new Data.Entities.SystemUser {
 						Id = Guid.NewGuid(),
 						Name = "User" + i,
 						NickName = "User " + i,

@@ -7,7 +7,7 @@ using KentNoteBook.Data.Enums;
 
 namespace KentNoteBook.Data.Entities
 {
-	public class Permission : BaseEntity
+	public class SystemPermission : BaseEntity
 	{
 		[MaxLength(50), Required]
 		public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace KentNoteBook.Data.Entities
 		public Guid PermissionId { get; set; }
 		public Guid OperationId { get; set; }
 
-		public Permission Permission { get; set; }
-		public Operation Operation { get; set; }
+		public SystemPermission Permission { get; set; }
+		public SystemOperation Operation { get; set; }
 	}
 }

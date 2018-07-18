@@ -6,7 +6,7 @@ using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-    public class Menu : BaseEntity
+    public class SystemMenu : BaseEntity
 	{
 		[MaxLength(50), Required]
 		public string Name { get; set; }
@@ -23,7 +23,7 @@ namespace KentNoteBook.Data.Entities
 		public Guid MenuId { get; set; }
 		public Guid PermissionId { get; set; }
 
-		public Menu Menu { get; set; }
-		public Permission Permission { get; set; }
+		public SystemMenu Menu { get; set; }
+		public SystemPermission Permission { get; set; }
 	}
 }

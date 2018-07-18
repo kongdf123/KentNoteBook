@@ -6,7 +6,7 @@ using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-    public class UserGroup : BaseEntity
+    public class SystemUserGroup : BaseEntity
 	{
 		[MaxLength(50), Required]
 		public string Name { get; set; }
@@ -23,8 +23,8 @@ namespace KentNoteBook.Data.Entities
 		public Guid UserId { get; set; }
 		public Guid UserGroupId { get; set; }
 
-		public User User { get; set; }
-		public UserGroup UserGroup { get; set; }
+		public SystemUser User { get; set; }
+		public SystemUserGroup UserGroup { get; set; }
 
 	}
 	public class RolesInUserGroup
@@ -32,7 +32,7 @@ namespace KentNoteBook.Data.Entities
 		public Guid RoleId { get; set; }
 		public Guid UserGroupId { get; set; }
 
-		public Role Role { get; set; }
-		public UserGroup UserGroup { get; set; }
+		public SystemRole Role { get; set; }
+		public SystemUserGroup UserGroup { get; set; }
 	}
 }

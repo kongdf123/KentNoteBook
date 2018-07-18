@@ -36,16 +36,16 @@ $.fn.extend({
 					},
 					number: {
 						eq: "Equal to",
-						gt: ">",
-						lt: "<",
-						gte: ">=",
-						lte: "<="
+						gt: "Greater Than",
+						lt: "Less Than",
+						gte: "Greater Than Or Equal",
+						lte: "Less Than Or Equal"
 					},
 					date: {
-						gt: ">",
-						lt: "<",
-						gte: ">=",
-						lte: "<="
+						gt: "Greater Than",
+						lt: "Less Than",
+						gte: "Greater Than Or Equal",
+						lte: "Less Than Or Equal"
 					},
 					enums: {
 						eq: "Equal to",

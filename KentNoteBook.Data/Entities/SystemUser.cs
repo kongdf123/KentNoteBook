@@ -5,7 +5,7 @@ using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-	public class User : BaseEntity
+	public class SystemUser : BaseEntity
 	{
 		[Key]
 		public override Guid Id { get; set; }

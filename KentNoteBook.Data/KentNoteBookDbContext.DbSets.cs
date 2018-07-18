@@ -6,12 +6,12 @@ namespace KentNoteBook.Data
 	partial class KentNoteBookDbContext : DbContext
 	{
 		// System
-		public DbSet<Menu> Menus { get; set; }
-		public DbSet<Operation> Operations { get; set; }
-		public DbSet<Permission> Permissions { get; set; }
-		public DbSet<Role> Roles { get; set; }
-		public DbSet<User> Users { get; set; }
-		public DbSet<UserGroup> UserGroups { get; set; }
+		public DbSet<SystemMenu> Menus { get; set; }
+		public DbSet<SystemOperation> Operations { get; set; }
+		public DbSet<SystemPermission> Permissions { get; set; }
+		public DbSet<SystemRole> Roles { get; set; }
+		public DbSet<SystemUser> Users { get; set; }
+		public DbSet<SystemUserGroup> UserGroups { get; set; }
 		public DbSet<UsersInUserGroup> UsersInUserGroups { get; set; }
 		public DbSet<MenusInRole> ModulesInRoles { get; set; }
 		public DbSet<UsersInRole> UsersInRoles { get; set; }

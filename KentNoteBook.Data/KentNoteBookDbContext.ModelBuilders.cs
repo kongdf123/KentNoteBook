@@ -9,7 +9,7 @@ namespace KentNoteBook.Data
 	{
 		protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
-			modelBuilder.Entity<UserGroup>(map => {
+			modelBuilder.Entity<SystemUserGroup>(map => {
 				map.HasMany(x => x.UsersInUserGroups).WithOne(x => x.UserGroup).HasForeignKey(x => x.UserGroupId);
 				map.HasMany(x => x.RolesInUserGroups).WithOne(x => x.UserGroup).HasForeignKey(x => x.UserGroupId);
 			});
@@ -20,7 +20,7 @@ namespace KentNoteBook.Data
 				map.HasKey(x => new { x.RoleId, x.UserGroupId });
 			});
 
-			modelBuilder.Entity<Role>(map => {
+			modelBuilder.Entity<SystemRole>(map => {
 				map.HasMany(x => x.ModulesInRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
 				map.HasMany(x => x.UsersInRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
 			});
@@ -32,14 +32,14 @@ namespace KentNoteBook.Data
 			});
 
 
-			modelBuilder.Entity<Menu>(map => {
+			modelBuilder.Entity<SystemMenu>(map => {
 				map.HasMany(x => x.PermissionsInMenus).WithOne(x => x.Menu).HasForeignKey(x => x.MenuId);
 			});
 			modelBuilder.Entity<PermissionsInMenu>(map => {
 				map.HasKey(x => new { x.PermissionId, x.MenuId });
 			});
 
-			modelBuilder.Entity<Permission>(map => {
+			modelBuilder.Entity<SystemPermission>(map => {
 				map.HasMany(x => x.OperationsInPermissions).WithOne(x => x.Permission).HasForeignKey(x => x.PermissionId);
 			});
 			modelBuilder.Entity<OperationsInPermission>(map => {

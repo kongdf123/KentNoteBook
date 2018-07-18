@@ -5,7 +5,7 @@ using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-	public class Role : BaseEntity
+	public class SystemRole : BaseEntity
 	{
 		[Key]
 		public override Guid Id { get; set; }
@@ -25,8 +25,8 @@ namespace KentNoteBook.Data.Entities
 		public Guid UserId { get; set; }
 		public Guid RoleId { get; set; }
 
-		public User User { get; set; }
-		public Role Role { get; set; }
+		public SystemUser User { get; set; }
+		public SystemRole Role { get; set; }
 	}
 
 	public class MenusInRole
@@ -34,7 +34,7 @@ namespace KentNoteBook.Data.Entities
 		public Guid RoleId { get; set; }
 		public Guid MenuId { get; set; }
 
-		public Role Role { get; set; }
-		public Menu Menu { get; set; }
+		public SystemRole Role { get; set; }
+		public SystemMenu Menu { get; set; }
 	}
 }
