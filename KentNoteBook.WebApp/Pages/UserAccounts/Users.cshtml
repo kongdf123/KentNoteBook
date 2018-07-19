@@ -29,12 +29,13 @@
 	@Html.DataGrid(
 		name:"tbUsers",
 		dataSourceUrl:"/UserAccounts/Users?handler=Users",
-		columns : new List<GridColumn>{
-			new GridColumn{ Field="", Title="<input type='checkbox' id='checkAll' />",Template="<input type='checkbox' class='checkbox' name='UserId' value='#=Id #' />",Width=35,},
-			new GridColumn{ Field=nameof( SystemUser.Name), DataType=GridColumnDataType.String,Width=160},
-			new GridColumn{ Field=nameof( SystemUser.Email), DataType=GridColumnDataType.String,Width=180},
-			new GridColumn{ Field=nameof(SystemUser.Status),DataType=GridColumnDataType.Boolean,Width=100},
-			new GridColumn{ Field=nameof( SystemUser.CreatedDate), DataType=GridColumnDataType.Date,Format="{0:yyyy-MM-dd HH:mm:ss}"},
+		columns : new List<GridColumn>
+		{
+			new GridColumn{ Selectable=true,Filterable=false,Width=35,},
+			new GridColumn{ Field=nameof(SystemUser.Name), DataType=GridColumnDataType.String,Width=160},
+			new GridColumn{ Field=nameof(SystemUser.Email), DataType=GridColumnDataType.String,Width=180},
+			new GridColumn{ Field=nameof(SystemUser.IsActive),DataType=GridColumnDataType.Boolean,Width=100},
+			new GridColumn{ Field=nameof(SystemUser.CreatedDate), DataType=GridColumnDataType.Date,Format="{0:yyyy-MM-dd HH:mm:ss}"},
 			new GridColumn{
 				Title ="Actions",
 				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-3' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit User' data-modal-url='Dialog/UserEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
@@ -43,33 +44,73 @@
 			},
 		},
 		criteria :new GridCriteria {
-			SortBy="CreatedDate",
-			SortDirection= SortDirection.Descending
+			SortBy =nameof(SystemUser.CreatedDate),
+			SortDirection = SortDirection.Descending
 		})
 
 	<script type="text/javascript">
 
-		//$(function () {
-		//	$('#datetimepicker11').daterangepicker({
-		//		autoApply: true,
-		//		autoUpdateInput: true,
-		//		singleDatePicker: true,
-		//		showDropdowns: true,
-		//		timePicker: true,
-		//		timePicker24Hour: true,
-		//		timePickerSeconds: true,
-		//		timePickerIncrement: 1,
-		//		locale: {
-		//			cancelLabel: 'Clear',
-		//			format: 'YYYY/MM/DD H:mm:ss'
-		//		}
-		//	});
+		function titleFilter(element) {
+			element.kendoAutoComplete({
+				dataSource: titles
+			});
+		}
 
-		//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
-		//		//debugger;
-		//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
-		//	});
-		//});
+		function cityFilter(element) {
+			element.kendoDropDownList({
+				dataSource: cities,
+				optionLabel: "--Select Value--"
+			});
+		}
+						   // columns: [
+						   //     {
+						   //         title: "Name",
+						   //         width: 160,
+						   //         filterable: false,
+						   //         template: "#=FirstName# #=LastName#"
+						   //     },
+						   //     {
+						   //         field: "City",
+						   //         width: 130,
+						   //         filterable: {
+						   //             ui: cityFilter
+						   //        }
+						   //     },
+						   //     {
+						   //         field: "Title",
+						   //         filterable: {
+						   //             ui: titleFilter
+						   //         }
+						   //     },
+						   //     {
+						   //         field: "BirthDate",
+						   //         title: "Birth Date",
+						   //         format: "{0:MM/dd/yyyy HH:mm tt}",
+						   //         filterable: {
+						   //             ui: "datetimepicker"
+						   //         }
+						   //     }
+						   //]									//$(function () {
+										//	$('#datetimepicker11').daterangepicker({
+										//		autoApply: true,
+										//		autoUpdateInput: true,
+										//		singleDatePicker: true,
+										//		showDropdowns: true,
+										//		timePicker: true,
+										//		timePicker24Hour: true,
+										//		timePickerSeconds: true,
+										//		timePickerIncrement: 1,
+										//		locale: {
+										//			cancelLabel: 'Clear',
+										//			format: 'YYYY/MM/DD H:mm:ss'
+										//		}
+										//	});
+
+										//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
+										//		//debugger;
+										//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+										//	});
+										//});
 	</script>
 }
 

@@ -150,6 +150,28 @@
 	</div>
 	<!-- modal dialog end -->
 
+	<!-- confirm dialog -->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_confirm_layout" aria-hidden="true" id="modal_confirm_layout">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Confirm</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger">Confirm</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- confirm dialog end-->
+
 	<script type="text/javascript">
 
 		$(function () {
@@ -181,7 +203,7 @@
 				var t = $(this);
 				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 70 }), o.preventDefault()
 			});
-			
+
 		});
 
 		// Example starter JavaScript for disabling form submissions if there are invalid fields

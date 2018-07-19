@@ -28,6 +28,12 @@ namespace KentNoteBook.Infrastructure.Html.Grid
 
 		[JsonProperty("template")]
 		public string Template { get; set; }
+
+		[JsonProperty("selectable")]
+		public bool Selectable { get; set; }
+
+		[JsonProperty("filterable")]
+		public bool Filterable { get; set; } = true;
 	}
 
 	public enum GridColumnDataType

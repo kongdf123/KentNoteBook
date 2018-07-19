@@ -35,7 +35,9 @@ $(function () {
 			});
 
 			// Render some plugins manualy
-			$.initPlugins($modal);
+			$.bindDatePicker($modal);
+			$.bindAjaxForm($modal.find("form[ajax-form='true']"));
+
 
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			$modal.find(".modal-body").html(errorThrown);
@@ -43,21 +45,57 @@ $(function () {
 
 	});
 
-	$.initPlugins($(document));
+	// register the events to confirm dialog
+	$('#modal_confirm_layout').on('show.bs.modal', function (event) {
+
+		// TODO :
+
+		//var $modal = $(this);
+		//var $modalTriggger = $(event.relatedTarget) // Button that triggered the modal
+
+		//var title = $modalTriggger.data("modalTitle");
+		//var url = $modalTriggger.data("modalUrl");
+		//var size = $modalTriggger.data("modalSize");
+
+		//$modal.find(".modal-title").html(title);
+
+		//if (size) {
+		//	$modal.find(".modal-dialog").addClass("modal-" + size);
+		//}
+
+		//// load dialog content
+		//$.ajax({
+		//	method: 'GET',
+		//	url: url,
+		//	cache: false,
+		//	beforeSend: function (xhr) {
+		//		var accessToken = localStorage.getItem("access_token");
+		//		xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+		//	},
+		//}).done(function (data, textStatus, jqXHR) {
+		//	$modal.find(".modal-body").html(data);
+
+		//	// Execute the js script in the page
+		//	$modal.find("script").each(function () {
+		//		eval($(this).text());
+		//	});
+
+		//	// Render some plugins manualy
+		//	$.bindDatePicker($modal);
+		//	$.bindAjaxForm($modal.find("form[ajax-form='true']"));
+
+
+		//}).fail(function (jqXHR, textStatus, errorThrown) {
+		//	$modal.find(".modal-body").html(errorThrown);
+		//});
+
+	});
+
+	$.bindDatePicker($(document));
+	$.bindAjaxForm($("form[ajax-form='true']"));
 });
 
 $.extend({
-	initPlugins: function ($wrapper) {
-
-		// datepicker
-		$.bindDatePicker($wrapper);
-
-		// ajax form
-		$.bindAjaxForm($wrapper);
-
-		// ajax panel
-		$.bindAjaxPanel($wrapper);
-	},
 
 	bindDatePicker: function ($wrapper) {
 		$wrapper.find(".date-picker").daterangepicker({
@@ -81,11 +119,9 @@ $.extend({
 		});
 	},
 
-	bindAjaxForm: function ($wrapper) {
-
-		$wrapper.on("click", "button[type='submit'][data-ajax-request]", function () {
+	bindAjaxForm: function ($form) {
+		$form.on("click", "button[type='submit'][data-ajax-request]", function () {
 			var $submit = $(this);
-			var $form = $(this).parents("form");
 
 			var $alertPanel = $($form.data("alertPanel"));
 			var $updatePanel = $($form.data("updatePanel"));
@@ -153,7 +189,7 @@ $.extend({
 				});
 
 				// Render some plugins manualy
-				$.initPlugins($container);
+				$.bindAjaxPanel($container);
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				$container.html(errorThrown);
@@ -166,4 +202,3 @@ $.extend({
 	},
 });
 
- 

@@ -85,6 +85,8 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 
 		public async Task<IActionResult> OnPostSaveAsync() {
 
+			System.Threading.Thread.Sleep(2000);
+
 			if ( !ModelState.IsValid ) {
 
 				var errors = ModelState.Values
@@ -120,7 +122,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 			entity.NickName = this.Data.NickName;
 			entity.Email = this.Data.Email;
 			entity.Mobile = this.Data.Mobile;
-			entity.Status = this.Data.Status;
+			entity.IsActive = this.Data.IsActive;
 
 			entity.UpdatedBy = "Admin";
 			entity.UpdatedDate = DateTime.Now;

@@ -6,7 +6,7 @@
 	ViewData["Title"] = "UserEdit";
 }
 
-<form id="form_user_edit" class="pl-3" method="post" data-alert-panel="#alert_panel" data-update-panel="#tbUsers" asp-page-handler="Save">
+<form id="form_user_edit" class="pl-3" method="post" ajax-form="true" data-alert-panel="#alert_panel" data-update-panel="#tbUsers" asp-page-handler="Save">
 	@Html.HiddenFor(x => x.Id)
 
 	<div class="form-group row">
