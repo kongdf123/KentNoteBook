@@ -63,7 +63,7 @@ namespace KentNoteBook.WebApp.Pages
 
 		public async Task<IActionResult> OnPostLoginAsync() {
 			if ( !ModelState.IsValid ) {
-				return BadRequest(ModelState);
+				return ModelState.ToJsonResult();
 			}
 
 			var user = await _db.Users
@@ -74,7 +74,7 @@ namespace KentNoteBook.WebApp.Pages
 				.Where(x => x.Status == Status.Enabled)
 				.SingleOrDefaultAsync();
 			if ( user == null ) {
-				return Unauthorized();
+				return new RequestResult(0, "Unauthorized");
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();
@@ -111,7 +111,7 @@ namespace KentNoteBook.WebApp.Pages
 				}
 			};
 
-			return new JsonResult(new { Code = 1, Data = jwtTokenJson });
+			return new RequestResult(1, jwtTokenJson);
 		}
 	}
 }

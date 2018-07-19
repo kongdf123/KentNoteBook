@@ -27,7 +27,6 @@
     <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\lib\jquery-dataTables\js\jquery.dataTables.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
-    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
     <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />

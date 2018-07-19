@@ -11,6 +11,7 @@
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="~/lib/kendo-ui/css/kendo.bootstrap.css" rel="stylesheet" />
 		<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+		<link href="~/lib/jquery-validation-unobtrusive/jquery.validation.unobtrusive.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
@@ -20,7 +21,8 @@
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="~/lib/kendo-ui/css/kendo.bootstrap.css" rel="stylesheet" />
 		<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
-		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+		<link href="~/lib/jquery-validation-unobtrusive/jquery.validation.unobtrusive.css" rel="stylesheet" />
+		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 </head>
 <body id="pageBody" style="height:calc(100% - 56px);">
@@ -112,6 +114,10 @@
 		<script src="~/lib/bootstrap-datetimepicker/js/moment.js"></script>
 		<script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
+		<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+		<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 		<script src="~/js/site.js" asp-append-version="true"></script>
 	</environment>
 	<environment exclude="Development">
@@ -123,7 +129,11 @@
 		<script src="~/lib/bootstrap-datetimepicker/js/moment.js"></script>
 		<script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
-		<script src="~/js/site.min.js" asp-append-version="true"></script>
+		<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+		<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+		<script src="~/js/site.js" asp-append-version="true"></script>
 	</environment>
 
 	@RenderSection("Scripts", required: false)
@@ -149,7 +159,6 @@
 		</div>
 	</div>
 	<!-- modal dialog end -->
-
 	<!-- confirm dialog -->
 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_confirm_layout" aria-hidden="true" id="modal_confirm_layout">
 		<div class="modal-dialog shadow" role="document">

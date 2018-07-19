@@ -47,9 +47,9 @@
 		<label class="col-sm-2 col-form-label">&nbsp;</label>
 		<div class="col-sm-8">
 			<button type="submit" class="btn btn-primary" data-ajax-request="true">Save changes</button>
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		</div>
 	</div>
-	<div id="form_user_edit_alert_panel">
-	</div>
-</form> 
+	@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+	<div id="form_user_edit_alert_panel"></div>
+</form>

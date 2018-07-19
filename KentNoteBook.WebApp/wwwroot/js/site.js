@@ -64,6 +64,7 @@ $(function () {
 			});
 
 			// Render some plugins manualy
+			$.validator.unobtrusive.parse($modal.find("form"));
 			$.bindDatePicker($modal);
 			$.bindAjaxForm($modal.find("form[ajax-form='true']"));
 
@@ -159,7 +160,13 @@ $.extend({
 	},
 
 	bindAjaxForm: function ($form) {
-		$form.on("click", "button[type='submit'][data-ajax-request]", function () {
+		$form.on("click", "button[type='submit'][data-ajax-request]", function (e) {
+			var validationInfo = $form.data("unobtrusiveValidation");
+			if (validationInfo && validationInfo.validate && !validationInfo.validate()) {
+				return false;
+			}
+			$form.find(".validation-summary-errors").addClass("validation-summary-valid").removeClass("validation-summary-errors");
+
 			var $submit = $(this);
 
 			var $alertPanel = $($form.data("alertPanel"));
@@ -191,8 +198,6 @@ $.extend({
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				$alertPanel.fail();
 			});
-
-			return false;
 		});
 	},
 

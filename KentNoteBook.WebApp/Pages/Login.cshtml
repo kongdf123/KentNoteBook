@@ -19,6 +19,7 @@
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="~/lib/kendo-ui/css/kendo.bootstrap.css" rel="stylesheet" />
 		<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+		<link href="~/lib/jquery-validation-unobtrusive/jquery.validation.unobtrusive.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.css" />
 	</environment>
 	<environment exclude="Development">
@@ -28,6 +29,7 @@
 		<link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
 		<link href="~/lib/kendo-ui/css/kendo.bootstrap.css" rel="stylesheet" />
 		<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+		<link href="~/lib/jquery-validation-unobtrusive/jquery.validation.unobtrusive.css" rel="stylesheet" />
 		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 	</environment>
 </head>
@@ -39,7 +41,7 @@
 				Login
 			</div>
 			<div class="card-body pb-1">
-				<form id="formLogin" method="post" data-alert-panel="#alert_panel" asp-page-handler="Login">
+				<form id="formLogin" method="post" ajax-form="true" data-alert-panel="#alert_panel" asp-page-handler="Login">
 					<div class="form-group row">
 						<label class="col-sm-12 col-form-label" for="UserName">User Name </label>
 						<div class="col-sm-12">
@@ -58,8 +60,8 @@
 							<button id="btnLogin" type="submit" class="btn btn-primary btn-block" data-ajax-request="true">Login</button>
 						</div>
 					</div>
-					<div id="alert_panel">
-					</div>
+					@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+					<div id="alert_panel"></div>
 				</form>
 			</div>
 		</div>
@@ -73,6 +75,10 @@
 		<script src="~/lib/bootstrap-datetimepicker/js/moment.js"></script>
 		<script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
+		<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+		<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 		<script src="~/js/site.js" asp-append-version="true"></script>
 	</environment>
 	<environment exclude="Development">
@@ -83,8 +89,14 @@
 		<script src="~/lib/bootstrap-datetimepicker/js/moment.js"></script>
 		<script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 
+		<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+		<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
 		<script src="~/js/site.min.js" asp-append-version="true"></script>
 	</environment>
+
+	@*@{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }*@
 
 	<script type="text/javascript">
 		$(function () {
