@@ -1,15 +1,44 @@
 ﻿
 $(function () {
 
+	$("#btnToggleSidebar").click(function () {
+		$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
+	});
+	$("section.main-container").click(function () {
+		$("body").removeClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
+	});
+
+	$("#btnCollopseLeftNavMenu").click(function () {
+		$(this).find(".fa").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
+
+		if ($(this).find(".fa").hasClass("fa-angle-right")) {
+			$(".sidebar").addClass("sidebar-collapsed");
+			$(".main-container").addClass("main-container-expanded");
+		} else {
+			$(".sidebar").removeClass("sidebar-collapsed");
+			$(".main-container").removeClass("main-container-expanded");
+		}
+	});
+
+	$(document).scroll(function () {
+		$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+
+	$(document).on("click", "a.scroll-to-top", function (o) {
+		var t = $(this);
+		$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 70 }), o.preventDefault()
+	});
+
 	// launch the modal dialog
 	$('#modal_dialog_layout').on('show.bs.modal', function (event) {
 
 		var $modal = $(this);
-		var $modalTriggger = $(event.relatedTarget) // Button that triggered the modal
+		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
 
-		var title = $modalTriggger.data("modalTitle");
-		var url = $modalTriggger.data("modalUrl");
-		var size = $modalTriggger.data("modalSize");
+		var title = $modalCaller.data("modalTitle");
+		var url = $modalCaller.data("modalUrl");
+		var size = $modalCaller.data("modalSize");
 
 		$modal.find(".modal-title").html(title);
 
@@ -48,47 +77,57 @@ $(function () {
 	// register the events to confirm dialog
 	$('#modal_confirm_layout').on('show.bs.modal', function (event) {
 
-		// TODO :
+		var $modal = $(this);
+		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
+		var $form = $modalCaller.parents("form");
+		var $alertPanel = $($modalCaller.data("alertPanel"));
+		var $updatePanel = $($modalCaller.data("updatePanel"));
 
-		//var $modal = $(this);
-		//var $modalTriggger = $(event.relatedTarget) // Button that triggered the modal
+		var title = $modalCaller.data("modalTitle");
+		var url = $modalCaller.data("url");
+		var callback = $modalCaller.data("ajaxCallback");
 
-		//var title = $modalTriggger.data("modalTitle");
-		//var url = $modalTriggger.data("modalUrl");
-		//var size = $modalTriggger.data("modalSize");
+		if (title) {
+			$modal.find(".modal-title").html(title);
+		}
 
-		//$modal.find(".modal-title").html(title);
+		$modal.find(".btn-danger").off("click");
+		$modal.find(".btn-danger").on("click", function () {
+			var $submit = $(this);
 
-		//if (size) {
-		//	$modal.find(".modal-dialog").addClass("modal-" + size);
-		//}
+			$submit.attr("disabled", true);
 
-		//// load dialog content
-		//$.ajax({
-		//	method: 'GET',
-		//	url: url,
-		//	cache: false,
-		//	beforeSend: function (xhr) {
-		//		var accessToken = localStorage.getItem("access_token");
-		//		xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
-		//	},
-		//}).done(function (data, textStatus, jqXHR) {
-		//	$modal.find(".modal-body").html(data);
+			// submit the POST request
+			$.ajax({
+				method: 'POST',
+				url: url,
+				data: $form.serialize(),
+				cache: false,
+				beforeSend: function (xhr) {
+					var accessToken = localStorage.getItem("access_token");
+					xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+				},
+			}).done(function (data, textStatus, jqXHR) {
+				if (data && data.Code) {
 
-		//	// Execute the js script in the page
-		//	$modal.find("script").each(function () {
-		//		eval($(this).text());
-		//	});
+					$alertPanel.success();
 
-		//	// Render some plugins manualy
-		//	$.bindDatePicker($modal);
-		//	$.bindAjaxForm($modal.find("form[ajax-form='true']"));
+					$.bindAjaxPanel($updatePanel);
 
+				} else {
+					$alertPanel.fail(data.Data);
+				}
 
-		//}).fail(function (jqXHR, textStatus, errorThrown) {
-		//	$modal.find(".modal-body").html(errorThrown);
-		//});
+				typeof (callback) === "function" && callback(data);
 
+				$submit.removeAttr("disabled");
+
+				$modal.modal("hide");
+
+			}).fail(function (jqXHR, textStatus, errorThrown) {
+				$alertPanel.fail();
+			});
+		});
 	});
 
 	$.bindDatePicker($(document));
@@ -137,20 +176,12 @@ $.extend({
 				cache: false,
 			}).done(function (data, textStatus, jqXHR) {
 				if (data && data.Code) {
-					if ($alertPanel && $alertPanel.length) {
-						$alertPanel.html("<div class='alert alert-success' role='alert'>Successful.</div>");
-					}
+					$alertPanel.success();
 
-					if ($updatePanel && $updatePanel.length) {
-						$updatePanel.each(function () {
-							$(this).data("kendoGrid") && $(this).data("kendoGrid").dataSource.read();
-						});
-					}
+					$.bindAjaxPanel($updatePanel);
 
 				} else {
-					if ($alertPanel && $alertPanel.length) {
-						$alertPanel.html("<div class='alert alert-danger' role='alert'>" + data.Data + "</div>");
-					}
+					$alertPanel.fail(data.Data);
 				}
 
 				typeof (callback) === "function" && callback(data);
@@ -158,9 +189,7 @@ $.extend({
 				$submit.removeAttr("disabled");
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
-				if ($alertPanel && $alertPanel.length) {
-					$alertPanel.html("<div class='alert alert-danger' role='alert'>Failure</div>");
-				}
+				$alertPanel.fail();
 			});
 
 			return false;
@@ -168,6 +197,14 @@ $.extend({
 	},
 
 	bindAjaxPanel: function ($wrapper) {
+		if ($wrapper === null || $wrapper.length === 0) {
+			return;
+		}
+
+		$wrapper.each(function () {
+			$(this).data("kendoGrid") && $(this).data("kendoGrid").dataSource.read();
+		});
+
 		$wrapper.find("[ajax-panel]").each(function () {
 			var $container = $(this);
 			var url = $(this).data("url");
@@ -195,10 +232,33 @@ $.extend({
 				$container.html(errorThrown);
 			});
 		});
-	},
-
-	bindGridRowsSelect: function () {
-
-	},
+	}
 });
 
+$.fn.extend({
+	warn: function (msg) {
+		return this.message("warning", msg || "Warning");
+	},
+	fail: function (msg) {
+		return this.message("danger", msg || "Error");
+	},
+	success: function (msg) {
+		return this.message("success", msg || "Successful");
+	},
+	message: function (type, msg) {
+		if (Array.isArray(msg)) {
+			msg = msg.join("<br/>");
+		}
+
+		return this.each(function () {
+			var htmlString = "<div class='alert alert-" + type + " alert-dismissible fade show' role='alert'>";
+			htmlString += "<p class='mb-1'>" + msg + "</p>";
+			htmlString += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+			htmlString += "<span aria-hidden='true'>&times;</span>";
+			htmlString += "</button>";
+			htmlString += "</div>";
+
+			$(this).html(htmlString);
+		});
+	}
+});

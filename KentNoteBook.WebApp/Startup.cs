@@ -140,12 +140,12 @@ namespace KentNoteBook.WebApp
 
 				if ( response.StatusCode == (int)HttpStatusCode.Unauthorized ||
 				response.StatusCode == (int)HttpStatusCode.Forbidden ) {
-					var result = new CustomResult<string> {
-						Code = CustomResultCode.Failure,
-						Data = $"The server returned HTTP {response.StatusCode} status code."
-					};
 
-					await response.WriteAsync(result.ToJson());
+					response.ContentType = "application/json";
+
+					var result = JsonConvert.SerializeObject(new { Code = 0, Data = $"The server returned HTTP {response.StatusCode} status code." });
+
+					await response.WriteAsync(result);
 				}
 			});
 

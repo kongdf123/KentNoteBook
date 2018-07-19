@@ -152,7 +152,7 @@
 
 	<!-- confirm dialog -->
 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal_confirm_layout" aria-hidden="true" id="modal_confirm_layout">
-		<div class="modal-dialog modal-dialog-centered shadow" role="document">
+		<div class="modal-dialog shadow" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Confirm</h5>
@@ -161,11 +161,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					...
+					Are you sure you want to proceed?
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger">Confirm</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-danger">Yes</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
 				</div>
 			</div>
 		</div>
@@ -175,34 +175,6 @@
 	<script type="text/javascript">
 
 		$(function () {
-			$("#btnToggleSidebar").click(function () {
-				$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
-			});
-			$("section.main-container").click(function () {
-				$("body").removeClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
-			});
-
-			$("#btnCollopseLeftNavMenu").click(function () {
-				$(this).find(".fa").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
-
-				if ($(this).find(".fa").hasClass("fa-angle-right")) {
-					$(".sidebar").addClass("sidebar-collapsed");
-					$(".main-container").addClass("main-container-expanded");
-				} else {
-					$(".sidebar").removeClass("sidebar-collapsed");
-					$(".main-container").removeClass("main-container-expanded");
-				}
-			});
-
-			$(document).scroll(function () {
-				$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
-			});
-			$('[data-toggle="tooltip"]').tooltip();
-
-			$(document).on("click", "a.scroll-to-top", function (o) {
-				var t = $(this);
-				$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 70 }), o.preventDefault()
-			});
 
 		});
 

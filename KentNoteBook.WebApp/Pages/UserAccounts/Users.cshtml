@@ -16,7 +16,8 @@
 	<li class="breadcrumb-item active">Users</li>
 </ol>
 
-<form data-ajax-request="true" method="post">
+<form data-ajax-request="true" method="post" asp-page-handler="Remove">
+	<div id="alert_panel"></div>
 	<div class="form-group row">
 		<button type="button" class="btn btn-primary btn-sm ml-auto mr-3" data-toggle="modal" data-target="#modal_dialog_layout" data-modal-title="Add User" data-modal-url="Dialog/UserEdit" data-modal-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
 	</div>
@@ -39,7 +40,7 @@
 			new GridColumn{
 				Title ="Actions",
 				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-3' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit User' data-modal-url='Dialog/UserEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
-				"<button type='button' class='btn btn-danger btn-sm mr-3' data-modal-url='Dialog/Users?handler=remove' data-modal-size='lg'><i class='fa fa-fw fa-remove mr-1'></i>Remove</button>",
+				"<button type='button' class='btn btn-danger btn-sm mr-3' data-toggle='modal' data-target='\\#modal_confirm_layout' data-url='/UserAccounts/Users?handler=Remove&idArray=#=Id #' data-alert-panel='\\#alert_panel' data-update-panel='\\#tbUsers'><i class='fa fa-fw fa-remove mr-1'></i>Remove</button>",
 				Width =200
 			},
 		},

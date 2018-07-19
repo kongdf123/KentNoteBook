@@ -88,13 +88,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 			System.Threading.Thread.Sleep(2000);
 
 			if ( !ModelState.IsValid ) {
-
-				var errors = ModelState.Values
-					.SelectMany(m => m.Errors)
-					.Select(e => e.ErrorMessage)
-					.ToList();
-
-				return new JsonResult(new { Code = 0, Data = string.Join("<br/>", errors) });
+				return ModelState.ToJsonResult();
 			}
 
 			var entity = await _db.Users
@@ -129,7 +123,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 
 			await _db.SaveChangesAsync();
 
-			return new JsonResult(new { Code = 1, Data = "Successful." });
+			return new SuccessResult();
 		}
 	}
 }
