@@ -24,6 +24,9 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts
 		readonly KentNoteBookDbContext _db;
 		readonly IDistributedCache _cache;
 
+		[BindProperty(SupportsGet = true)]
+		public Guid[] IdArray { get; set; }
+
 		public class UsersQueryCriterias
 		{
 			public string Key { get; set; }
@@ -41,14 +44,14 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts
 			return await _db.Users.ToDataSourceJsonResultAsync(criteria);
 		}
 
-		public async Task<IActionResult> OnPostRemoveAsync([FromQuery, FromForm]Guid[] idArray) {
+		public async Task<IActionResult> OnPostRemoveAsync() {
 
-			if ( idArray == null || idArray.Length == 0 ) {
-				return new RequestResult(0, "Please select item to remove.");
+			if ( IdArray == null || IdArray.Length == 0 ) {
+				return new RequestResult(0, "Please select one item to remove.");
 			}
 
 			var deletes = await _db.Users
-				.Where(x => idArray.Contains(x.Id))
+				.Where(x => IdArray.Contains(x.Id))
 				.ToListAsync();
 
 			_db.RemoveRange(deletes);

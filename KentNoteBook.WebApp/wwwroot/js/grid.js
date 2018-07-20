@@ -89,6 +89,11 @@ $.fn.extend({
 					$tr.on("dblclick", function () {
 						$tr.find(".k-grid-edit").click();
 					});
+
+					// Asign value to [name],[value] to the checkbox inside of the first td
+					var $checkbox = $tr.find("td:first-child :checkbox.k-checkbox");
+					$checkbox.attr("name", "idArray").val(rowData.Id);
+
 				});
 
 				//$.traversal($(container).find("tbody"));

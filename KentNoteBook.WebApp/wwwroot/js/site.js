@@ -163,6 +163,10 @@ $.extend({
 		$form.on("click", "button[type='submit'][data-ajax-request]", function (e) {
 			var validationInfo = $form.data("unobtrusiveValidation");
 			if (validationInfo && validationInfo.validate && !validationInfo.validate()) {
+
+				var validator = $form.data("validator");
+				validator && validator.focusInvalid();
+
 				return false;
 			}
 			$form.find(".validation-summary-errors").addClass("validation-summary-valid").removeClass("validation-summary-errors");

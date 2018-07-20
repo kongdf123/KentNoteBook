@@ -1,41 +1,21 @@
 ﻿/* for ASP.NET MVC form validation */
 
-.field-validation-valid {
-	color: #5cb85c;
-}
+/* jquery validation css */
+.input-validation-error { border-color: #dc3545; }
+.input-validation-error:focus { border-color: #dc3545; box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25); }
+
+.field-validation-valid { color: #5cb85c; }
 
 .field-validation-error,
-.validation-summary-errors {
-	color: #d9534f;
-}
+.validation-summary-errors { color: #d9534f; }
 
-.validation-summary-valid {
-	display: none !important;
-}
+.validation-summary-valid { display: none !important; }
 
-.validation-summary-errors > span {
-	font-weight: bold;
-	display: block;
-	margin-bottom: 10px;
-}
+.validation-summary-errors > span { font-weight: bold; display: block; margin-bottom: 10px; }
 
-.validation-summary-errors > ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+.validation-summary-errors > ul { margin: 0; padding: 0; list-style: none; }
 
-.validation-summary-errors > ul > li {
-	line-height: 160%;
-}
+.validation-summary-errors > ul > li { line-height: 160%; }
 
 .field-validation-error:before,
-.validation-summary-errors > ul > li:before {
-	content: "\f057";
-	font: normal normal normal 14px/1 FontAwesome;	/* here needs fontawesome */
-	font-size: inherit;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	margin-right: 5px;
-}
+.validation-summary-errors > ul > li:before { content: "\f057"; font: normal normal normal 14px/1 FontAwesome; /* here needs fontawesome */ font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; margin-right: 5px; }
