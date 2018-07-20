@@ -1,7 +1,9 @@
 ﻿@page
 @model KentNoteBook.WebApp.Pages.FormModel
 @{
-    ViewData["Title"] = "Form";
+	ViewData["Title"] = "Form";
+
+	Layout = null;
 }
 
 <!--- Breadcrumbs -->
@@ -43,7 +45,7 @@
 				<input id="Department" class="form-control form-control-sm" type="text" placeholder="Department" disabled="" />
 			</div>
 		</div>
-		
+
 		<div class="form-group row">
 			<label class="col-sm-1 col-form-label ml-2" for="CustomField">Custom Field</label>
 			<div class="col-sm-6">

@@ -3,15 +3,17 @@
 @model KentNoteBook.WebApp.Pages.UserAccounts.UsersModel
 @{
 	ViewData["Title"] = "Users";
+
+	Layout = null;
 }
 
 <!--- Breadcrumbs -->
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
-		<a href="/Dashboard">Dashboard</a>
+		<a href="/Dashboard" ajax-link="true" data-url="/dashboard" data-update-panel=".main-container">Dashboard</a>
 	</li>
 	<li class="breadcrumb-item">
-		<a href="/UserAccounts/Users">User Accounts</a>
+		<a href="/UserAccounts/Users" ajax-link="true" data-url="/UserAccounts/Users" data-update-panel=".main-container">User Accounts</a>
 	</li>
 	<li class="breadcrumb-item active">Users</li>
 </ol>
@@ -24,9 +26,6 @@
 	</div>
 
 	<div id="tbUsers" class="mb-3" style="min-height: calc(100% - 157px);"></div>
-</form>
-
-@section Scripts{
 
 	@Html.DataGrid(
 		name:"tbUsers",
@@ -40,7 +39,7 @@
 			new GridColumn{ Field=nameof(SystemUser.CreatedDate), DataType=GridColumnDataType.Date,Format="{0:yyyy-MM-dd HH:mm:ss}"},
 			new GridColumn{
 				Title ="Actions",
-				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-1' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit User' data-modal-url='Dialog/UserEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
+				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-1' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit User' data-modal-url='/UserAccounts/Dialog/UserEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
 				"<button type='button' class='btn btn-danger btn-sm mr-1' data-toggle='modal' data-target='\\#modal_confirm_layout' data-url='/UserAccounts/Users?handler=Remove&idArray=#=Id #' data-alert-panel='\\#alert_panel' data-update-panel='\\#tbUsers'><i class='fa fa-fw fa-remove mr-1'></i>Remove</button>",
 				Width =200
 			},
@@ -49,8 +48,8 @@
 			SortBy =nameof(SystemUser.CreatedDate),
 			SortDirection = SortDirection.Descending
 		})
-
 	<script type="text/javascript">
+
 
 		function titleFilter(element) {
 			element.kendoAutoComplete({
@@ -64,55 +63,56 @@
 				optionLabel: "--Select Value--"
 			});
 		}
-							   // columns: [
-							   //     {
-							   //         title: "Name",
-							   //         width: 160,
-							   //         filterable: false,
-							   //         template: "#=FirstName# #=LastName#"
-							   //     },
-							   //     {
-							   //         field: "City",
-							   //         width: 130,
-							   //         filterable: {
-							   //             ui: cityFilter
-							   //        }
-							   //     },
-							   //     {
-							   //         field: "Title",
-							   //         filterable: {
-							   //             ui: titleFilter
-							   //         }
-							   //     },
-							   //     {
-							   //         field: "BirthDate",
-							   //         title: "Birth Date",
-							   //         format: "{0:MM/dd/yyyy HH:mm tt}",
-							   //         filterable: {
-							   //             ui: "datetimepicker"
-							   //         }
-							   //     }
-							   //]									//$(function () {
-											//	$('#datetimepicker11').daterangepicker({
-											//		autoApply: true,
-											//		autoUpdateInput: true,
-											//		singleDatePicker: true,
-											//		showDropdowns: true,
-											//		timePicker: true,
-											//		timePicker24Hour: true,
-											//		timePickerSeconds: true,
-											//		timePickerIncrement: 1,
-											//		locale: {
-											//			cancelLabel: 'Clear',
-											//			format: 'YYYY/MM/DD H:mm:ss'
-											//		}
-											//	});
+									   // columns: [
+									   //     {
+									   //         title: "Name",
+									   //         width: 160,
+									   //         filterable: false,
+									   //         template: "#=FirstName# #=LastName#"
+									   //     },
+									   //     {
+									   //         field: "City",
+									   //         width: 130,
+									   //         filterable: {
+									   //             ui: cityFilter
+									   //        }
+									   //     },
+									   //     {
+									   //         field: "Title",
+									   //         filterable: {
+									   //             ui: titleFilter
+									   //         }
+									   //     },
+									   //     {
+									   //         field: "BirthDate",
+									   //         title: "Birth Date",
+									   //         format: "{0:MM/dd/yyyy HH:mm tt}",
+									   //         filterable: {
+									   //             ui: "datetimepicker"
+									   //         }
+									   //     }
+									   //]									//$(function () {
+													//	$('#datetimepicker11').daterangepicker({
+													//		autoApply: true,
+													//		autoUpdateInput: true,
+													//		singleDatePicker: true,
+													//		showDropdowns: true,
+													//		timePicker: true,
+													//		timePicker24Hour: true,
+													//		timePickerSeconds: true,
+													//		timePickerIncrement: 1,
+													//		locale: {
+													//			cancelLabel: 'Clear',
+													//			format: 'YYYY/MM/DD H:mm:ss'
+													//		}
+													//	});
 
-											//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
-											//		//debugger;
-											//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
-											//	});
-											//});
+													//	$('#datetimepicker11').on('apply.daterangepicker', function (ev, picker) {
+													//		//debugger;
+													//		//$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+													//	});
+													//});
 	</script>
-}
+
+</form>
 

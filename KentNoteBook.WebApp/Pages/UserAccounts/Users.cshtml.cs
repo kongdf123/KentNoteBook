@@ -34,6 +34,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts
 		}
 
 		public void OnGet() {
+
 			var criterias = new UsersQueryCriterias { Key = "test", Value = "teest" };
 
 			_cache.SetCache("UsersQueryCriterias", criterias);

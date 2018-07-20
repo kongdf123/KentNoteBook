@@ -1,0 +1,19 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.Shared.TopModel
+@{
+	Layout = null;
+}
+
+<a class="navbar-brand" href="#">Admin System V1.0</a>
+<button class="navbar-toggler border text-white" type="button" id="btnToggleSidebar">
+	<i class="fa fa-bars"></i>
+</button>
+<div class="btn-group ml-auto profile-setting">
+	<a class="nav-link btn btn-secondary dropdown-toggle bg-transparent border-0" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Admin User <b class="caret"></b></a>
+	<div class="dropdown-menu dropdown-menu-right">
+		<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile </a>
+		<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
+		<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings </a>
+		<a class="dropdown-item" href="/login"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+	</div>
+</div> 

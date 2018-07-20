@@ -46,6 +46,8 @@ $(function () {
 			$modal.find(".modal-dialog").addClass("modal-" + size);
 		}
 
+		$modal.find(".modal-body").showLoading();
+
 		// load dialog content
 		$.ajax({
 			method: 'GET',
@@ -131,8 +133,12 @@ $(function () {
 		});
 	});
 
+
+	// handle some ajax elements
 	$.bindDatePicker($(document));
-	$.bindAjaxForm($("form[ajax-form='true']"));
+	$.bindAjaxPanel($(document));
+	$.bindAjaxLink($('[ajax-link=true]'));
+	$.bindAjaxForm($("[ajax-form='true']"));
 });
 
 $.extend({
@@ -156,6 +162,17 @@ $.extend({
 		$wrapper.find(".date-picker").on('apply.daterangepicker', function (ev, picker) {
 			//debugger;
 			$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
+		});
+	},
+
+	bindAjaxLink: function ($link) {
+		$link.click(function (e) {
+			e.preventDefault();
+
+			var url = $(this).data("url");
+			var panel = $($(this).data("updatePanel"));
+
+			$.renderPartial(panel, url);
 		});
 	},
 
@@ -189,7 +206,7 @@ $.extend({
 				if (data && data.Code) {
 					$alertPanel.success();
 
-					$.bindAjaxPanel($updatePanel);
+					$.bindAjaxPanel($form);
 
 				} else {
 					$alertPanel.fail(data.Data);
@@ -210,13 +227,20 @@ $.extend({
 			return;
 		}
 
-		$wrapper.each(function () {
-			$(this).data("kendoGrid") && $(this).data("kendoGrid").dataSource.read();
-		});
-
 		$wrapper.find("[ajax-panel]").each(function () {
 			var $container = $(this);
 			var url = $(this).data("url");
+
+			$.renderPartial($container, url);
+		});
+	},
+
+	renderPartial: function ($panel, url) {
+
+		$panel.each(function () {
+			var $container = $(this);
+
+			$container.showLoading();
 
 			$.ajax({
 				method: 'GET',
@@ -235,13 +259,16 @@ $.extend({
 				});
 
 				// Render some plugins manualy
-				$.bindAjaxPanel($container);
+				$.bindDatePicker($container);
+				$.bindAjaxLink($container.find('[ajax-link=true]'));
+				$.bindAjaxForm($container.find("form[ajax-form='true']"));
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				$container.html(errorThrown);
 			});
 		});
-	}
+
+	},
 });
 
 $.fn.extend({
@@ -269,5 +296,10 @@ $.fn.extend({
 
 			$(this).html(htmlString);
 		});
-	}
+	},
+	showLoading: function () {
+		return this.each(function () {
+			$(this).html("<span class='pl-3'>Processing...</span>");
+		});
+	},
 });

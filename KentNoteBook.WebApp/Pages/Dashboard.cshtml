@@ -2,12 +2,14 @@
 @model KentNoteBook.WebApp.Pages.DashboardModel
 @{
 	ViewData["Title"] = "DashboardV1";
+
+	Layout = null;
 }
 
 <!--- Breadcrumbs -->
 <ol class="breadcrumb">
 	<li class="breadcrumb-item">
-		<a href="/Dashboard">Dashboard</a>
+		<a href="/Dashboard" ajax-link="true" data-url="/dashboard" data-update-panel=".main-container">Dashboard</a>
 	</li>
 	<li class="breadcrumb-item active">My Dashboard</li>
 </ol>
