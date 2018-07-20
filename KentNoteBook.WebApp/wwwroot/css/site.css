@@ -44,7 +44,7 @@ legend { margin-bottom: 15px; }
 
 
 /*  override kendo ui css */
-/*.k-grid-header .k-header { font-weight: 500; }*/
+/*.k-grid-header .k-header { font-weight:500; }*/
 /*.k-grid td, .k-grid th { padding: 0.5em; }*/
 .k-menu:not(.k-context-menu) > .k-item { font-weight: 400; color: #222; }
 .k-widget, .k-button, .k-input, .k-textbox > input { font-size: 0.86rem !important; }
