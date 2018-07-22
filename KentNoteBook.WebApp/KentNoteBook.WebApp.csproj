@@ -21,7 +21,6 @@
     <None Include="Pages\_ViewImports.cshtml" />
     <None Include="Pages\_ViewStart.cshtml" />
     <None Include="wwwroot\js\site.js" />
-    <None Include="wwwroot\js\site.min.js" />
     <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
     <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\lib\fontawesome\fonts\fontawesome-webfont.woff2" />
@@ -29,7 +28,6 @@
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
-    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
     <None Include="wwwroot\lib\jquery\dist\jquery-3.3.1.js" />
     <None Include="wwwroot\lib\popper\popper.js" />
     <None Include="wwwroot\scss\bootstrap.custom.scss" />

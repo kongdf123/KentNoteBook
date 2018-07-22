@@ -66,9 +66,9 @@ $.fn.extend({
 				buttonCount: 8
 			},
 
-			dataBound: function () {
-				//workaround: header and body width alignment
-				var grid = $(container).data("kendoGrid");
+			dataBound: function (e) {
+				var grid = this;
+				//workaround: header and body width alignment 
 				for (var i = columns.length - 1; i >= 0; i--) {
 					if (!columns[i].hidden) {
 						grid.autoFitColumn(i);
@@ -76,19 +76,9 @@ $.fn.extend({
 					}
 				}
 
-				$(container).find("tbody tr[role=row]").each(function () {
+				grid.tbody.find("tr[role=row]").each(function () {
 					var $tr = $(this);
 					var rowData = grid.dataItem($tr);
-					if (rowData.IsHighlighted) {
-						$tr.addClass("text-warning");
-					}
-					else if (rowData.IsMuted) {
-						$tr.addClass("text-muted-lighter");
-					}
-
-					$tr.on("dblclick", function () {
-						$tr.find(".k-grid-edit").click();
-					});
 
 					// Asign value to [name],[value] to the checkbox inside of the first td
 					var $checkbox = $tr.find("td:first-child :checkbox.k-checkbox");
