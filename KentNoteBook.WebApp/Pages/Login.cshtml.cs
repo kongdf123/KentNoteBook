@@ -74,7 +74,7 @@ namespace KentNoteBook.WebApp.Pages
 				.Where(x => x.Status == Status.Enabled)
 				.SingleOrDefaultAsync();
 			if ( user == null ) {
-				return new RequestResult(0, "Unauthorized");
+				return new CustomResult(0, "Unauthorized");
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();
@@ -111,7 +111,7 @@ namespace KentNoteBook.WebApp.Pages
 				}
 			};
 
-			return new RequestResult(1, jwtTokenJson);
+			return new CustomResult(1, jwtTokenJson);
 		}
 	}
 }

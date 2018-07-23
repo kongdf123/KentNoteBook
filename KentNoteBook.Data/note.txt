@@ -1,0 +1,10 @@
+﻿
+## EF Core Migration
+
+# Add-Migration Add_User_Password -Context KentNoteBookDbContext -Project KentNoteBook.Data -StartupProject KentNoteBook.WebApp
+
+# Script-Migration -From 0 -Context KentNoteBookDbContext -Project KentNoteBook.Data -StartupProject KentNoteBook.WebApp
+
+# Script-Migration -From SeedData_MasterWorkPackage -To Update_WorkPackageBudgetChangeItem_SourceWorkPackageId -Context PpcsDbContext -StartupProject Ppcs.Portal
+
+# Remove-Migration -f -Context PpcsDbContext -Project Ppcs.Data -StartupProject Ppcs.Portal

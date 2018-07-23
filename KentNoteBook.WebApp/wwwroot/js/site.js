@@ -113,6 +113,9 @@ $(function () {
 			}).done(function (data, textStatus, jqXHR) {
 				if (data && data.Code) {
 
+					// reload the data grid if existing
+					$updatePanel.data("kendoGrid") && $updatePanel.data("kendoGrid").dataSource.read();
+
 					$alertPanel.success();
 
 					$.bindAjaxPanel($updatePanel);
@@ -204,8 +207,10 @@ $.extend({
 				cache: false,
 			}).done(function (data, textStatus, jqXHR) {
 				if (data && data.Code) {
-					$alertPanel.success();
 
+					$updatePanel.data("kendoGrid") && $updatePanel.data("kendoGrid").dataSource.read();
+
+					$alertPanel.success();
 					$.bindAjaxPanel($form);
 
 				} else {
@@ -299,7 +304,7 @@ $.fn.extend({
 	},
 	showLoading: function () {
 		return this.each(function () {
-			$(this).html("<span class='pl-3'>Processing...</span>");
+			$(this).html("<span class='pl-3'><i class='fa fa-fw fa-spinner mr-1'></i>Processing...</span>");
 		});
 	},
 });

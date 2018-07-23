@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
-using KentNoteBook.Infrastructure.Cache;
 using KentNoteBook.Infrastructure.Html.Grid;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -14,9 +14,9 @@ using Microsoft.Extensions.Caching.Distributed;
 namespace KentNoteBook.WebApp.Pages.UserAccounts
 {
 	[AllowAnonymous]
-	public class UsersModel : PageModel
+	public class SystemRolesModel : PageModel
 	{
-		public UsersModel(KentNoteBookDbContext db, IDistributedCache cache) {
+		public SystemRolesModel(KentNoteBookDbContext db, IDistributedCache cache) {
 			this._db = db;
 			this._cache = cache;
 		}
@@ -27,31 +27,26 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts
 		[BindProperty(SupportsGet = true)]
 		public Guid[] IdArray { get; set; }
 
-		public class UsersQueryCriterias
+		public class RolesQueryCriterias
 		{
 			public string Key { get; set; }
 			public string Value { get; set; }
 		}
 
 		public void OnGet() {
-
-			var criterias = new UsersQueryCriterias { Key = "test", Value = "teest" };
-
-			_cache.SetCache("UsersQueryCriterias", criterias);
-
 		}
 
-		public async Task<IActionResult> OnPostUsersAsync([FromForm] GridCriteria criteria) {
-			return await _db.Users.ToDataSourceJsonResultAsync(criteria);
+		public async Task<IActionResult> OnPostRolesAsync([FromForm] GridCriteria criteria) {
+			return await _db.Roles.ToDataSourceJsonResultAsync(criteria);
 		}
 
 		public async Task<IActionResult> OnPostRemoveAsync() {
 
 			if ( IdArray == null || IdArray.Length == 0 ) {
-				return new RequestResult(0, "Please select one item to remove.");
+				return new CustomResult(0, "Please select one item to remove.");
 			}
 
-			var deletes = await _db.Users
+			var deletes = await _db.Roles
 				.Where(x => IdArray.Contains(x.Id))
 				.ToListAsync();
 

@@ -13,9 +13,13 @@ namespace KentNoteBook.Data.Entities
 		[MaxLength(50), Required]
 		public string Name { get; set; }
 
+		[MaxLength(500)]
+		public string Description { get; set; }
+
+		public bool IsActive { get; set; }
+
 		public Status Status { get; set; }
-
-
+		
 		public List<UsersInRole> UsersInRoles { get; set; } = new List<UsersInRole>();
 		public List<MenusInRole> ModulesInRoles { get; set; } = new List<MenusInRole>();
 	}

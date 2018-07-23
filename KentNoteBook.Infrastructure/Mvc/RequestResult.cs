@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 
 namespace KentNoteBook.Infrastructure.Mvc
 {
-	public class RequestResult : ActionResult
+	public class CustomResult : ActionResult
 	{
-		public RequestResult(RequestResultCode code, object data) {
+		public CustomResult(RequestResultCode code, object data) {
 			this.Code = (int)code;
 			this.Data = data;
 		}
 
-		public RequestResult(int code, object data) {
+		public CustomResult(int code, object data) {
 			this.Code = code;
 			this.Data = data;
 		}
@@ -41,7 +41,7 @@ namespace KentNoteBook.Infrastructure.Mvc
 		}
 	}
 
-	public class SuccessResult : RequestResult
+	public class SuccessResult : CustomResult
 	{
 		public SuccessResult() : base(RequestResultCode.Success, "Success") {
 		}
@@ -49,7 +49,7 @@ namespace KentNoteBook.Infrastructure.Mvc
 		}
 	}
 
-	public class FailResult : RequestResult
+	public class FailResult : CustomResult
 	{
 		public FailResult() : base(RequestResultCode.Failure, "Failure") {
 		}
