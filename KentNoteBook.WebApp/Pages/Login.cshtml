@@ -6,67 +6,54 @@
 	Layout = null;
 }
 
-<!DOCTYPE html>
-<html lang="en" class="h-100">
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>@ViewData["Title"] - Admin System V1.0</title>
-
-	@{await Html.RenderPartialAsync("Shared/_SiteCssStylesPartial");}
-
-</head>
-
-<body class="bg-dark">
-	<div class="container justify-content-center">
-		<div class="card mt-5 mx-auto login-card">
-			<div class="card-header">
-				Login
-			</div>
-			<div class="card-body pb-1">
-				<form id="formLogin" method="post" ajax-form="true" data-alert-panel="#alert_panel" asp-page-handler="Login">
-					<div class="form-group row">
-						<label class="col-sm-12 col-form-label" for="UserName">User Name </label>
-						<div class="col-sm-12">
-							@Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control", placeholder = "User Name" })
-						</div>
+<div class="container justify-content-center">
+	<div class="card mt-5 mx-auto login-card">
+		<div class="card-header">
+			Login
+		</div>
+		<div class="card-body pb-1">
+			<form id="form_login" method="post" ajax-form="true" data-alert-panel="#form_login_alert_panel" asp-page-handler="Login">
+				<div class="form-group row">
+					<label class="col-sm-12 col-form-label" for="UserName">User Name </label>
+					<div class="col-sm-12">
+						@Html.TextBoxFor(x => x.Data.UserName, new { @class = "form-control", placeholder = "User Name" })
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-form-label" for="Password">Password</label>
-						<div class="col-sm-12">
-							@Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Password" })
-						</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-form-label" for="Password">Password</label>
+					<div class="col-sm-12">
+						@Html.PasswordFor(x => x.Data.Password, new { @class = "form-control", placeholder = "Password" })
 					</div>
+				</div>
 
-					<div class="form-group row">
-						<div class="col-sm-12">
-							<button id="btnLogin" type="submit" class="btn btn-primary btn-block" data-ajax-request="true">Login</button>
-						</div>
+				<div class="form-group row">
+					<div class="col-sm-12">
+						<button id="btnLogin" type="submit" class="btn btn-primary btn-block" data-ajax-request="true">Login</button>
 					</div>
-					@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
-					<div id="alert_panel"></div>
-				</form>
-			</div>
+				</div>
+				@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+				<div id="form_login_alert_panel"></div>
+
+				<script type="text/javascript">
+					$(function () {
+
+						$("#form_login").data("ajaxCallback", function (data) {
+							if (data && data.Code) {
+								localStorage.setItem("access_token", data.Data.access_token);
+
+								//location.href = "index";
+								$.renderPartial($(".main-container"), "/Dashboard");
+								$("#pageBody nav").show();
+								$("#pageBody").removeClass("bg-dark");
+							}
+						});
+
+						$("#pageBody").addClass("bg-dark");
+						$("#pageBody nav").hide();
+					});
+				</script>
+			</form>
 		</div>
 	</div>
-
-	@{await Html.RenderPartialAsync("Shared/_SiteScriptsPartial");}
-
-	@*@{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }*@
-
-	<script type="text/javascript">
-		$(function () {
-
-			$("#formLogin").data("ajaxCallback", function (data) {
-				if (data && data.Code) {
-					localStorage.setItem("access_token", data.Data.access_token);
-
-					location.href = "index";
-				}
-			});
-		});
-	</script>
-</body>
-</html>
+</div>
 

@@ -4,7 +4,7 @@
 .navbar-header .navbar-brand { color: #fff; }
 .navbar-header .nav-item > a { color: #999; }
 
-.sidebar { border-radius: 0; position: fixed; z-index: 1000; top: 56px; left: 235px; width: 235px; margin-left: -235px; border-right: 1px solid rgba(0,0,0,.1); border-radius: 0; overflow-y: auto; background-color: white; bottom: 0; overflow-x: hidden; padding-bottom: 40px; transition: all 0.2s ease-in-out; }
+.sidebar { border-radius: 0; position: fixed; z-index: 1000; top: 56px; left: 0px; width: 235px; margin-left: -235px; border-right: 1px solid rgba(0,0,0,.1); border-radius: 0; overflow-y: auto; background-color: white; bottom: 0; overflow-x: hidden; padding-bottom: 40px; transition: all 0.2s ease-in-out; }
 .sidebar .list-group a { border: 0; border-radius: 0; color: rgba(0,0,0,.65); text-decoration: none; font-weight: 400; }
 .sidebar .list-group a.list-group-item .fa { margin-right: 10px; }
 
@@ -15,24 +15,21 @@
 .sidebar .side-profile { display: none; }
 .sidebar .sidenav-toggler { display: block; cursor: pointer; margin-top: 15px; border-top: 1px solid rgba(0,0,0,.1) !important; border-bottom: 1px solid rgba(0,0,0,.1) !important; }
 
-.sidebar-collapsed { width: 68px; }
-.sidebar-collapsed ul, .sidebar-collapsed span { display: none; }
-.sidebar-collapsed .submenu > a.collapsed:after { content: ''; }
-
-.main-container-expanded { margin-left: 69px !important; }
-
 @media screen and (max-width: 992px) {
 	.sidebar { top: 54px; left: 0px; }
-	.push-right .sidebar { left: 235px !important; }
 	.main-container { margin-left: 0px !important; }
 }
+.push-right .sidebar { left: 235px !important; }
 
 @media (max-width: 768px) {
 	.profile-setting, .sidebar .sidenav-toggler { display: none; }
 	.sidebar .side-profile { display: block; }
 }
 
-.main-container { margin-top: 56px; margin-left: 235px; padding: 15px; -ms-overflow-x: hidden; overflow-x: hidden; overflow-y: scroll; position: relative; overflow: hidden; }
+.main-container { margin-top: 56px; margin-left: 0px; padding: 15px; -ms-overflow-x: hidden; overflow-x: hidden; overflow-y: scroll; position: relative; overflow: hidden; }
+@media screen and (min-width: 992px) {
+	.push-right .main-container{ margin-left:  235px; }
+}
 
 .scroll-to-top { position: fixed; right: 15px; bottom: 3px; display: none; width: 50px; height: 50px; text-align: center; color: white; background: rgba(52, 58, 64, 0.5); line-height: 45px; }
 
@@ -48,4 +45,3 @@ legend { margin-bottom: 15px; }
 /*.k-grid td, .k-grid th { padding: 0.5em; }*/
 .k-menu:not(.k-context-menu) > .k-item { font-weight: 400; color: #222; }
 .k-widget, .k-button, .k-input, .k-textbox > input { font-size: 0.86rem !important; }
-

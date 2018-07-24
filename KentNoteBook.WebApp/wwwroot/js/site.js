@@ -1,23 +1,8 @@
 ﻿
 $(function () {
 
-	$("#btnToggleSidebar").click(function () {
-		$("body").toggleClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
-	});
-	$("section.main-container").click(function () {
-		$("body").removeClass("push-right").removeClass("sidebar-collapsed").removeClass("main-container-expanded");
-	});
-
-	$("#btnCollopseLeftNavMenu").click(function () {
-		$(this).find(".fa").toggleClass("fa-angle-left").toggleClass("fa-angle-right");
-
-		if ($(this).find(".fa").hasClass("fa-angle-right")) {
-			$(".sidebar").addClass("sidebar-collapsed");
-			$(".main-container").addClass("main-container-expanded");
-		} else {
-			$(".sidebar").removeClass("sidebar-collapsed");
-			$(".main-container").removeClass("main-container-expanded");
-		}
+	$(document).on("click", "#btnToggleSidebar", function () {
+		$("body").toggleClass("push-right");
 	});
 
 	$(document).scroll(function () {
@@ -35,6 +20,7 @@ $(function () {
 
 		var $modal = $(this);
 		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
+		var $modalBody = $modal.find(".modal-body");
 
 		var title = $modalCaller.data("modalTitle");
 		var url = $modalCaller.data("modalUrl");
@@ -46,34 +32,8 @@ $(function () {
 			$modal.find(".modal-dialog").addClass("modal-" + size);
 		}
 
-		$modal.find(".modal-body").showLoading();
-
 		// load dialog content
-		$.ajax({
-			method: 'GET',
-			url: url,
-			cache: false,
-			beforeSend: function (xhr) {
-				var accessToken = localStorage.getItem("access_token");
-				xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
-			},
-		}).done(function (data, textStatus, jqXHR) {
-			$modal.find(".modal-body").html(data);
-
-			// Execute the js script in the page
-			$modal.find("script").each(function () {
-				eval($(this).text());
-			});
-
-			// Render some plugins manualy
-			$.validator.unobtrusive.parse($modal.find("form"));
-			$.bindDatePicker($modal);
-			$.bindAjaxForm($modal.find("form[ajax-form='true']"));
-
-
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-			$modal.find(".modal-body").html(errorThrown);
-		});
+		$.renderPartial($modalBody, url);
 
 	});
 
@@ -266,6 +226,9 @@ $.extend({
 				// Render some plugins manualy
 				$.bindDatePicker($container);
 				$.bindAjaxLink($container.find('[ajax-link=true]'));
+
+				// handle the validation and submit for the ajax form
+				$.validator.unobtrusive.parse($container.find("form[ajax-form='true']"));
 				$.bindAjaxForm($container.find("form[ajax-form='true']"));
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {

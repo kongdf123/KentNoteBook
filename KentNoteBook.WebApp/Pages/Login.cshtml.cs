@@ -36,7 +36,7 @@ namespace KentNoteBook.WebApp.Pages
 		readonly IDistributedCache _cache;
 
 		[FromForm, FromQuery, BindProperty]
-		public UserModel User { get; set; }
+		public UserModel Data { get; set; }
 
 		[BindProperty(SupportsGet = true)]
 		public string JwtToken { get; set; }
@@ -54,9 +54,9 @@ namespace KentNoteBook.WebApp.Pages
 
 		public IActionResult OnGet() {
 
-			this.User = new UserModel();
+			this.Data = new UserModel();
 
-			_cache.SetCache("UserModel", User);
+			_cache.SetCache("UserModel", Data);
 
 			return Page();
 		}
@@ -68,8 +68,8 @@ namespace KentNoteBook.WebApp.Pages
 
 			var user = await _db.Users
 				.AsNoTracking()
-				.Where(x => x.Name == User.UserName)
-				.Where(x => x.Password == User.Password)
+				.Where(x => x.Name == Data.UserName)
+				.Where(x => x.Password == Data.Password)
 				.Where(x => x.IsActive)
 				.Where(x => x.Status == Status.Enabled)
 				.SingleOrDefaultAsync();
