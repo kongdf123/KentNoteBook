@@ -105,6 +105,8 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 					PasswordSalt = saltString,
 					Password = Crypto.HashPassword(saltString, "123456"),
 
+					Status = Status.Enabled,
+
 					CreatedBy = "Admin",
 					CreatedDate = DateTime.Now,
 				};

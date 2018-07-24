@@ -1,0 +1,52 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.UserAccounts.SystemRolesModel
+@{
+	ViewData["Title"] = "SystemRoles";
+	Layout = null;
+}
+
+<!--- Breadcrumbs -->
+<ol class="breadcrumb">
+	<li class="breadcrumb-item">
+		<a href="#" ajax-link="true" data-url="/dashboard" data-update-panel=".main-container">Dashboard</a>
+	</li>
+	<li class="breadcrumb-item">
+		<a href="#" ajax-link="true" data-url="/UserManagement/Users" data-update-panel=".main-container">User Management</a>
+	</li>
+	<li class="breadcrumb-item active">Roles</li>
+</ol>
+
+<form data-ajax-request="true" method="post" asp-page-handler="Remove">
+	<div id="alert_panel"></div>
+	<div class="form-group row">
+		<button type="button" class="btn btn-primary btn-sm ml-3 mr-1" data-toggle="modal" data-target="#modal_dialog_layout" data-modal-title="Add User" data-modal-url="/UserManagement/Dialog/RoleEdit" data-modal-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
+		<button type='button' class='btn btn-danger btn-sm mr-1' data-toggle='modal' data-target='#modal_confirm_layout' data-url='/UserManagement/Roles?handler=Remove' data-alert-panel='#alert_panel' data-update-panel='#tbRoles'><i class='fa fa-fw fa-remove mr-1'></i>Remove All</button>
+	</div>
+
+	<div id="tbRoles" class="mb-3" style="min-height: calc(100% - 157px);"></div>
+
+	@Html.DataGrid(
+		name:"tbRoles",
+		dataSourceUrl:"/UserManagement/Roles?handler=Roles",
+		columns : new List<GridColumn>
+		{
+			new GridColumn{ Selectable=true,Filterable=false,Template="<input class='k-checkbox' data-role='checkbox' name='idArray' id='Id_#=Id #' aria-label='Select row' aria-checked='false' type='checkbox' value='#=Id #'><label for='Id_#=Id #' class='k-checkbox-label k-no-text'>&#8203;</label>",Width=35,},
+			new GridColumn{ Field=nameof(SystemRole.Name), DataType=GridColumnDataType.String,Width=160},
+			new GridColumn{ Field=nameof(SystemRole.IsActive),DataType=GridColumnDataType.Boolean,Width=100},
+			new GridColumn{ Field=nameof(SystemRole.CreatedDate), DataType=GridColumnDataType.Date,Format="{0:yyyy-MM-dd HH:mm:ss}"},
+			new GridColumn{
+				Title ="Actions",
+				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-1' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit Role' data-modal-url='/UserManagement/Dialog/RoleEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
+				"<button type='button' class='btn btn-danger btn-sm mr-1' data-toggle='modal' data-target='\\#modal_confirm_layout' data-url='/UserManagement/Roles?handler=Remove&idArray=#=Id #' data-alert-panel='\\#alert_panel' data-update-panel='\\#tbRoles'><i class='fa fa-fw fa-remove mr-1'></i>Remove</button>",
+				Width =200
+			},
+		},
+		criteria :new GridCriteria {
+			SortBy =nameof(SystemRole.CreatedDate),
+			SortDirection = SortDirection.Descending
+		})
+
+</form>
+
+
+

@@ -82,6 +82,7 @@ namespace KentNoteBook.WebApp.Pages.UserManagement.Dialog
 				entity = new SystemRole {
 					Id = this.Id ?? Guid.NewGuid(),
 
+					Status = Status.Enabled,
 					CreatedBy = "Admin",
 					CreatedDate = DateTime.Now,
 				};

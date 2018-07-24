@@ -1,0 +1,35 @@
+﻿@page "{UserId:Guid}"
+@model KentNoteBook.WebApp.Pages.UserManagement.Dialog.RolesInUserEditModel
+@{
+	ViewData["Title"] = "RolesInUserEdit";
+	Layout = null;
+}
+
+<form id="form_user_role" class="pl-3" method="post" ajax-form="true" data-alert-panel="#form_user_role_alert_panel" asp-page-handler="Save">
+	@Html.HiddenFor(x => x.UserId)
+
+	<div class="container-fluid" style="height: calc(100% - 157px);min-height:200px;">
+		<div class="row">
+			@if ( Model.Roles.Count > 0 ) {
+				foreach ( var item in Model.Roles ) {
+					<div class="col-3">
+						<div class="custom-control custom-checkbox my-1">
+							<input type="checkbox" class="custom-control-input" name="RoleInUserArray" id="@item.RoleId" @(Model.RoleInUserArray.Contains(item.RoleId)?" checked":"") value="@item.RoleId">
+							<label class="custom-control-label" for="@item.RoleId">@item.RoleName</label>
+						</div>
+					</div>
+				}
+			}
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">&nbsp;</label>
+		<div class="col-sm-8">
+			<button type="submit" class="btn btn-primary" data-ajax-request="true">Save changes</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+	@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+	<div id="form_user_role_alert_panel"></div>
+</form>
