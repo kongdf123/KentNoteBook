@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KentNoteBook.WebApp.Pages
 {
-	[AllowAnonymous]
 	public class DashboardModel : PageModel
     {
         public void OnGet()

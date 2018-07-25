@@ -11,10 +11,8 @@ namespace KentNoteBook.WebApp.Pages
 	[AllowAnonymous]
 	public class IndexModel : PageModel
 	{
-		[AllowAnonymous]
-		public void OnGet()
-        {
-
-        }
-    }
+		public IActionResult OnGet() {
+			return Page();
+		}
+	}
 }

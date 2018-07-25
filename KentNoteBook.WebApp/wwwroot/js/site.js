@@ -1,5 +1,15 @@
 ﻿
 $(function () {
+	$.ajaxSetup({
+		async: false,
+		cache: false,
+	});
+
+	if ($.isTokenValid()) {
+		$.renderPartial($(".main-container"), "/Dashboard");
+	} else {
+		$.renderPartial($(".main-container"), "/Login");
+	}
 
 	$(document).on("click", "#btnToggleSidebar", function () {
 		$("body").toggleClass("push-right");
@@ -10,14 +20,15 @@ $(function () {
 	});
 	$('[data-toggle="tooltip"]').tooltip();
 
-	$(document).on("click", "a.scroll-to-top", function (o) {
-		var t = $(this);
-		$("html, body").stop().animate({ scrollTop: $(t.attr("href")).offset().top - 70 }), o.preventDefault()
+	$(document).on("click", "a.scroll-to-top", function (e) {
+
+		$("html, body").stop().animate({ scrollTop: $($(this).attr("href")).offset().top - 70 });
+
+		e.preventDefault()
 	});
 
 	// launch the modal dialog
 	$('#modal_dialog_layout').on('show.bs.modal', function (event) {
-
 		var $modal = $(this);
 		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
 		var $modalBody = $modal.find(".modal-body");
@@ -34,7 +45,6 @@ $(function () {
 
 		// load dialog content
 		$.renderPartial($modalBody, url);
-
 	});
 
 	// register the events to confirm dialog
@@ -42,66 +52,40 @@ $(function () {
 
 		var $modal = $(this);
 		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
+
 		var $form = $modalCaller.parents("form");
-		var $alertPanel = $($modalCaller.data("alertPanel"));
-		var $updatePanel = $($modalCaller.data("updatePanel"));
+		var $submit = $modal.find(".btn-danger");
 
 		var title = $modalCaller.data("modalTitle");
-		var url = $modalCaller.data("url");
-		var callback = $modalCaller.data("ajaxCallback");
-
 		if (title) {
 			$modal.find(".modal-title").html(title);
 		}
 
-		$modal.find(".btn-danger").off("click");
-		$modal.find(".btn-danger").on("click", function () {
-			var $submit = $(this);
+		$submit.data("url", $modalCaller.data("url"));
+		$submit.data("alertPanel", $modalCaller.data("alertPanel"));
+		$submit.data("updatePanel", $modalCaller.data("updatePanel"));
+		$submit.data("ajaxCallback", function (d) {
 
-			$submit.attr("disabled", true);
-
-			// submit the POST request
-			$.ajax({
-				method: 'POST',
-				url: url,
-				data: $form.serialize(),
-				cache: false,
-				beforeSend: function (xhr) {
-					var accessToken = localStorage.getItem("access_token");
-					xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
-				},
-			}).done(function (data, textStatus, jqXHR) {
-				if (data && data.Code) {
-
-					// reload the data grid if existing
-					$updatePanel.data("kendoGrid") && $updatePanel.data("kendoGrid").dataSource.read();
-
-					$alertPanel.success();
-
-					$.bindAjaxPanel($updatePanel);
-
-				} else {
-					$alertPanel.fail(data.Data);
-				}
-
-				typeof (callback) === "function" && callback(data);
-
-				$submit.removeAttr("disabled");
-
-				$modal.modal("hide");
-
-			}).fail(function (jqXHR, textStatus, errorThrown) {
-				$alertPanel.fail();
-			});
+			var callback = $modalCaller.data("ajaxCallback");
+			typeof (callback) === "function" && callback(data);
+			$modal.modal("hide");
 		});
-	});
 
+		$.bindAjaxForm($form, $submit);
+	});
 
 	// handle some ajax elements
 	$.bindDatePicker($(document));
 	$.bindAjaxPanel($(document));
 	$.bindAjaxLink($('[ajax-link=true]'));
-	$.bindAjaxForm($("[ajax-form='true']"));
+
+	$("[ajax-form=true]").each(function () {
+		var $form = $(this);
+		var $submit = $form.find("[ajax-button=true]");
+
+		$.bindAjaxForm($form, $submit);
+	});
+
 });
 
 $.extend({
@@ -134,37 +118,40 @@ $.extend({
 
 			var url = $(this).data("url");
 			var panel = $($(this).data("updatePanel"));
-
-			$.renderPartial(panel, url);
+			var callback = $(this).data("ajaxCallback");
+			$.renderPartial(panel, url, callback);
 		});
 	},
 
-	bindAjaxForm: function ($form) {
-		$form.on("click", "button[type='submit'][data-ajax-request]", function (e) {
+	bindAjaxForm: function ($form, $submit) {
+
+		$submit.off("click");
+		$submit.on("click", function (e) {
+			e.preventDefault();
+
 			var validationInfo = $form.data("unobtrusiveValidation");
 			if (validationInfo && validationInfo.validate && !validationInfo.validate()) {
 
 				var validator = $form.data("validator");
 				validator && validator.focusInvalid();
-
 				return false;
 			}
+
+			// the page is valid
 			$form.find(".validation-summary-errors").addClass("validation-summary-valid").removeClass("validation-summary-errors");
 
-			var $submit = $(this);
+			var $alertPanel = $($submit.data("alertPanel"));
+			var $updatePanel = $($submit.data("updatePanel"));
 
-			var $alertPanel = $($form.data("alertPanel"));
-			var $updatePanel = $($form.data("updatePanel"));
-
-			var callback = $form.data("ajaxCallback");
+			var callback = $submit.data("ajaxCallback");
 
 			$submit.attr("disabled", true);
 
 			$.ajax({
 				method: 'POST',
-				url: $form.attr("action"),
+				url: $submit.data("url") || $submit.attr("formaction"),
 				data: $form.serialize(),
-				cache: false,
+				beforeSend: $.ajaxBeforeSend,
 			}).done(function (data, textStatus, jqXHR) {
 				if (data && data.Code) {
 
@@ -200,7 +187,7 @@ $.extend({
 		});
 	},
 
-	renderPartial: function ($panel, url) {
+	renderPartial: function ($panel, url, callback) {
 
 		$panel.each(function () {
 			var $container = $(this);
@@ -210,11 +197,7 @@ $.extend({
 			$.ajax({
 				method: 'GET',
 				url: url,
-				cache: false,
-				beforeSend: function (xhr) {
-					var accessToken = localStorage.getItem("access_token");
-					xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
-				},
+				beforeSend: $.ajaxBeforeSend,
 			}).done(function (data, textStatus, jqXHR) {
 				$container.html(data);
 
@@ -228,14 +211,39 @@ $.extend({
 				$.bindAjaxLink($container.find('[ajax-link=true]'));
 
 				// handle the validation and submit for the ajax form
-				$.validator.unobtrusive.parse($container.find("form[ajax-form='true']"));
-				$.bindAjaxForm($container.find("form[ajax-form='true']"));
+
+				var $form = $container.find("form[ajax-form='true']");
+				var $submit = $form.find("[ajax-button=true]");
+				$.validator.unobtrusive.parse($form);
+				$.bindAjaxForm($form, $submit);
+
+				typeof (callback) === "function" && callback(data);
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				$container.html(errorThrown);
 			});
 		});
+	},
+	ajaxBeforeSend: function (jqXHR, settings) {
+		var accessToken = localStorage.getItem("access_token");
+		if (accessToken !== null) {
+			jqXHR.setRequestHeader("Authorization", "Bearer " + accessToken);
+		}
+	},
+	isTokenValid: function () {
+		var isAuthenticated = false;
 
+		$.ajax({
+			method: 'POST',
+			url: "/Auth/CheckToken",
+			beforeSend: $.ajaxBeforeSend,
+		}).done(function (data, textStatus, jqXHR) {
+			if (data && data.Code) {
+				isAuthenticated = true;
+			}
+		});
+
+		return isAuthenticated;
 	},
 });
 
@@ -267,7 +275,7 @@ $.fn.extend({
 	},
 	showLoading: function () {
 		return this.each(function () {
-			$(this).html("<span class='pl-3'><i class='fa fa-fw fa-spinner mr-1'></i>Processing...</span>");
+			$(this).html("<span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span>");
 		});
 	},
 });

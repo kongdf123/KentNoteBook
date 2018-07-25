@@ -13,7 +13,6 @@ using Microsoft.Extensions.Caching.Distributed;
 
 namespace KentNoteBook.WebApp.Pages.UserAccounts
 {
-	[AllowAnonymous]
 	public class SystemRolesModel : PageModel
 	{
 		public SystemRolesModel(KentNoteBookDbContext db, IDistributedCache cache) {

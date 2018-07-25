@@ -48,18 +48,18 @@ namespace KentNoteBook.WebApp
 			// Setup options service
 			services.AddOptions();
 
-			//ConfigureJwtAuthService(services);
+			ConfigureJwtAuthService(services);
 
 			ConfigureDistributedCacheService(services);
 
 			services.AddMvc(options => {
 				options.Filters.Add(new RazorPageFilter(_logger));
 
-				//var policy = new AuthorizationPolicyBuilder()
-				//	.RequireAuthenticatedUser()
-				//	.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-				//	.Build();
-				//options.Filters.Add(new AuthorizeFilter(policy));
+				var policy = new AuthorizationPolicyBuilder()
+					.RequireAuthenticatedUser()
+					.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+					.Build();
+				options.Filters.Add(new AuthorizeFilter(policy));
 			})
 			.AddRazorPagesOptions(options => {
 				options.Conventions.AuthorizeFolder("/"); // Require users to be authenticated.

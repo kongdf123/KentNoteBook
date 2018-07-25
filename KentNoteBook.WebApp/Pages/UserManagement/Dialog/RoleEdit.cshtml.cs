@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KentNoteBook.WebApp.Pages.UserManagement.Dialog
 {
-	[AllowAnonymous]
 	public class RoleEditModel : PageModel
 	{
 		public RoleEditModel(KentNoteBookDbContext db) {

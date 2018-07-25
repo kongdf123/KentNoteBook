@@ -6,7 +6,7 @@
 	Layout = null;
 }
 
-<form id="form_user_edit" class="pl-3" method="post" ajax-form="true" data-alert-panel="#form_edit_alert_panel" data-update-panel="#tbRoles" asp-page-handler="Save">
+<form id="form_user_edit" class="pl-3" method="post" ajax-form="true">
 	@Html.HiddenFor(x => x.Id)
 
 	<div class="form-group row">
@@ -34,7 +34,7 @@
 	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">&nbsp;</label>
 		<div class="col-sm-8">
-			<button type="submit" class="btn btn-primary" data-ajax-request="true">Save changes</button>
+			<button type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_edit_alert_panel" data-update-panel="#tbRoles" asp-page-handler="Save">Save changes</button>
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		</div>
 	</div>

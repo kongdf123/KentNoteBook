@@ -61,7 +61,7 @@ namespace KentNoteBook.WebApp.Pages
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostLoginAsync() {
+		public async Task<IActionResult> OnPostSubmitAsync() {
 			if ( !ModelState.IsValid ) {
 				return ModelState.ToJsonResult();
 			}
@@ -112,6 +112,14 @@ namespace KentNoteBook.WebApp.Pages
 			};
 
 			return new CustomResult(1, jwtTokenJson);
+		}
+
+		public IActionResult OnPostCheckAuth() {
+			if ( !this.User.Identity.IsAuthenticated ) {
+				return new CustomResult(0, "Unauthorized");
+			}
+
+			return new SuccessResult();
 		}
 	}
 }

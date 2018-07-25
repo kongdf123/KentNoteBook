@@ -12,7 +12,7 @@
 			Login
 		</div>
 		<div class="card-body pb-1">
-			<form id="form_login" method="post" ajax-form="true" data-alert-panel="#form_login_alert_panel" asp-page-handler="Login">
+			<form id="form_login" method="post" ajax-form="true">
 				<div class="form-group row">
 					<label class="col-sm-12 col-form-label" for="UserName">User Name </label>
 					<div class="col-sm-12">
@@ -28,32 +28,33 @@
 
 				<div class="form-group row">
 					<div class="col-sm-12">
-						<button id="btnLogin" type="submit" class="btn btn-primary btn-block" data-ajax-request="true">Login</button>
+						<button id="btnLogin" type="submit" class="btn btn-primary btn-block" ajax-button="true" data-alert-panel="#form_login_alert_panel" asp-page-handler="Submit">Submit</button>
 					</div>
 				</div>
 				@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
 				<div id="form_login_alert_panel"></div>
-
-				<script type="text/javascript">
-					$(function () {
-
-						$("#form_login").data("ajaxCallback", function (data) {
-							if (data && data.Code) {
-								localStorage.setItem("access_token", data.Data.access_token);
-
-								//location.href = "index";
-								$.renderPartial($(".main-container"), "/Dashboard");
-								$("#pageBody nav").show();
-								$("#pageBody").removeClass("bg-dark");
-							}
-						});
-
-						$("#pageBody").addClass("bg-dark");
-						$("#pageBody nav").hide();
-					});
-				</script>
 			</form>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	$("#pageBody").addClass("bg-dark");
+	$("#pageBody nav").hide();
+
+	$(function () {
+
+		$("#btnLogin").data("ajaxCallback", function (data) {
+			if (data && data.Code) {
+				localStorage.setItem("access_token", data.Data.access_token);
+
+				//location.href = "index";
+				$.renderPartial($(".main-container"), "/Dashboard");
+				$("#pageBody nav").show();
+				$("#pageBody").removeClass("bg-dark");
+			}
+		});
+	});
+</script>
 

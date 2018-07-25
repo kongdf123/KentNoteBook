@@ -5,7 +5,7 @@
 	Layout = null;
 }
 
-<form id="form_user_role" class="pl-3" method="post" ajax-form="true" data-alert-panel="#form_user_role_alert_panel" asp-page-handler="Save">
+<form id="form_user_role" class="pl-3" method="post" ajax-form="true">
 	@Html.HiddenFor(x => x.UserId)
 
 	<div class="container-fluid" style="height: calc(100% - 157px);min-height:200px;">
@@ -26,7 +26,7 @@
 	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">&nbsp;</label>
 		<div class="col-sm-8">
-			<button type="submit" class="btn btn-primary" data-ajax-request="true">Save changes</button>
+			<button type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_user_role_alert_panel" asp-page-handler="Save">Save changes</button>
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		</div>
 	</div>

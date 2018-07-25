@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 {
-	[AllowAnonymous]
 	public class UserEditModel : PageModel
 	{
 		readonly KentNoteBookDbContext _db;
