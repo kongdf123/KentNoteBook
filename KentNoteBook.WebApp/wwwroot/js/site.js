@@ -1,15 +1,8 @@
 ﻿
 $(function () {
 	$.ajaxSetup({
-		async: false,
 		cache: false,
 	});
-
-	if ($.isTokenValid()) {
-		$.renderPartial($(".main-container"), "/Dashboard");
-	} else {
-		$.renderPartial($(".main-container"), "/Login");
-	}
 
 	$(document).on("click", "#btnToggleSidebar", function () {
 		$("body").toggleClass("push-right");
@@ -77,7 +70,6 @@ $(function () {
 	// handle some ajax elements
 	$.bindDatePicker($(document));
 	$.bindAjaxPanel($(document));
-	$.bindAjaxLink($('[ajax-link=true]'));
 
 	$("[ajax-form=true]").each(function () {
 		var $form = $(this);
@@ -113,12 +105,17 @@ $.extend({
 	},
 
 	bindAjaxLink: function ($link) {
+
 		$link.click(function (e) {
+
 			e.preventDefault();
 
 			var url = $(this).data("url");
 			var panel = $($(this).data("updatePanel"));
 			var callback = $(this).data("ajaxCallback");
+
+			console.log("AjaxLink Bind :  " + url);
+
 			$.renderPartial(panel, url, callback);
 		});
 	},
@@ -194,6 +191,8 @@ $.extend({
 
 			$container.showLoading();
 
+			console.log("Partial Render:  " + url);
+
 			$.ajax({
 				method: 'GET',
 				url: url,
@@ -202,16 +201,15 @@ $.extend({
 				$container.html(data);
 
 				// Execute the js script in the page
-				$container.find("script").each(function () {
-					eval($(this).text());
-				});
+				//$container.find("script").each(function () {
+				//	eval($(this).text());
+				//});
 
 				// Render some plugins manualy
 				$.bindDatePicker($container);
 				$.bindAjaxLink($container.find('[ajax-link=true]'));
 
 				// handle the validation and submit for the ajax form
-
 				var $form = $container.find("form[ajax-form='true']");
 				var $submit = $form.find("[ajax-button=true]");
 				$.validator.unobtrusive.parse($form);
@@ -234,6 +232,7 @@ $.extend({
 		$.ajax({
 			method: 'POST',
 			url: "/Auth/CheckToken",
+			async: false,
 			beforeSend: $.ajaxBeforeSend,
 		}).done(function (data, textStatus, jqXHR) {
 			if (data && data.Code) {

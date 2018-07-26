@@ -10,32 +10,9 @@
 
 </head>
 <body id="pageBody" class="push-right" style="height:calc(100% - 56px);">
-
-	<!-- header begin -->
-	<nav class="navbar navbar-header border-bottom fixed-top" ajax-panel="true" data-url="Shared/Top"></nav>
-	<!-- header end -->
-	<!-- siderbar begin -->
-	<nav class="sidebar" ajax-panel="true" data-url="Shared/Left"></nav>
-	<!-- siderbar end -->
-	<!-- main content begin -->
-	<section class="main-container" style="min-height: calc(100% - 57px);">
+	<app-root>
 		@RenderBody()
-	</section>
-
-	<!-- main content end -->
-	<!-- footer begin -->
-	<footer class="sticky-footer">
-		<div class="container">
-			<div class="text-center align-middle">
-				<small>Copyright © 2018 XXX Corp. All rights reserved.</small>
-			</div>
-		</div>
-	</footer>
-	<!-- footer end -->
-	<!-- Scroll to the top -->
-	<a class="scroll-to-top rounded" href="#pageBody">
-		<i class="fa fa-angle-up"></i>
-	</a>
+	</app-root>
 
 	@{await Html.RenderPartialAsync("Shared/_SiteScriptsPartial");}
 

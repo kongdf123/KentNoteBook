@@ -84,8 +84,6 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 
 		public async Task<IActionResult> OnPostSaveAsync() {
 
-			System.Threading.Thread.Sleep(2000);
-
 			if ( !ModelState.IsValid ) {
 				return ModelState.ToJsonResult();
 			}
