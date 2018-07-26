@@ -7,4 +7,6 @@
 
 # Script-Migration -From SeedData_MasterWorkPackage -To Update_WorkPackageBudgetChangeItem_SourceWorkPackageId -Context PpcsDbContext -StartupProject Ppcs.Portal
 
+# Update-Database -Context KentNoteBookDbContext -Project KentNoteBook.Data -StartupProject KentNoteBook.WebApp
+
 # Remove-Migration -f -Context PpcsDbContext -Project Ppcs.Data -StartupProject Ppcs.Portal
