@@ -25,7 +25,14 @@ namespace KentNoteBook.Infrastructure.Html.Grid
 				source = source.OrderBy(criteria.SortBy, criteria.SortDirection);
 			}
 
-			var items = await source.Skip(criteria.Offset).Take(criteria.Limit).ToListAsync();
+			List<T> items;
+
+			if ( criteria.PaginationEnabled ) {
+				items = await source.Skip(criteria.Offset).Take(criteria.Limit).ToListAsync();
+			}
+			else {
+				items = await source.ToListAsync();
+			}
 
 			return new JsonResult(new { TotalCount = count, Data = items });
 		}

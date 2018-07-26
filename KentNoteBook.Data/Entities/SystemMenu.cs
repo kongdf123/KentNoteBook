@@ -13,8 +13,6 @@ namespace KentNoteBook.Data.Entities
 		
 		public Guid? ParentId { get; set; }
 
-		public Status Status { get; set; }
-
 		public List<PermissionsInMenu> PermissionsInMenus { get; set; }
 	}
 

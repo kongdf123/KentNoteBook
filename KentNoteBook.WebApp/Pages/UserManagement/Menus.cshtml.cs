@@ -7,27 +7,41 @@ using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 
-namespace KentNoteBook.WebApp.Pages.UserAccounts
+namespace KentNoteBook.WebApp.Pages.UserManagement
 {
-	public class UsersModel : PageModel
+	public class MenusModel : PageModel
 	{
-		public UsersModel(KentNoteBookDbContext db) {
+		public MenusModel(KentNoteBookDbContext db, IDistributedCache cache) {
 			this._db = db;
+			this._cache = cache;
 		}
 
 		readonly KentNoteBookDbContext _db;
+		readonly IDistributedCache _cache;
 
 		[BindProperty(SupportsGet = true)]
 		public Guid[] IdArray { get; set; }
 
+		public class SystemMenuModel
+		{
+			public Guid Id { get; set; }
+			public Guid? ParentId { get; set; }
+			public string Name { get; set; }
+		}
+
 		public void OnGet() {
 		}
 
-		public async Task<IActionResult> OnPostUsersAsync([FromForm] GridCriteria criteria) {
-			return await _db.Users
+		public async Task<IActionResult> OnPostMenusAsync([FromForm] GridCriteria criteria) {
+			return await _db.Menus
 				.AsNoTracking()
-				.ToDataSourceJsonResultAsync(criteria);
+				.Select(x => new SystemMenuModel {
+					Id = x.Id,
+					ParentId = x.ParentId,
+					Name = x.Name
+				}).ToDataSourceJsonResultAsync(criteria);
 		}
 
 		public async Task<IActionResult> OnPostRemoveAsync() {
@@ -36,7 +50,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts
 				return new CustomResult(0, "Please select one item to remove.");
 			}
 
-			var deletes = await _db.Users
+			var deletes = await _db.Menus
 				.Where(x => IdArray.Contains(x.Id))
 				.ToListAsync();
 
