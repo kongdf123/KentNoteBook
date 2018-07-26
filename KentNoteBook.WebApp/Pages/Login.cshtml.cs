@@ -74,7 +74,7 @@ namespace KentNoteBook.WebApp.Pages
 				.Where(x => x.Status == Status.Enabled)
 				.SingleOrDefaultAsync();
 			if ( user == null ) {
-				return new CustomResult(0, "Unauthorized");
+				return new CustomResult(0, "No such user.");
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();

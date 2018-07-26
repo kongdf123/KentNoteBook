@@ -226,9 +226,7 @@ $.extend({
 	},
 	ajaxBeforeSend: function (jqXHR, settings) {
 		var accessToken = localStorage.getItem("access_token");
-		if (accessToken !== null) {
-			jqXHR.setRequestHeader("Authorization", "Bearer " + accessToken);
-		}
+		jqXHR.setRequestHeader("Authorization", "Bearer " + accessToken);
 	},
 	isTokenValid: function () {
 		var isAuthenticated = false;

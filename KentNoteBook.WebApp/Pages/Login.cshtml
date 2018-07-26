@@ -49,10 +49,7 @@
 			if (data && data.Code) {
 				localStorage.setItem("access_token", data.Data.access_token);
 
-				//location.href = "index";
-				$.renderPartial($(".main-container"), "/Dashboard");
-				$("#pageBody nav").show();
-				$("#pageBody").removeClass("bg-dark");
+				location.href = "/";
 			}
 		});
 	});
