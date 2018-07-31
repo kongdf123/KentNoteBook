@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using KentNoteBook.Data.Base;
 
 namespace KentNoteBook.Data.Entities
 {
-    public class SystemMenu : BaseEntity
+	public class SystemMenu : BaseEntity
 	{
 		[MaxLength(50), Required]
 		public string Name { get; set; }
-		
+
 		public Guid? ParentId { get; set; }
 
+		public SystemMenu Parent { get; set; }
 		public List<PermissionsInMenu> PermissionsInMenus { get; set; }
 	}
 

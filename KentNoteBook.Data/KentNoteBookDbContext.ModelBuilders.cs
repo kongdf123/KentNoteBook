@@ -30,9 +30,9 @@ namespace KentNoteBook.Data
 			modelBuilder.Entity<UsersInRole>(map => {
 				map.HasKey(x => new { x.UserId, x.RoleId });
 			});
-
-
+			
 			modelBuilder.Entity<SystemMenu>(map => {
+				map.HasOne(x => x.Parent).WithMany().HasForeignKey(x => x.ParentId);
 				map.HasMany(x => x.PermissionsInMenus).WithOne(x => x.Menu).HasForeignKey(x => x.MenuId);
 			});
 			modelBuilder.Entity<PermissionsInMenu>(map => {

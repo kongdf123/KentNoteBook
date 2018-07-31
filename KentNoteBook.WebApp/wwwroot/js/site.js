@@ -114,8 +114,6 @@ $.extend({
 			var panel = $($(this).data("updatePanel"));
 			var callback = $(this).data("ajaxCallback");
 
-			console.log("AjaxLink Bind :  " + url);
-
 			$.renderPartial(panel, url, callback);
 		});
 	},
@@ -190,8 +188,6 @@ $.extend({
 			var $container = $(this);
 
 			$container.showLoading();
-
-			console.log("Partial Render:  " + url);
 
 			$.ajax({
 				method: 'GET',

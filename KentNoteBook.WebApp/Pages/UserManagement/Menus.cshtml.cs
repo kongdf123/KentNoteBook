@@ -31,7 +31,10 @@ namespace KentNoteBook.WebApp.Pages.UserManagement
 			public string Name { get; set; }
 		}
 
-		public void OnGet() {
+		public async Task<IActionResult> OnGetAsync() {
+
+
+			return Page();
 		}
 
 		public async Task<IActionResult> OnPostMenusAsync([FromForm] GridCriteria criteria) {

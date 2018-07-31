@@ -1,0 +1,78 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.UserManagement.Partials.MenuTreeModel
+@{
+	ViewData["Title"] = "MenuTree";
+
+	Layout = null;
+}
+
+
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				<a class="collapse-icon" href="#"> <i class="fa fa-fw fa-plus"></i></a>
+				<div class="custom-control custom-checkbox d-inline">
+					<input type="checkbox" class="custom-control-input" id="customCheck1">
+					<label class="custom-control-label" for="customCheck1"> Cras justo odio</label>
+				</div>
+				<ul class="list-group list-group-flush d-none mt-1 pt-2" id="collapseOne">
+					<li class="list-group-item pl-4 border-top">
+						<div class="custom-control custom-checkbox d-inline">
+							<input type="checkbox" class="custom-control-input" id="customCheck2">
+							<label class="custom-control-label" for="customCheck2">Cras justo odio 2222222</label>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<a class="collapse-icon" href="#"> <i class="fa fa-fw fa-plus"></i></a>
+						<div class="custom-control custom-checkbox d-inline">
+							<input type="checkbox" class="custom-control-input" id="customCheck32">
+							<label class="custom-control-label" for="customCheck32"> Dapibus ac facilisis in 2222222</label>
+						</div>
+						<ul class="list-group list-group-flush mt-1 pt-2 d-none" id="collapseTwo">
+							<li class="list-group-item pl-4 border-top">
+								<div class="custom-control custom-checkbox d-inline">
+									<input type="checkbox" class="custom-control-input" id="customCheck122">
+									<label class="custom-control-label" for="customCheck122">Cras justo odio xcxcsdsd</label>
+								</div>
+							</li>
+							<li class="list-group-item pl-4">
+								<div class="custom-control custom-checkbox d-inline">
+									<input type="checkbox" class="custom-control-input" id="customCheck1222">
+									<label class="custom-control-label" for="customCheck1222">Cras justo odio xcxcsdsd</label>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<li class="list-group-item pl-4">
+						<div class="custom-control custom-checkbox d-inline">
+							<input type="checkbox" class="custom-control-input" id="customCheck42">
+							<label class="custom-control-label" for="customCheck42">Morbi leo risus 2222222</label>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li class="list-group-item pl-4">
+				<div class="custom-control custom-checkbox d-inline">
+					<input type="checkbox" class="custom-control-input" id="customCheck3">
+					<label class="custom-control-label" for="customCheck3"> Dapibus ac facilisis in</label>
+				</div>
+			</li>
+			<li class="list-group-item pl-4">
+				<div class="custom-control custom-checkbox d-inline">
+					<input type="checkbox" class="custom-control-input" id="customCheck11">
+					<label class="custom-control-label" for="customCheck11"> Morbi leo risus</label>
+				</div>
+			</li>
+			<li class="list-group-item pl-4">
+				<div class="custom-control custom-checkbox d-inline">
+					<input type="checkbox" class="custom-control-input" id="customCheck12">
+					<label class="custom-control-label" for="customCheck12"> Porta ac consectetur ac</label>
+				</div>
+			</li>
+			<li class="list-group-item pl-4">
+				<div class="custom-control custom-checkbox d-inline">
+					<input type="checkbox" class="custom-control-input" id="customCheck13">
+					<label class="custom-control-label" for="customCheck13"> Vestibulum at eros</label>
+				</div>
+			</li>
+		</ul>
+

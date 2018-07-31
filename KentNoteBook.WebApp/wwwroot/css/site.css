@@ -19,6 +19,7 @@
 	.sidebar { top: 54px; left: 0px; }
 	.main-container { margin-left: 0px !important; }
 }
+
 .push-right .sidebar { left: 235px !important; }
 
 @media (max-width: 768px) {
@@ -27,8 +28,9 @@
 }
 
 .main-container { margin-top: 56px; margin-left: 0px; padding: 15px; -ms-overflow-x: hidden; overflow-x: hidden; overflow-y: scroll; position: relative; overflow: hidden; }
+
 @media screen and (min-width: 992px) {
-	.push-right .main-container{ margin-left:  235px; }
+	.push-right .main-container { margin-left: 235px; }
 }
 
 .scroll-to-top { position: fixed; right: 15px; bottom: 3px; display: none; width: 50px; height: 50px; text-align: center; color: white; background: rgba(52, 58, 64, 0.5); line-height: 45px; }
@@ -39,6 +41,8 @@ legend { margin-bottom: 15px; }
 
 .login-card { max-width: 25rem; }
 
+
+/* override bootstrap css */
 
 /*  override kendo ui css */
 /*.k-grid-header .k-header { font-weight:500; } */

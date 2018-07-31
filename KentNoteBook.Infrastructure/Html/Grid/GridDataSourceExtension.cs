@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using KentNoteBook.Infrastructure.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KentNoteBook.Infrastructure.Linq;
 
 namespace KentNoteBook.Infrastructure.Html.Grid
 {

@@ -10,7 +10,7 @@ namespace KentNoteBook.Infrastructure.Linq
 
 			var property = typeof(T).GetProperties().SingleOrDefault(x => x.Name == field);
 			if ( property == null ) {
-				throw new NullReferenceException("No such field name.");
+				throw new NullReferenceException($"No such field ({field}).");
 			}
 
 			var parameter = Expression.Parameter(typeof(T));
@@ -66,7 +66,7 @@ namespace KentNoteBook.Infrastructure.Linq
 
 			var property = typeof(T).GetProperties().SingleOrDefault(x => x.Name == field);
 			if ( property == null ) {
-				throw new NullReferenceException("No such field name.");
+				throw new NullReferenceException($"No such field ({field}).");
 			}
 
 			var parameter = Expression.Parameter(typeof(T));
