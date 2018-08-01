@@ -99,7 +99,6 @@ $.extend({
 		});
 
 		$wrapper.find(".date-picker").on('apply.daterangepicker', function (ev, picker) {
-			//debugger;
 			$(this).val(picker.startDate.format('YYYY/MM/DD H:mm:ss'));
 		});
 	},
@@ -153,8 +152,7 @@ $.extend({
 					$updatePanel.data("kendoGrid") && $updatePanel.data("kendoGrid").dataSource.read();
 
 					$alertPanel.success();
-					$.bindAjaxPanel($form);
-
+					$.bindAjaxPanel($updatePanel);
 				} else {
 					$alertPanel.fail(data.Data);
 				}

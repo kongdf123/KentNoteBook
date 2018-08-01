@@ -10,31 +10,21 @@
 	@Html.HiddenFor(x => x.Id)
 
 	<div class="form-group row">
-		<label class="col-sm-2 col-form-label-sm">User Name </label>
+		<label class="col-sm-2 col-form-label-sm">Name </label>
 		<div class="col-sm-8">
 			@Html.TextBoxFor(x => x.Data.Name, new { @class = "form-control form-control-sm" })
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-2 col-form-label">IsActive</label>
-		<div class="col-sm-8 align-middle">
-			<div class="custom-control custom-checkbox my-1">
-				@Html.CheckBoxFor(x => x.Data.IsActive, new { @class = "custom-control-input" })
-				<label class="custom-control-label" for="Data_IsActive">Active</label>
-			</div>
-		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-sm-2 col-form-label-sm">Discription </label>
+		<label class="col-sm-2 col-form-label">Parent</label>
 		<div class="col-sm-8">
-			@Html.TextAreaFor(x => x.Data.Description, new { @class = "form-control form-control-sm" })
+			@Html.DropDownListFor(x => x.Data.ParentId, Model.Menus, new { @class = "custom-select" })
 		</div>
 	</div>
-
 	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">&nbsp;</label>
 		<div class="col-sm-8">
-			<button type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_menu_alert_panel" data-update-panel="#tbRoles" asp-page-handler="Save">Save changes</button>
+			<button type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_menu_alert_panel" data-update-panel="#form_menu_list" asp-page-handler="Save">Save changes</button>
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		</div>
 	</div>

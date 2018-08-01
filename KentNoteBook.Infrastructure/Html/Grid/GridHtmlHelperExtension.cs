@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using KentNoteBook.Infrastructure.Html.Grid;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
-namespace KentNoteBook.Service.Html
+namespace KentNoteBook.Infrastructure.Html.Grid
 {
 	public static class GridHtmlHelperExtension
 	{
@@ -14,11 +13,11 @@ namespace KentNoteBook.Service.Html
 
 			var htmlBuilder = new HtmlContentBuilder();
 
-			htmlBuilder.AppendHtml("<script>");
-			htmlBuilder.AppendHtml("$(function(){");
-			htmlBuilder.AppendHtml($"$('#{name}').dataGridBind('{dataSourceUrl}',{JsonConvert.SerializeObject(criteria)},{JsonConvert.SerializeObject(columns)});");
-			htmlBuilder.AppendHtml("});");
-			htmlBuilder.AppendHtml("</script>");
+			htmlBuilder.AppendHtmlLine("<script>");
+			htmlBuilder.AppendHtmlLine("$(function(){");
+			htmlBuilder.AppendHtmlLine($"$('#{name}').dataGridBind('{dataSourceUrl}',{JsonConvert.SerializeObject(criteria)},{JsonConvert.SerializeObject(columns)});");
+			htmlBuilder.AppendHtmlLine("});");
+			htmlBuilder.AppendHtmlLine("</script>");
 
 			return htmlBuilder;
 		}

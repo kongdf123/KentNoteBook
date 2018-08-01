@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
-using KentNoteBook.Infrastructure.Html.Grid;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -24,27 +23,8 @@ namespace KentNoteBook.WebApp.Pages.UserManagement
 		[BindProperty(SupportsGet = true)]
 		public Guid[] IdArray { get; set; }
 
-		public class SystemMenuModel
-		{
-			public Guid Id { get; set; }
-			public Guid? ParentId { get; set; }
-			public string Name { get; set; }
-		}
-
-		public async Task<IActionResult> OnGetAsync() {
-
-
+		public IActionResult OnGet() {
 			return Page();
-		}
-
-		public async Task<IActionResult> OnPostMenusAsync([FromForm] GridCriteria criteria) {
-			return await _db.Menus
-				.AsNoTracking()
-				.Select(x => new SystemMenuModel {
-					Id = x.Id,
-					ParentId = x.ParentId,
-					Name = x.Name
-				}).ToDataSourceJsonResultAsync(criteria);
 		}
 
 		public async Task<IActionResult> OnPostRemoveAsync() {

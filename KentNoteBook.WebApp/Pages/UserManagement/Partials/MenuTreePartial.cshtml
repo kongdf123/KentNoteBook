@@ -1,0 +1,166 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.UserManagement.Partials.MenuTreeModel
+@{
+	ViewData["Title"] = "MenuTree";
+
+	Layout = null;
+}
+
+@Html.TreeView(Model.Data,"/UserManagement/Dialog/MenuEdit","/UserManagement/Menus")
+
+@*<ul class="list-group list-group-flush">
+
+		@foreach ( var item in rootMenus ) {
+			<li class="list-group-item @(item.Children.Any() ? "" : "pl-4")">
+				@if ( item.Children.Any() ) {
+					<a class="collapse-icon" href="#"> <i class="fa fa-fw fa-plus"></i></a>
+				}
+				<div class="custom-control custom-checkbox d-inline">
+					<input type="checkbox" class="custom-control-input" id="menu_@(item.Id)" name="idArray" value="@item.Id">
+					<label class="custom-control-label" for="menu_@(item.Id)"> @item.Name</label>
+				</div>
+
+				@{
+					var root = item;
+				}
+
+				@while ( root.Children.Any() ) {
+					<ul class="list-group list-group-flush d-none mt-1 pt-2" id="collapseOne">
+
+						<li class="list-group-item pl-4 border-top">
+							<div class="custom-control custom-checkbox d-inline">
+								<input type="checkbox" class="custom-control-input" id="customCheck2">
+								<label class="custom-control-label" for="customCheck2">Cras justo odio 2222222</label>
+							</div>
+						</li>
+
+					</ul>
+				}
+			</li>
+		}
+
+		<li class="list-group-item">
+			<a class="collapse-icon" href="#"> <i class="fa fa-fw fa-plus"></i></a>
+			<div class="custom-control custom-checkbox d-inline">
+				<input type="checkbox" class="custom-control-input" id="customCheck1">
+				<label class="custom-control-label" for="customCheck1"> Cras justo odio</label>
+			</div>
+			<ul class="list-group list-group-flush d-none mt-1 pt-2" id="collapseOne">
+				<li class="list-group-item pl-4 border-top">
+					<div class="custom-control custom-checkbox d-inline">
+						<input type="checkbox" class="custom-control-input" id="customCheck2">
+						<label class="custom-control-label" for="customCheck2">Cras justo odio 2222222</label>
+					</div>
+				</li>
+				<li class="list-group-item border-top">
+					<a class="collapse-icon" href="#"> <i class="fa fa-fw fa-plus"></i></a>
+					<div class="custom-control custom-checkbox d-inline">
+						<input type="checkbox" class="custom-control-input" id="customCheck32">
+						<label class="custom-control-label" for="customCheck32"> Dapibus ac facilisis in 2222222</label>
+					</div>
+					<ul class="list-group list-group-flush mt-1 pt-2 d-none" id="collapseTwo">
+						<li class="list-group-item pl-4 border-top">
+							<div class="custom-control custom-checkbox d-inline">
+								<input type="checkbox" class="custom-control-input" id="customCheck122">
+								<label class="custom-control-label" for="customCheck122">Cras justo odio xcxcsdsd</label>
+							</div>
+						</li>
+						<li class="list-group-item pl-4">
+							<div class="custom-control custom-checkbox d-inline">
+								<input type="checkbox" class="custom-control-input" id="customCheck1222">
+								<label class="custom-control-label" for="customCheck1222">Cras justo odio xcxcsdsd</label>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li class="list-group-item pl-4">
+					<div class="custom-control custom-checkbox d-inline">
+						<input type="checkbox" class="custom-control-input" id="customCheck42">
+						<label class="custom-control-label" for="customCheck42">Morbi leo risus 2222222</label>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li class="list-group-item pl-4">
+			<div class="custom-control custom-checkbox d-inline">
+				<input type="checkbox" class="custom-control-input" id="customCheck3">
+				<label class="custom-control-label" for="customCheck3"> Dapibus ac facilisis in</label>
+			</div>
+		</li>
+		<li class="list-group-item pl-4">
+			<div class="custom-control custom-checkbox d-inline">
+				<input type="checkbox" class="custom-control-input" id="customCheck11">
+				<label class="custom-control-label" for="customCheck11"> Morbi leo risus</label>
+			</div>
+		</li>
+		<li class="list-group-item pl-4">
+			<div class="custom-control custom-checkbox d-inline">
+				<input type="checkbox" class="custom-control-input" id="customCheck12">
+				<label class="custom-control-label" for="customCheck12"> Porta ac consectetur ac</label>
+			</div>
+		</li>
+		<li class="list-group-item pl-4">
+			<div class="custom-control custom-checkbox d-inline">
+				<input type="checkbox" class="custom-control-input" id="customCheck13">
+				<label class="custom-control-label" for="customCheck13"> Vestibulum at eros</label>
+			</div>
+		</li>
+	</ul>*@
+
+<script type="text/javascript">
+
+	$(".list-group .collapse-icon").click(function () {
+
+		$(this).siblings(".list-group").toggleClass("d-none").toggleClass("d-block");
+		$(this).find("i.fa").toggleClass("fa-plus").toggleClass("fa-minus");
+
+		if ($(this).siblings(".list-group").length && $(this).find("i.fa").hasClass("fa-plus")) {
+			$(this).parent().removeClass("pb-0");
+		} else {
+			$(this).parent().addClass("pb-0");
+		}
+	});
+
+	// check all
+	$(".list-group .custom-checkbox").click(function () {
+		var state = $(this).find(":checkbox").prop("checked");
+
+		// set the state of sub-checkboxes
+		$(this).siblings(".list-group").find(":checkbox").prop("checked", state);
+
+		// existing less than one sub-checkbox that is unchecked
+		if (!state) {
+			var $self = $(this);
+			var parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+
+			while (parentCheckBox.length) {
+				parentCheckBox.find(":checkbox").prop("checked", false);
+
+				$self = parentCheckBox;
+				parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+			}
+		}
+
+		// all sub-checkeboxes are checked
+		var isAllChecked = true;
+		$(this).parent().parent().find(":checkbox").each(function () {
+			if (!$(this).prop("checked")) {
+				isAllChecked = false;
+				return;
+			}
+		});
+		if (isAllChecked) {
+
+			var $self = $(this);
+			var parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+
+			while (parentCheckBox.length) {
+				parentCheckBox.find(":checkbox").prop("checked", true);
+
+				$self = parentCheckBox;
+				parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+			}
+		}
+	});
+</script>
+
