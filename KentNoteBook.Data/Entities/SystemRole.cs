@@ -21,7 +21,7 @@ namespace KentNoteBook.Data.Entities
 		public Status Status { get; set; }
 		
 		public List<UsersInRole> UsersInRoles { get; set; } = new List<UsersInRole>();
-		public List<MenusInRole> ModulesInRoles { get; set; } = new List<MenusInRole>();
+		public List<MenusInRole> MenusInRoles { get; set; } = new List<MenusInRole>();
 	}
 
 	public class UsersInRole

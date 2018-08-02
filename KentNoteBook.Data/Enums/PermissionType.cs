@@ -6,6 +6,7 @@ namespace KentNoteBook.Data.Enums
 {
 	public enum PermissionType
 	{
-		Menu = 1,
+		Menu = 0,
+		Data = 1,
 	}
 }

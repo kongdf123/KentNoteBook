@@ -84,7 +84,6 @@ namespace KentNoteBook.WebApp.Pages.UserManagement.Dialog
 		}
 
 		void BuildMenuTree(TreeViewNode node, List<TreeViewNode> sources, int level) {
-
 			if ( node.ParentId == null ) {
 				this.Menus.Add(new SelectListItem {
 					Text = node.Name,
@@ -94,18 +93,17 @@ namespace KentNoteBook.WebApp.Pages.UserManagement.Dialog
 			}
 
 			var children = sources.Where(x => x.ParentId != null && node.Id != null && x.ParentId.ToString() == node.Id.ToString()).ToList();
-
 			if ( children.Any() ) {
 				level++;
 
-				var prefix = "&nbsp;";
+				var prefix = "       ";
 				for ( int i = 0; i < level; i++ ) {
-					prefix += "&nbsp;";
+					prefix += "       ";
 				}
 
 				foreach ( var child in children ) {
 					this.Menus.Add(new SelectListItem {
-						Text = prefix + "├  " + child.Name,
+						Text = prefix + "└  " + child.Name,
 						Value = child.Id + "",
 						Disabled = child.Id.ToString() == this.Id.ToString() || (child.ParentId ?? "").ToString() == this.Id.ToString()
 					});

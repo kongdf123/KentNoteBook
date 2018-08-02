@@ -1,0 +1,40 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.UserManagement.DataPermissionsModel
+@{
+	ViewData["Title"] = "SystemPermissions";
+	Layout = null;
+}
+
+<form method="post">
+	<div class="form-group row">
+		<button type="button" class="btn btn-primary btn-sm ml-3 mr-1" data-toggle="modal" data-target="#modal_dialog_layout" data-modal-title="Add Permission" data-modal-url="/UserManagement/Dialog/PermissionEdit?PermissionType=@PermissionType.Data" data-modal-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
+		<button type='button' class='btn btn-danger btn-sm mr-1' data-toggle='modal' data-target='#modal_confirm_layout' data-url='/UserManagement/DataPermissions?handler=Remove' data-alert-panel='#alert_panel' data-update-panel='#tbDataPermissions'><i class='fa fa-fw fa-remove mr-1'></i>Remove All</button>
+	</div>
+
+	<div id="tbDataPermissions" class="mb-3"></div>
+
+	@Html.DataGrid(
+		name:"tbDataPermissions",
+		dataSourceUrl:"/UserManagement/DataPermissions?handler=DataPermissions",
+		columns : new List<GridColumn>
+		{
+			new GridColumn{ Selectable=true,Filterable=false,Template="<input class='k-checkbox' data-role='checkbox' name='idArray' id='Id_#=Id #' aria-label='Select row' aria-checked='false' type='checkbox' value='#=Id #'><label for='Id_#=Id #' class='k-checkbox-label k-no-text'>&#8203;</label>",Width=35,},
+			new GridColumn{ Field=nameof(SystemPermission.Name), DataType=GridColumnDataType.String,Width=140},
+			new GridColumn{ Field=nameof(SystemPermission.Code),DataType=GridColumnDataType.String,Width=160},
+			new GridColumn{ Field=nameof(SystemPermission.CreatedDate), DataType=GridColumnDataType.Date,Width=180,Format="{0:yyyy-MM-dd HH:mm:ss}"},
+			new GridColumn{
+				Title ="Actions",
+				Template ="<button type='button' class='btn btn-primary btn-sm ml-auto mr-1' data-toggle='modal' data-target='\\#modal_dialog_layout' data-modal-title='Edit Permission' data-modal-url='/UserManagement/Dialog/PermissionEdit/#=Id #' data-modal-size='lg'><i class='fa fa-fw fa-edit mr-1'></i>View/Edit</button>" +
+				"<button type='button' class='btn btn-danger btn-sm mr-1' data-toggle='modal' data-target='\\#modal_confirm_layout' data-url='/UserManagement/DataPermissions?handler=Remove&idArray=#=Id #' data-alert-panel='\\#alert_panel' data-update-panel='\\#tbDataPermissions'><i class='fa fa-fw fa-remove mr-1'></i>Remove</button>",
+				Width =200
+			},
+		},
+		criteria :new GridCriteria {
+			PostFilters=new List<GridColumnFilter> {
+				new GridColumnFilter{  Field=nameof(SystemPermission.PermissionType), Operator=FilterOperator.Eq, Value=PermissionType.Data.ToString()}
+			},
+			SortBy =nameof(SystemRole.CreatedDate),
+			SortDirection = SortDirection.Descending
+		})
+
+</form>

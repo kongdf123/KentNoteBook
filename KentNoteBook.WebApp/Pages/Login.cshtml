@@ -48,6 +48,7 @@
 		$("#btnLogin").data("ajaxCallback", function (data) {
 			if (data && data.Code) {
 				localStorage.setItem("access_token", data.Data.access_token);
+				localStorage.setItem("expires_at", data.Data.expires_at);
 
 				location.href = "/";
 			}

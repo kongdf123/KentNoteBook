@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -10,7 +9,6 @@ using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Authentication;
 using KentNoteBook.Infrastructure.Cache;
 using KentNoteBook.Infrastructure.Mvc;
-using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -103,12 +101,7 @@ namespace KentNoteBook.WebApp.Pages
 			var jwtTokenJson = new {
 				access_token = tokenHandler.WriteToken(token),
 				token_type = JwtBearerDefaults.AuthenticationScheme,
-				profile = new {
-					sid = user.Id,
-					name = user.Name,
-					auth_time = new DateTimeOffset(authTime).ToUnixTimeSeconds(),
-					expires_at = new DateTimeOffset(authTime.AddDays(7)).ToUnixTimeSeconds()
-				}
+				expires_at = new DateTimeOffset(authTime.AddDays(7)).ToUnixTimeSeconds()
 			};
 
 			return new CustomResult(1, jwtTokenJson);

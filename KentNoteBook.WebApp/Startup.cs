@@ -113,10 +113,10 @@ namespace KentNoteBook.WebApp
 					OnAuthenticationFailed = (context) => {
 						context.NoResult();
 
-						context.Response.StatusCode = 200;
+						context.Response.StatusCode = 401;
 						context.Response.ContentType = "application/json";
 
-						var result = JsonConvert.SerializeObject(new { Code = 0, Data = "UnAuthoritized!" });
+						var result = JsonConvert.SerializeObject(new { Code = 0, Data = "Unauthorized!" });
 
 						return context.Response.WriteAsync(result);
 					}

@@ -106,7 +106,6 @@ $.extend({
 	bindAjaxLink: function ($link) {
 
 		$link.click(function (e) {
-
 			e.preventDefault();
 
 			var url = $(this).data("url");
@@ -174,6 +173,12 @@ $.extend({
 
 		$wrapper.find("[ajax-panel]").each(function () {
 			var $container = $(this);
+
+			if (!$.isTokenValid()) {
+				$container.html("Unauthorized");
+				return;
+			}
+
 			var url = $(this).data("url");
 
 			$.renderPartial($container, url);
@@ -186,6 +191,11 @@ $.extend({
 			var $container = $(this);
 
 			$container.showLoading();
+
+			if (url != "/Login" && !$.isTokenValid()) {
+				$container.html("Unauthorized");
+				return;
+			}
 
 			$.ajax({
 				method: 'GET',
@@ -217,7 +227,6 @@ $.extend({
 				typeof (callback) === "function" && callback(data);
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
-				debugger;
 				$container.html(errorThrown);
 			});
 		});
@@ -229,16 +238,27 @@ $.extend({
 	isTokenValid: function () {
 		var isAuthenticated = false;
 
+		// check if the token string is access
+		var accessToken = localStorage.getItem("access_token");
+		if (!accessToken) {
+			localStorage.removeItem("access_token");
+			return false;
+		}
+
+		// check if the token date is expi
+		var expiresAtUnix = localStorage.getItem("expires_at");
+		var expiredDate = new Date(parseFloat(expiresAtUnix) * 1000);
+		var nowDate = new Date();
+		if (expiredDate < nowDate) {
+			localStorage.removeItem("access_token");
+			return false;
+		}
+
 		$.ajax({
 			method: 'POST',
 			url: "/Auth/CheckToken",
 			async: false,
 			beforeSend: $.ajaxBeforeSend,
-			statusCode: {
-				401: function () {
-					alert("page not found");
-				}
-			},
 		}).done(function (data, textStatus, jqXHR) {
 			if (data && data.Code) {
 				isAuthenticated = true;
@@ -246,6 +266,10 @@ $.extend({
 		}).fail(function (jqXHR, textStatus, errorThrown) {
 			debugger;
 		});
+
+		if (!isAuthenticated) {
+			localStorage.removeItem("access_token");
+		}
 
 		return isAuthenticated;
 	},

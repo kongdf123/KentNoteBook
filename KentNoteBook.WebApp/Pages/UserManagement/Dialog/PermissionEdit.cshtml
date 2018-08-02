@@ -1,0 +1,40 @@
+﻿@page "{id:Guid?}"
+@model KentNoteBook.WebApp.Pages.UserManagement.Dialog.PermissionEditModel
+@{
+	ViewData["Title"] = "PermissionEdit";
+
+	Layout = null;
+}
+
+<form id="form_permission" class="pl-3" method="post" ajax-form="true">
+	@Html.HiddenFor(x => x.Id)
+
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label-sm">Name </label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(x => x.Data.Name, new { @class = "form-control form-control-sm" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label-sm">Code </label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(x => x.Data.Code, new { @class = "form-control form-control-sm" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Parent</label>
+		<div class="col-sm-8">
+			@Html.DropDownListFor(x => x.Data.PermissionType, Model.PermissionTypeItems, new { @class = "custom-select", disabled = "disabled" })
+			@Html.HiddenFor(x => x.Data.PermissionType)
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">&nbsp;</label>
+		<div class="col-sm-8">
+			<button type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_permission_alert_panel" data-update-panel="#tbDataPermissions" asp-page-handler="Save">Save changes</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+	@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+	<div id="form_permission_alert_panel"></div>
+</form>

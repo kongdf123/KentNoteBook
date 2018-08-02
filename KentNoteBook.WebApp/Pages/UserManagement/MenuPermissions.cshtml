@@ -1,0 +1,21 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.UserManagement.MenuPermissionsModel
+@{
+	ViewData["Title"] = "MenuPermissions";
+
+	Layout = null;
+}
+
+<form method="post" id="form_menu_list">
+	<div id="alert_panel"></div>
+	<div class="form-group row">
+		<button type="button" class="btn btn-primary btn-sm ml-3 mr-1" data-toggle="modal" data-target="#modal_dialog_layout" data-modal-title="Add Menu" data-modal-url="/UserManagement/Dialog/MenuEdit" data-modal-size="lg"><i class="fa fa-fw fa-plus mr-1"></i>Add</button>
+		<button type='button' class='btn btn-danger btn-sm mr-1' data-toggle='modal' data-target='#modal_confirm_layout' data-url='/UserManagement/Menus?handler=Remove' data-alert-panel='#alert_panel' data-update-panel='#form_menu_list'><i class='fa fa-fw fa-remove mr-1'></i>Remove All</button>
+	</div>
+
+	<div class="card" id="menuContainer" ajax-panel="true" data-url="UserManagement/Partials/MenuTreePartial"></div>
+</form>
+
+<script>
+	$.renderPartial($("#menuContainer"), "UserManagement/Partials/MenuTreePartial");
+</script>

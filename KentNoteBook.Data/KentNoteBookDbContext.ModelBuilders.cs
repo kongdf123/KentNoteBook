@@ -21,7 +21,7 @@ namespace KentNoteBook.Data
 			});
 
 			modelBuilder.Entity<SystemRole>(map => {
-				map.HasMany(x => x.ModulesInRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
+				map.HasMany(x => x.MenusInRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
 				map.HasMany(x => x.UsersInRoles).WithOne(x => x.Role).HasForeignKey(x => x.RoleId);
 			});
 			modelBuilder.Entity<MenusInRole>(map => {

@@ -12,6 +12,9 @@ namespace KentNoteBook.Data.Entities
 		[MaxLength(50), Required]
 		public string Name { get; set; }
 
+		[MaxLength(20), Required]
+		public string Code { get; set; }
+
 		public PermissionType PermissionType { get; set; }
 
 		public List<OperationsInPermission> OperationsInPermissions { get; set; }
