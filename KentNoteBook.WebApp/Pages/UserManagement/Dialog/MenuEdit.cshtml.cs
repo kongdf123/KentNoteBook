@@ -68,8 +68,11 @@ namespace KentNoteBook.WebApp.Pages.UserManagement.Dialog
 				.ToListAsync();
 
 			var rootMenus = sources.Where(x => x.ParentId == null).ToArray();
+			var level = 0;
+
 			foreach ( var item in rootMenus ) {
-				BuildMenuTree(item, sources);
+				BuildMenuTree(item, sources, level);
+				level = 0;
 			}
 
 			this.Menus.Insert(0, new SelectListItem {
@@ -80,27 +83,34 @@ namespace KentNoteBook.WebApp.Pages.UserManagement.Dialog
 			return Page();
 		}
 
-		void BuildMenuTree(TreeViewNode node, List<TreeViewNode> sources) {
+		void BuildMenuTree(TreeViewNode node, List<TreeViewNode> sources, int level) {
 
 			if ( node.ParentId == null ) {
 				this.Menus.Add(new SelectListItem {
 					Text = node.Name,
 					Value = node.Id + "",
-					Disabled = node.Id.ToString() == this.Id.ToString()
+					Disabled = node.Id.ToString() == this.Id.ToString() || (node.ParentId ?? "").ToString() == this.Id.ToString()
 				});
 			}
 
 			var children = sources.Where(x => x.ParentId != null && node.Id != null && x.ParentId.ToString() == node.Id.ToString()).ToList();
 
 			if ( children.Any() ) {
+				level++;
+
+				var prefix = "&nbsp;";
+				for ( int i = 0; i < level; i++ ) {
+					prefix += "&nbsp;";
+				}
+
 				foreach ( var child in children ) {
 					this.Menus.Add(new SelectListItem {
-						Text = ("  ├  " + child.Name),
+						Text = prefix + "├  " + child.Name,
 						Value = child.Id + "",
-						Disabled = child.Id.ToString() == this.Id.ToString()
+						Disabled = child.Id.ToString() == this.Id.ToString() || (child.ParentId ?? "").ToString() == this.Id.ToString()
 					});
 
-					BuildMenuTree(child, sources);
+					BuildMenuTree(child, sources, level);
 				}
 			}
 		}

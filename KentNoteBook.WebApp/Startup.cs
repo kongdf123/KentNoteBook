@@ -111,12 +111,12 @@ namespace KentNoteBook.WebApp
 				x.IncludeErrorDetails = true;
 				x.Events = new JwtBearerEvents {
 					OnAuthenticationFailed = (context) => {
-						//context.NoResult();
+						context.NoResult();
 
-						context.Response.StatusCode = 401;
+						context.Response.StatusCode = 200;
 						context.Response.ContentType = "application/json";
 
-						var result = JsonConvert.SerializeObject(new { Code = 0, Data = context.Exception.ToString() });
+						var result = JsonConvert.SerializeObject(new { Code = 0, Data = "UnAuthoritized!" });
 
 						return context.Response.WriteAsync(result);
 					}

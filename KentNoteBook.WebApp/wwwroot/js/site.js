@@ -191,6 +191,11 @@ $.extend({
 				method: 'GET',
 				url: url,
 				beforeSend: $.ajaxBeforeSend,
+				statusCode: {
+					401: function () {
+						alert("page not found");
+					}
+				}
 			}).done(function (data, textStatus, jqXHR) {
 				$container.html(data);
 
@@ -212,6 +217,7 @@ $.extend({
 				typeof (callback) === "function" && callback(data);
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
+				debugger;
 				$container.html(errorThrown);
 			});
 		});
@@ -228,10 +234,17 @@ $.extend({
 			url: "/Auth/CheckToken",
 			async: false,
 			beforeSend: $.ajaxBeforeSend,
+			statusCode: {
+				401: function () {
+					alert("page not found");
+				}
+			},
 		}).done(function (data, textStatus, jqXHR) {
 			if (data && data.Code) {
 				isAuthenticated = true;
 			}
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			debugger;
 		});
 
 		return isAuthenticated;
