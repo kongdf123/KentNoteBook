@@ -2,8 +2,6 @@
 @model KentNoteBook.WebApp.Pages.LoginModel
 @{
 	ViewData["Title"] = "Login";
-
-	Layout = null;
 }
 
 <div class="container justify-content-center">
@@ -38,7 +36,9 @@
 	</div>
 </div>
 
-<script type="text/javascript">
+@section Scripts{
+
+	<script type="text/javascript">
 
 	$("#pageBody").addClass("bg-dark");
 	$("#pageBody nav").hide();
@@ -50,9 +50,12 @@
 				localStorage.setItem("access_token", data.Data.access_token);
 				localStorage.setItem("expires_at", data.Data.expires_at);
 
-				$.renderPartial($("app-root"), "/AppRoot?_=@DateTime.Now.Millisecond");
+				//$.renderPartial($("app-root"), "/AppRoot?_=@DateTime.Now.Millisecond");
+				location.href = "/";
 			}
 		});
 	});
-</script>
+	</script>
+
+}
 

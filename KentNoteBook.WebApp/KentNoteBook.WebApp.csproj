@@ -17,7 +17,6 @@
     <None Include="Pages\Error.cshtml" />
     <None Include="Pages\Index.cshtml" />
     <None Include="Pages\_Layout.cshtml" />
-    <None Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Pages\_ViewImports.cshtml" />
     <None Include="Pages\_ViewStart.cshtml" />
     <None Include="wwwroot\js\site.js" />

@@ -187,7 +187,7 @@ $.extend({
 			$container.showLoading();
 
 			if (!$.isTokenValid()) {
-				if (url !== "/Login") {
+				if (url.indexOf("/Login") === -1) {
 					$container.html("Unauthorized");
 					return;
 				}
@@ -203,7 +203,16 @@ $.extend({
 					}
 				}
 			}).done(function (data, textStatus, jqXHR) {
+				//debugger;
+				//var $tokenHiddenAtPrevious = $container.find("[name='__RequestVerificationToken']");
+
 				$container.html(data);
+
+				//// To fix the verify token validation issue
+				//var $tokenHiddenAtCurrent = $container.find("[name='__RequestVerificationToken']");
+				//if ($tokenHiddenAtPrevious.length && $tokenHiddenAtCurrent.length) {
+				//	$tokenHiddenAtCurrent.val($tokenHiddenAtPrevious.val());
+				//}
 
 				// Execute the js script in the page
 				//$container.find("script").each(function () {
