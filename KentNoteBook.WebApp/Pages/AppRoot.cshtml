@@ -1,0 +1,22 @@
+﻿@page
+@model KentNoteBook.WebApp.Pages.AppRootModel
+@{
+	Layout = null;
+}
+
+<!-- header begin -->
+<nav id="topNav" class="navbar navbar-header border-bottom fixed-top" ajax-panel="true" data-url="Shared/Top"><p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p></nav>
+<!-- header end -->
+<!-- siderbar begin -->
+<nav id="sideNavBar" class="sidebar" ajax-panel="true" data-url="Shared/Left"><p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p></nav>
+<!-- siderbar end -->
+<!-- main content begin -->
+<section class="main-container" style="min-height: calc(100% - 57px);">
+	<p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p>
+</section>
+
+<script>
+	$.renderPartial($("#topNav"), "/Shared/Top?_=@DateTime.Now.Millisecond");
+	$.renderPartial($("#sideNavBar"), "/Shared/Left?_=@DateTime.Now.Millisecond");
+	$.renderPartial($(".main-container"), "/Dashboard?_=@DateTime.Now.Millisecond");
+</script>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KentNoteBook.Data;
+using KentNoteBook.Infrastructure.Utility;
 
 namespace KentNoteBook.Infrastructure
 {
@@ -10,11 +11,15 @@ namespace KentNoteBook.Infrastructure
 	{
 		public static void SeedData(this KentNoteBookDbContext db) {
 			if ( !db.Users.Any() ) {
+
+				var saltString = Crypto.GeneratePasswordSalt();
+
 				db.Users.Add(new Data.Entities.SystemUser {
 					Id = Guid.NewGuid(),
 					Name = "Admin",
 					NickName = "Admin",
-					Password = "123456",
+					PasswordSalt = saltString,
+					Password = Crypto.HashPassword(saltString, "123456"),
 					Email = "admin@admin.com",
 					Mobile = "13811111111",
 					IsActive = true,
@@ -22,11 +27,13 @@ namespace KentNoteBook.Infrastructure
 				});
 
 				for ( int i = 0; i < 30; i++ ) {
+					saltString = Crypto.GeneratePasswordSalt();
 					db.Users.Add(new Data.Entities.SystemUser {
 						Id = Guid.NewGuid(),
 						Name = "User" + i,
 						NickName = "User " + i,
-						Password = "123456",
+						PasswordSalt = saltString,
+						Password = Crypto.HashPassword(saltString, "123456"),
 						Email = "User@User.com",
 						Mobile = "13811111111",
 						IsActive = true,

@@ -4,24 +4,16 @@
 	ViewData["Title"] = "Home page";
 }
 
-<!-- header begin -->
-<nav class="navbar navbar-header border-bottom fixed-top" ajax-panel="true" data-url="Shared/Top"><p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p></nav>
-<!-- header end -->
-<!-- siderbar begin -->
-<nav class="sidebar" ajax-panel="true" data-url="Shared/Left"><p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p></nav>
-<!-- siderbar end -->
-<!-- main content begin -->
-<section class="main-container" style="min-height: calc(100% - 57px);">
-	<p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p>
-</section>
+<p><span class='pl-3'><i class='fa fa-fw fa-spinner fa-spin mr-1'></i>Processing...</span></p>
 
 @section Scripts{
 
 	<script type="text/javascript">
 		if ($.isTokenValid()) {
-			$.renderPartial($(".main-container"), "/Dashboard");
+			$("#pageBody").removeClass("bg-dark");
+			$.renderPartial($("app-root"), "/AppRoot?_=@DateTime.Now.Millisecond");
 		} else {
-			$.renderPartial($("app-root"), "/Login");
+			$.renderPartial($("app-root"), "/Login?_=@DateTime.Now.Millisecond");
 		}
 
 	</script>

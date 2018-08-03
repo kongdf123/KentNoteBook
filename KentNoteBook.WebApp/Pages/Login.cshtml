@@ -12,7 +12,7 @@
 			Login
 		</div>
 		<div class="card-body pb-1">
-			<form id="form_login" method="post" ajax-form="true">
+			<form id="form_login" method="post" ajax-form="true" asp-page-handler="Submit">
 				<div class="form-group row">
 					<label class="col-sm-12 col-form-label" for="UserName">User Name </label>
 					<div class="col-sm-12">
@@ -50,7 +50,7 @@
 				localStorage.setItem("access_token", data.Data.access_token);
 				localStorage.setItem("expires_at", data.Data.expires_at);
 
-				location.href = "/";
+				$.renderPartial($("app-root"), "/AppRoot?_=@DateTime.Now.Millisecond");
 			}
 		});
 	});

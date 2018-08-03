@@ -51,5 +51,8 @@
 	// remove the access token while logout
 	$("#btnLogoutOnLeft").data("ajaxCallback", function (d) {
 		localStorage.removeItem("access_token");
+		localStorage.removeItem("expires_at");
+
+		location.href = "/";
 	});
 </script>

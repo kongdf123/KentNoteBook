@@ -139,7 +139,7 @@ namespace KentNoteBook.WebApp
 
 			app.UseStatusCodePages(async context => {
 				var response = context.HttpContext.Response;
-
+				
 				if ( response.StatusCode == (int)HttpStatusCode.Unauthorized ||
 				response.StatusCode == (int)HttpStatusCode.Forbidden ) {
 

@@ -173,12 +173,6 @@ $.extend({
 
 		$wrapper.find("[ajax-panel]").each(function () {
 			var $container = $(this);
-
-			if (!$.isTokenValid()) {
-				$container.html("Unauthorized");
-				return;
-			}
-
 			var url = $(this).data("url");
 
 			$.renderPartial($container, url);
@@ -192,9 +186,11 @@ $.extend({
 
 			$container.showLoading();
 
-			if (url != "/Login" && !$.isTokenValid()) {
-				$container.html("Unauthorized");
-				return;
+			if (!$.isTokenValid()) {
+				if (url !== "/Login") {
+					$container.html("Unauthorized");
+					return;
+				}
 			}
 
 			$.ajax({
@@ -233,7 +229,9 @@ $.extend({
 	},
 	ajaxBeforeSend: function (jqXHR, settings) {
 		var accessToken = localStorage.getItem("access_token");
-		jqXHR.setRequestHeader("Authorization", "Bearer " + accessToken);
+		if (accessToken) {
+			jqXHR.setRequestHeader("Authorization", "Bearer " + accessToken);
+		}
 	},
 	isTokenValid: function () {
 		var isAuthenticated = false;
@@ -242,6 +240,7 @@ $.extend({
 		var accessToken = localStorage.getItem("access_token");
 		if (!accessToken) {
 			localStorage.removeItem("access_token");
+			localStorage.removeItem("expires_at");
 			return false;
 		}
 
@@ -251,6 +250,7 @@ $.extend({
 		var nowDate = new Date();
 		if (expiredDate < nowDate) {
 			localStorage.removeItem("access_token");
+			localStorage.removeItem("expires_at");
 			return false;
 		}
 
@@ -269,6 +269,7 @@ $.extend({
 
 		if (!isAuthenticated) {
 			localStorage.removeItem("access_token");
+			localStorage.removeItem("expires_at");
 		}
 
 		return isAuthenticated;

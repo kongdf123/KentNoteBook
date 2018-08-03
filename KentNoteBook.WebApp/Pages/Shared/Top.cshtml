@@ -14,12 +14,13 @@
 		<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Profile </a>
 		@*<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-envelope"></i> Inbox </a>
 			<a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings </a>*@
-		<a id="btnLogoutOnTop" class="dropdown-item" ajax-link="true" href="#" data-url="/login" data-update-panel="app-root"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
+		<a id="btnLogoutOnTop" class="dropdown-item" ajax-link="true" href="#" data-url="/login?_=@DateTime.Now.Millisecond" data-update-panel="app-root"><i class="fa fa-fw fa-power-off"></i> Log Out </a>
 	</div>
 </div>
 <script type="text/javascript">
 	// remove the access token while logout
-	$("#btnLogoutOnTop").data("ajaxCallback",function (d) {
+	$("#btnLogoutOnTop").data("ajaxCallback", function (d) {
 		localStorage.removeItem("access_token");
+		localStorage.removeItem("expires_at");
 	});
 </script>

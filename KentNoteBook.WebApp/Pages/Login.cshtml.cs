@@ -9,6 +9,7 @@ using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Authentication;
 using KentNoteBook.Infrastructure.Cache;
 using KentNoteBook.Infrastructure.Mvc;
+using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -67,12 +68,15 @@ namespace KentNoteBook.WebApp.Pages
 			var user = await _db.Users
 				.AsNoTracking()
 				.Where(x => x.Name == Data.UserName)
-				.Where(x => x.Password == Data.Password)
 				.Where(x => x.IsActive)
 				.Where(x => x.Status == Status.Enabled)
 				.SingleOrDefaultAsync();
 			if ( user == null ) {
 				return new CustomResult(0, "No such user.");
+			}
+
+			if ( user.Password!= Crypto.HashPassword(user.PasswordSalt, Data.Password) ) {
+				return new CustomResult(0, "The password is invalid.");
 			}
 
 			var tokenHandler = new JwtSecurityTokenHandler();
