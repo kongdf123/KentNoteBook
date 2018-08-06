@@ -1,5 +1,120 @@
 ﻿@page
 @model KentNoteBook.WebApp.Pages.Home.ProfileModel
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@{
+	ViewData["Title"] = "UserEdit";
+
+	Layout = null;
+}
+
+<form id="form_user" class="pl-3" method="post" ajax-form="true">
+	@Html.HiddenFor(x => x.Id)
+
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label-sm">User Name </label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(x => x.Data.Name, new { @class = "form-control form-control-sm" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label-sm" for="NickName">Nick Name</label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(x => x.Data.NickName, new { @class = "form-control form-control-sm" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label-sm" for="Avatar">Avatar</label>
+		<div class="col-sm-8">
+			<input id="attachmentfile" name="attachmentfile" type="file" class="file" />
+			@Html.HiddenFor(x => x.Data.Avatar)
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Email</label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(x => x.Data.Email, new { @class = "form-control form-control-sm" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">Mobile</label>
+		<div class="col-sm-8">
+			@Html.TextBoxFor(x => x.Data.Mobile, new { @class = "form-control form-control-sm" })
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">IsActive</label>
+		<div class="col-sm-8 align-middle">
+			<div class="custom-control custom-checkbox my-1">
+				@Html.CheckBoxFor(x => x.Data.IsActive, new { @class = "custom-control-input" })
+				<label class="custom-control-label" for="Data_IsActive">Active</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">&nbsp;</label>
+		<div class="col-sm-8">
+			<button id="btnSaveProfile" type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_user_alert_panel" data-update-panel="#tbUsers" asp-page-handler="Save">Save changes</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+	@Html.ValidationSummary(false, null, new { @class = "alert alert-danger" })
+	<div id="form_user_alert_panel"></div>
+</form>
+
+<script type="text/javascript">
+	debugger;
+	$(function () {
+		$("#attachmentfile").fileinput({
+			uploadUrl: "/FileUpload/Upload",
+			enctype: 'multipart/form-data',
+
+			dropZoneEnabled: false,
+			autoReplace: true,
+			showUpload: true,
+			showCaption: true,
+			uploadAsync: false,
+			validateInitialCount: true,
+			allowedPreviewTypes: ['image'],
+
+			browseClass: "btn btn-primary",
+			browseIcon: "<i class='fa fa-folder-open'></i>&nbsp;",
+			removeIcon: "<i class='fa fa-trash'></i> &nbsp;",
+			uploadIcon: "<i class='fa fa-upload'></i>&nbsp;",
+			layoutTemplates: {
+				actionUpload: "",
+				actionZoom: "",
+				btnLink: '<a href="{href}" target="self" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</a>',
+				actionDelete: "<button type='button' class='kv-file-remove {removeClass}' title='{removeTitle}'{dataUrl}{dataKey}><i class='fa fa-trash'></i> </button>\n",
+			},
+			fileActionSettings: {
+				indicatorNew: '<i class="fa fa-plus text-warning"></i>',
+				indicatorSuccess: '<i class="fa fa-check-circle text-success"></i>',
+				indicatorError: '<i class="fa fa-exclamation-sign text-danger"></i>',
+				indicatorLoading: '<i class="fa fa-hourglass text-muted"></i>',
+			}
+		});
+
+		// When the upload process is done
+		$("#attachmentfile").on("fileuploaded", function (event, data, previewId, index) {
+			var resp = data.response;
+			if (resp && resp.Code) {
+				$("#Data_Avatar").val(resp.Data.FileRelativePath);
+
+				$("#form_user").submit();
+			}
+		});
+	});
+
+	$("#btnSaveProfile").click(function () {
+		$("#attachmentfile").fileinput("upload");
+		return false;
+	});
+
+	//$("#required-multiple-files")
+	//	.on("filebatchuploadsuccess", function (event, data, previewId, index) {
+	//		onFileBatchUploadSuccess(data, $("#tbRequiredAttachment"), $("#Data_RequiredAttachmentNames"), $("#Data_RequiredAttachmentPaths"));
+	//	})
+	//	.on("filebatchselected", function (event, files) {
+	//		onFilebatchselected($("#Data_RequiredAttachmentNames"), $("#Data_RequiredAttachmentPaths"));
+	//	});
+</script>
