@@ -136,6 +136,12 @@ $.extend({
 			var $alertPanel = $($submit.data("alertPanel"));
 			var $updatePanel = $($submit.data("updatePanel"));
 
+			var preCall = $submit.data("preCall");
+
+			if (typeof (preCall) === "function" && !preCall()) {
+				return false;
+			}
+
 			var callback = $submit.data("ajaxCallback");
 
 			$submit.attr("disabled", true);

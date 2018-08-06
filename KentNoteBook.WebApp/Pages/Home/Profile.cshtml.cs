@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using KentNoteBook.Data;
 using KentNoteBook.Infrastructure.Mvc;
-using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +18,6 @@ namespace KentNoteBook.WebApp.Pages.Home
 			this._db = db;
 		}
 
-		[BindProperty(SupportsGet = true)]
 		public Guid? Id { get; set; }
 
 		[FromForm, BindProperty]
@@ -28,7 +25,6 @@ namespace KentNoteBook.WebApp.Pages.Home
 
 		public class UserModel
 		{
-			[Required]
 			public string Name { get; set; }
 
 			[StringLength(30)]
@@ -53,30 +49,28 @@ namespace KentNoteBook.WebApp.Pages.Home
 
 		public async Task<IActionResult> OnGetAsync() {
 
-			if ( !this.Id.HasValue ) {
-				this.Data = new UserModel();
-				this.Id = Guid.NewGuid();
-			}
-			else {
-				this.Data = await _db.Users
-					.AsNoTracking()
-					.Where(x => x.Id == this.Id)
-					.Select(x => new UserModel {
-						Name = x.Name,
-						NickName = x.NickName,
-						Email = x.Email,
-						Mobile = x.Mobile,
-						Avatar = x.Avatar,
-						Discription = x.Discription,
-						IsActive = x.IsActive,
-						Status = x.Status
-					})
-					.SingleOrDefaultAsync();
+			this.Id = this.User.Claims
+				.Where(x => x.Type == "Id")
+				.Select(x => new Guid(x.Value))
+				.SingleOrDefault();
 
-				if ( this.Data == null ) {
-					return new BadRequestResult();
-				}
+			this.Data = await _db.Users
+				.AsNoTracking()
+				.Where(x => x.Id == this.Id)
+				.Select(x => new UserModel {
+					Name = x.Name,
+					NickName = x.NickName,
+					Email = x.Email,
+					Mobile = x.Mobile,
+					Avatar = x.Avatar,
+					Discription = x.Discription,
+					IsActive = x.IsActive,
+					Status = x.Status
+				})
+				.SingleOrDefaultAsync();
 
+			if ( this.Data == null ) {
+				return new BadRequestResult();
 			}
 
 			return Page();
@@ -88,35 +82,21 @@ namespace KentNoteBook.WebApp.Pages.Home
 				return ModelState.ToJsonResult();
 			}
 
+			this.Id = this.User.Claims
+				.Where(x => x.Type == "Id")
+				.Select(x => new Guid(x.Value))
+				.SingleOrDefault();
+
 			var entity = await _db.Users
 				.Where(x => x.Id == this.Id)
 				.SingleOrDefaultAsync();
 
-			if ( entity == null ) {
-
-				var saltString = Crypto.GeneratePasswordSalt();
-
-				entity = new Data.Entities.SystemUser {
-					Id = this.Id ?? Guid.NewGuid(),
-
-					PasswordSalt = saltString,
-					Password = Crypto.HashPassword(saltString, "123456"),
-
-					Status = Status.Enabled,
-
-					CreatedBy = this.User.Identity.Name,
-					CreatedDate = DateTime.Now,
-				};
-
-				_db.Users.Add(entity);
-			}
-
-			entity.Name = this.Data.Name;
+			//entity.Name = this.Data.Name;
 			entity.NickName = this.Data.NickName;
 			entity.Email = this.Data.Email;
 			entity.Mobile = this.Data.Mobile;
 			entity.Avatar = this.Data.Avatar;
-			entity.IsActive = this.Data.IsActive;
+			//entity.IsActive = this.Data.IsActive;
 
 			entity.UpdatedBy = this.User.Identity.Name;
 			entity.UpdatedDate = DateTime.Now;

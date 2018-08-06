@@ -12,7 +12,7 @@
 	<div class="form-group row">
 		<label class="col-sm-2 col-form-label-sm">User Name </label>
 		<div class="col-sm-8">
-			@Html.TextBoxFor(x => x.Data.Name, new { @class = "form-control form-control-sm" })
+			@Html.TextBoxFor(x => x.Data.Name, new { @class = "form-control form-control-sm", @readonly = "readonly" })
 		</div>
 	</div>
 	<div class="form-group row">
@@ -41,16 +41,6 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-2 col-form-label">IsActive</label>
-		<div class="col-sm-8 align-middle">
-			<div class="custom-control custom-checkbox my-1">
-				@Html.CheckBoxFor(x => x.Data.IsActive, new { @class = "custom-control-input" })
-				<label class="custom-control-label" for="Data_IsActive">Active</label>
-			</div>
-		</div>
-	</div>
-
-	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">&nbsp;</label>
 		<div class="col-sm-8">
 			<button id="btnSaveProfile" type="submit" class="btn btn-primary" ajax-button="true" data-alert-panel="#form_user_alert_panel" data-update-panel="#tbUsers" asp-page-handler="Save">Save changes</button>
@@ -62,7 +52,7 @@
 </form>
 
 <script type="text/javascript">
-	debugger;
+
 	$(function () {
 		$("#attachmentfile").fileinput({
 			uploadUrl: "/FileUpload/Upload",
@@ -72,8 +62,10 @@
 			autoReplace: true,
 			showUpload: true,
 			showCaption: true,
+			showPreview:true,
 			uploadAsync: false,
 			validateInitialCount: true,
+			maxFileCount: 1,
 			allowedPreviewTypes: ['image'],
 
 			browseClass: "btn btn-primary",
@@ -84,14 +76,18 @@
 				actionUpload: "",
 				actionZoom: "",
 				btnLink: '<a href="{href}" target="self" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</a>',
-				actionDelete: "<button type='button' class='kv-file-remove {removeClass}' title='{removeTitle}'{dataUrl}{dataKey}><i class='fa fa-trash'></i> </button>\n",
+				actionDelete: "",
 			},
 			fileActionSettings: {
 				indicatorNew: '<i class="fa fa-plus text-warning"></i>',
 				indicatorSuccess: '<i class="fa fa-check-circle text-success"></i>',
 				indicatorError: '<i class="fa fa-exclamation-sign text-danger"></i>',
 				indicatorLoading: '<i class="fa fa-hourglass text-muted"></i>',
-			}
+			},
+			initialPreview:['@Model.Data.Avatar'===''?"":"<img class='rounded img-thumbnail file-preview-image kv-preview-data' src='@Model.Data.Avatar'/>"],
+			ajaxSettings: {
+				headers: { 'Authorization': "Bearer " + localStorage.getItem("access_token") }
+			},
 		});
 
 		// When the upload process is done
@@ -99,8 +95,6 @@
 			var resp = data.response;
 			if (resp && resp.Code) {
 				$("#Data_Avatar").val(resp.Data.FileRelativePath);
-
-				$("#form_user").submit();
 			}
 		});
 	});
@@ -109,6 +103,40 @@
 		$("#attachmentfile").fileinput("upload");
 		return false;
 	});
+
+	$('#attachmentfile').on('filecleared', function (event) {
+		$("#Data_Avatar").val("");
+	})
+	.on("filebatchuploadsuccess", function (event, data, previewId, index) {
+		var resp = data.response;
+		if (resp && resp.Code) {
+			$("#Data_Avatar").val(resp.Data.FileRelativePath);
+		}
+	});
+
+	$("#btnSaveProfile").data("preCall", function () {
+		var $fileUploader = $("#attachmentfile");
+
+		var hasPendingFiles = false;
+		$fileUploader.each(function () {
+			if ($(this).fileinput('getFilesCount')) {
+				hasPendingFiles = true;
+				return;
+			}
+		});
+
+		if (!hasPendingFiles) {
+			return true;
+		}
+		$("#form_user_alert_panel").fail("Please upload the avatar image first!");
+		return false;
+	});
+
+	function checkIfExsitingPendingFiles() {
+
+
+		return false;
+	}
 
 	//$("#required-multiple-files")
 	//	.on("filebatchuploadsuccess", function (event, data, previewId, index) {

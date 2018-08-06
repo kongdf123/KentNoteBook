@@ -45,7 +45,7 @@ namespace KentNoteBook.Infrastructure.Mvc
 	{
 		public SuccessResult() : base(RequestResultCode.Success, "Success") {
 		}
-		public SuccessResult(int code, object data) : base((int)RequestResultCode.Success, "Success") {
+		public SuccessResult(int code, object data) : base((int)RequestResultCode.Success, data) {
 		}
 	}
 
@@ -53,7 +53,7 @@ namespace KentNoteBook.Infrastructure.Mvc
 	{
 		public FailResult() : base(RequestResultCode.Failure, "Failure") {
 		}
-		public FailResult(int code, object data) : base((int)RequestResultCode.Failure, "Failure") {
+		public FailResult(int code, object data) : base((int)RequestResultCode.Failure, data) {
 		}
 	}
 
