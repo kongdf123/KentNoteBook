@@ -4,48 +4,57 @@
 	ViewData["Title"] = "MenuTree";
 
 	Layout = null;
+
+	var actionsHtml = "";
+	if ( Model.ShowEditButton ) {
+		actionsHtml += "<a href='#' class='ml-1' data-toggle='modal' data-target='#modal_dialog_layout' data-modal-title='Edit' data-modal-url='{editUrl}/{node.Id}' data-modal-size='lg'><i class='fa fa-fw fa-edit'></i></a>\n\t";
+	}
+
+	//if ( Model ) {
+
+	//}
 }
 
-@Html.TreeView(Model.Data,"/UserManagement/Dialog/MenuEdit","/UserManagement/Menus")
+@*@Html.TreeView(Model.Data,"/UserManagement/Dialog/MenuEdit","/UserManagement/Menus")*@
 
-<script type="text/javascript">
+<script type='text/javascript'>
 
-	$(".list-group .collapse-icon").click(function () {
+	$('.list-group .collapse-icon').click(function () {
 
-		$(this).siblings(".list-group").toggleClass("d-none").toggleClass("d-block");
-		$(this).find("i.fa").toggleClass("fa-plus").toggleClass("fa-minus");
+		$(this).siblings('.list-group').toggleClass('d-none').toggleClass('d-block');
+		$(this).find('i.fa').toggleClass('fa-plus').toggleClass('fa-minus');
 
-		if ($(this).siblings(".list-group").length && $(this).find("i.fa").hasClass("fa-plus")) {
-			$(this).parent().removeClass("pb-0");
+		if ($(this).siblings('.list-group').length && $(this).find('i.fa').hasClass('fa-plus')) {
+			$(this).parent().removeClass('pb-0');
 		} else {
-			$(this).parent().addClass("pb-0");
+			$(this).parent().addClass('pb-0');
 		}
 	});
 
 	// check all
-	$(".list-group .custom-checkbox").click(function () {
-		var state = $(this).find(":checkbox").prop("checked");
+	$('.list-group .custom-checkbox').click(function () {
+		var state = $(this).find(':checkbox').prop('checked');
 
 		// set the state of sub-checkboxes
-		$(this).siblings(".list-group").find(":checkbox").prop("checked", state);
+		$(this).siblings('.list-group').find(':checkbox').prop('checked', state);
 
 		// existing less than one sub-checkbox that is unchecked
 		if (!state) {
 			var $self = $(this);
-			var parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+			var parentCheckBox = $self.parent().parent().siblings('.custom-checkbox');
 
 			while (parentCheckBox.length) {
-				parentCheckBox.find(":checkbox").prop("checked", false);
+				parentCheckBox.find(':checkbox').prop('checked', false);
 
 				$self = parentCheckBox;
-				parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+				parentCheckBox = $self.parent().parent().siblings('.custom-checkbox');
 			}
 		}
 
 		// all sub-checkeboxes are checked
 		var isAllChecked = true;
-		$(this).parent().parent().find(":checkbox").each(function () {
-			if (!$(this).prop("checked")) {
+		$(this).parent().parent().find(':checkbox').each(function () {
+			if (!$(this).prop('checked')) {
 				isAllChecked = false;
 				return;
 			}
@@ -53,13 +62,13 @@
 		if (isAllChecked) {
 
 			var $self = $(this);
-			var parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+			var parentCheckBox = $self.parent().parent().siblings('.custom-checkbox');
 
 			while (parentCheckBox.length) {
-				parentCheckBox.find(":checkbox").prop("checked", true);
+				parentCheckBox.find(':checkbox').prop('checked', true);
 
 				$self = parentCheckBox;
-				parentCheckBox = $self.parent().parent().siblings(".custom-checkbox");
+				parentCheckBox = $self.parent().parent().siblings('.custom-checkbox');
 			}
 		}
 	});
