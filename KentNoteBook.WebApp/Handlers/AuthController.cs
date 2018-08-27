@@ -17,7 +17,7 @@ namespace KentNoteBook.WebApp.Handlers
 		[HttpPost]
 		public IActionResult CheckToken() {
 			if ( !this.User.Identity.IsAuthenticated ) {
-				return new CustomResult(0, "Unauthorized");
+				return new CustomResult(RequestResultCode.Failure, "Unauthorized");
 			}
 			return new SuccessResult();
 		}
