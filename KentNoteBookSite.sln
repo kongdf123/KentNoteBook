@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Api", "KentNot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Infrastructure", "KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj", "{8E50889C-C64A-4C8D-B670-B37A4D650F38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBook.React", "KentNoteBook.React\KentNoteBook.React.csproj", "{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.React", "KentNoteBook.React\KentNoteBook.React.csproj", "{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBookSite.Vue", "KentNoteBookSite.Vue\KentNoteBookSite.Vue.csproj", "{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{8E50889C-C64A-4C8D-B670-B37A4D650F38} = {3149FDA8-F8EA-4269-AFFA-64E23435D57F}
 		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
+		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A044423D-9157-4E20-AD11-5DA16A5B3F24}
