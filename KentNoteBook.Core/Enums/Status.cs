@@ -1,4 +1,4 @@
-﻿namespace KentNoteBook.Data
+﻿namespace KentNoteBook.Core
 {
 	public enum Status
 	{

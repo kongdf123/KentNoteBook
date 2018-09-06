@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using KentNoteBook.Data.Base;
+using KentNoteBook.Core.Base;
 
-namespace KentNoteBook.Data.Entities
+namespace KentNoteBook.Core.Entities
 {
     public class SystemOperation : BaseEntity
 	{

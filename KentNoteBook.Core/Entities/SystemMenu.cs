@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using KentNoteBook.Data.Base;
+using KentNoteBook.Core.Base;
 
-namespace KentNoteBook.Data.Entities
+namespace KentNoteBook.Core.Entities
 {
 	public class SystemMenu : BaseEntity
 	{

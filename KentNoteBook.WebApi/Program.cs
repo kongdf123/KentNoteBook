@@ -1,4 +1,4 @@
-﻿using KentNoteBook.Data;
+﻿using KentNoteBook.Core;
 using KentNoteBook.Infrastructure;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;

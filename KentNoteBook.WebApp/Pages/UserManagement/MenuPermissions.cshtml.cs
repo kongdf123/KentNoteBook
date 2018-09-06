@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

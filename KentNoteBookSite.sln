@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Core", "KentNoteBook.Data\KentNoteBook.Core.csproj", "{98515875-314E-4824-A86E-FE29259F90AD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Core", "01-Core", "{17840A0F-AF22-48DC-A8E0-181F72EC74BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Infrastructure", "02-Infrastructure", "{3149FDA8-F8EA-4269-AFFA-64E23435D57F}"
@@ -19,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Api", "KentNot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Infrastructure", "KentNoteBook.Infrastructure\KentNoteBook.Infrastructure.csproj", "{8E50889C-C64A-4C8D-B670-B37A4D650F38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.React", "KentNoteBook.React\KentNoteBook.React.csproj", "{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBookSite.Vue", "KentNoteBookSite.Vue\KentNoteBookSite.Vue.csproj", "{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Core", "KentNoteBook.Core\KentNoteBook.Core.csproj", "{AEA4DD29-1BB3-4CD2-8559-0D25820455E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{98515875-314E-4824-A86E-FE29259F90AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98515875-314E-4824-A86E-FE29259F90AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98515875-314E-4824-A86E-FE29259F90AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98515875-314E-4824-A86E-FE29259F90AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5267F474-22B9-4F94-8337-974A2515863A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5267F474-22B9-4F94-8337-974A2515863A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5267F474-22B9-4F94-8337-974A2515863A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,26 +43,25 @@ Global
 		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E50889C-C64A-4C8D-B670-B37A4D650F38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA4DD29-1BB3-4CD2-8559-0D25820455E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA4DD29-1BB3-4CD2-8559-0D25820455E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA4DD29-1BB3-4CD2-8559-0D25820455E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA4DD29-1BB3-4CD2-8559-0D25820455E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{98515875-314E-4824-A86E-FE29259F90AD} = {17840A0F-AF22-48DC-A8E0-181F72EC74BC}
 		{5267F474-22B9-4F94-8337-974A2515863A} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{5C9457F1-C509-4E53-B5A3-D78F48443AA7} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{F99EC4BA-6DE7-4A30-B1BF-4BB88453E9AA} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{8E50889C-C64A-4C8D-B670-B37A4D650F38} = {3149FDA8-F8EA-4269-AFFA-64E23435D57F}
-		{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
 		{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD} = {C3B8477C-473D-4AD0-B80E-93AAE036EEC7}
+		{AEA4DD29-1BB3-4CD2-8559-0D25820455E8} = {17840A0F-AF22-48DC-A8E0-181F72EC74BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A044423D-9157-4E20-AD11-5DA16A5B3F24}

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace KentNoteBook.Data
+namespace KentNoteBook.Core
 {
 	public partial class KentNoteBookDbContext : DbContext
 	{

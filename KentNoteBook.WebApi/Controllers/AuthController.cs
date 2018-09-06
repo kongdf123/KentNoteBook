@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Service.Common;
 using KentNoteBook.Service.ViewModels;
 using Microsoft.AspNetCore.Authorization;

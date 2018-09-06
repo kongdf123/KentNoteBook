@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

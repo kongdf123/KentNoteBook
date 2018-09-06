@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KentNoteBook.Data.Enums
+namespace KentNoteBook.Core.Enums
 {
 	public enum PermissionType
 	{

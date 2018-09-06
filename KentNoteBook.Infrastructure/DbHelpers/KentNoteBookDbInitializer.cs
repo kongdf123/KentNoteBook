@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
+using KentNoteBook.Core.Entities;
 using KentNoteBook.Infrastructure.Utility;
 
 namespace KentNoteBook.Infrastructure
@@ -14,7 +15,7 @@ namespace KentNoteBook.Infrastructure
 
 				var saltString = Crypto.GeneratePasswordSalt();
 
-				db.Users.Add(new Data.Entities.SystemUser {
+				db.Users.Add(new SystemUser {
 					Id = Guid.NewGuid(),
 					Name = "Admin",
 					NickName = "Admin",
@@ -28,7 +29,7 @@ namespace KentNoteBook.Infrastructure
 
 				for ( int i = 0; i < 30; i++ ) {
 					saltString = Crypto.GeneratePasswordSalt();
-					db.Users.Add(new Data.Entities.SystemUser {
+					db.Users.Add(new SystemUser {
 						Id = Guid.NewGuid(),
 						Name = "User" + i,
 						NickName = "User " + i,

@@ -2,7 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
+using KentNoteBook.Core.Entities;
 using KentNoteBook.Infrastructure.Mvc;
 using KentNoteBook.Infrastructure.Utility;
 using Microsoft.AspNetCore.Mvc;
@@ -95,7 +96,7 @@ namespace KentNoteBook.WebApp.Pages.UserAccounts.Dialog
 
 				var saltString = Crypto.GeneratePasswordSalt();
 
-				entity = new Data.Entities.SystemUser {
+				entity = new SystemUser {
 					Id = this.Id ?? Guid.NewGuid(),
 
 					PasswordSalt = saltString,

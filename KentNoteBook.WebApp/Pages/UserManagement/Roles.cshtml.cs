@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Infrastructure.Html.Grid;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Mvc;

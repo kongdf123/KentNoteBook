@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using System.Text;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Infrastructure.Authentication;
 using KentNoteBook.Infrastructure.Mvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

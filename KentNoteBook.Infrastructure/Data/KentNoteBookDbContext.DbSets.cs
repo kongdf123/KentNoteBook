@@ -1,7 +1,7 @@
-﻿using KentNoteBook.Data.Entities;
+﻿using KentNoteBook.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace KentNoteBook.Data
+namespace KentNoteBook.Core
 {
 	partial class KentNoteBookDbContext : DbContext
 	{

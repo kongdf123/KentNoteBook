@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Infrastructure.Authentication;
 using KentNoteBook.Infrastructure.Cache;
 using KentNoteBook.Infrastructure.Mvc;

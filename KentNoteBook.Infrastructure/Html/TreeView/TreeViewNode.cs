@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using KentNoteBook.Data.Entities;
+using KentNoteBook.Core.Entities;
 
 namespace KentNoteBook.Infrastructure.Html.TreeView
 {

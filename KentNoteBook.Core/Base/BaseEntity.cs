@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace KentNoteBook.Data.Base
+namespace KentNoteBook.Core.Base
 {
 	public abstract class BaseEntity
 	{

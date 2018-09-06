@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using KentNoteBook.Data;
+using KentNoteBook.Core;
 using KentNoteBook.Service.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

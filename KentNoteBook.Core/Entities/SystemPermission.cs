@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using KentNoteBook.Data.Base;
-using KentNoteBook.Data.Enums;
+using KentNoteBook.Core.Base;
+using KentNoteBook.Core.Enums;
 
-namespace KentNoteBook.Data.Entities
+namespace KentNoteBook.Core.Entities
 {
 	public class SystemPermission : BaseEntity
 	{
