@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Data.csproj" />
+    <ProjectReference Include="..\KentNoteBook.Data\KentNoteBook.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

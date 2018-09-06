@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Data", "KentNoteBook.Data\KentNoteBook.Data.csproj", "{98515875-314E-4824-A86E-FE29259F90AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Core", "KentNoteBook.Data\KentNoteBook.Core.csproj", "{98515875-314E-4824-A86E-FE29259F90AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Core", "01-Core", "{17840A0F-AF22-48DC-A8E0-181F72EC74BC}"
 EndProject
@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBook.React", "KentNoteBook.React\KentNoteBook.React.csproj", "{B3B4CAC0-A861-4D99-80B0-B71EBC99AB2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KentNoteBookSite.Vue", "KentNoteBookSite.Vue\KentNoteBookSite.Vue.csproj", "{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KentNoteBookSite.Vue", "KentNoteBookSite.Vue\KentNoteBookSite.Vue.csproj", "{E99DDBE5-4EE6-489F-80C2-CFFC7E73E1DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
