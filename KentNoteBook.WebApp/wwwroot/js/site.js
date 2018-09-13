@@ -1,7 +1,7 @@
 ﻿
 $(function () {
 	$.ajaxSetup({
-		cache: false,
+		cache: false
 	});
 
 	$(document).on("click", "#btnToggleSidebar", function () {
@@ -9,7 +9,7 @@ $(function () {
 	});
 
 	$(document).scroll(function () {
-		$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut()
+		$(this).scrollTop() > 100 ? $(".scroll-to-top").fadeIn() : $(".scroll-to-top").fadeOut();
 	});
 	$('[data-toggle="tooltip"]').tooltip();
 
@@ -17,13 +17,13 @@ $(function () {
 
 		$("html, body").stop().animate({ scrollTop: $($(this).attr("href")).offset().top - 70 });
 
-		e.preventDefault()
+		e.preventDefault();
 	});
 
 	// launch the modal dialog
 	$('#modal_dialog_layout').on('show.bs.modal', function (event) {
 		var $modal = $(this);
-		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
+		var $modalCaller = $(event.relatedTarget); // Button that triggered the modal
 		var $modalBody = $modal.find(".modal-body");
 
 		var title = $modalCaller.data("modalTitle");
@@ -44,7 +44,7 @@ $(function () {
 	$('#modal_confirm_layout').on('show.bs.modal', function (event) {
 
 		var $modal = $(this);
-		var $modalCaller = $(event.relatedTarget) // Button that triggered the modal
+		var $modalCaller = $(event.relatedTarget); // Button that triggered the modal
 
 		var $form = $modalCaller.parents("form");
 		var $submit = $modal.find(".btn-danger");
@@ -60,7 +60,7 @@ $(function () {
 		$submit.data("ajaxCallback", function (d) {
 
 			var callback = $modalCaller.data("ajaxCallback");
-			typeof (callback) === "function" && callback(data);
+			typeof callback === "function" && callback(data);
 			$modal.modal("hide");
 		});
 
@@ -71,12 +71,13 @@ $(function () {
 	$.bindDatePicker($(document));
 	$.bindAjaxPanel($(document));
 
-	$("[ajax-form=true]").each(function () {
-		var $form = $(this);
-		var $submit = $form.find("[ajax-button=true]");
+	//$("[ajax-form=true]").each(function () {
+	//	var $form = $(this);
+	//	var $submit = $form.find("[ajax-button=true]");
 
-		$.bindAjaxForm($form, $submit);
-	});
+	//	debugger;
+	//	$.bindAjaxForm($form, $submit);
+	//});
 
 });
 
@@ -118,10 +119,11 @@ $.extend({
 
 	bindAjaxForm: function ($form, $submit) {
 
-		$submit.off("click");
+		$("body").off("click", $submit);
 		$submit.on("click", function (e) {
 			e.preventDefault();
 
+			// make form validations
 			var validationInfo = $form.data("unobtrusiveValidation");
 			if (validationInfo && validationInfo.validate && !validationInfo.validate()) {
 
@@ -138,7 +140,7 @@ $.extend({
 
 			var preCall = $submit.data("preCall");
 
-			if (typeof (preCall) === "function" && !preCall()) {
+			if (typeof preCall === "function" && !preCall()) {
 				return false;
 			}
 
@@ -150,7 +152,7 @@ $.extend({
 				method: 'POST',
 				url: $submit.data("url") || $submit.attr("formaction"),
 				data: $form.serialize(),
-				beforeSend: $.ajaxBeforeSend,
+				beforeSend: $.ajaxBeforeSend
 			}).done(function (data, textStatus, jqXHR) {
 				if (data && data.Code) {
 
@@ -162,7 +164,8 @@ $.extend({
 					$alertPanel.fail(data.Data);
 				}
 
-				typeof (callback) === "function" && callback(data);
+				debugger;
+				typeof(callback) === "function" && callback(data);
 
 				$submit.removeAttr("disabled");
 
@@ -232,10 +235,11 @@ $.extend({
 				// handle the validation and submit for the ajax form
 				var $form = $container.find("form[ajax-form='true']");
 				var $submit = $form.find("[ajax-button=true]");
+				debugger;
 				$.validator.unobtrusive.parse($form);
 				$.bindAjaxForm($form, $submit);
 
-				typeof (callback) === "function" && callback(data);
+				typeof callback === "function" && callback(data);
 
 			}).fail(function (jqXHR, textStatus, errorThrown) {
 				$container.html(errorThrown);
@@ -273,7 +277,7 @@ $.extend({
 			method: 'POST',
 			url: "/Auth/CheckToken",
 			async: false,
-			beforeSend: $.ajaxBeforeSend,
+			beforeSend: $.ajaxBeforeSend
 		}).done(function (data, textStatus, jqXHR) {
 			if (data && data.Code) {
 				isAuthenticated = true;
