@@ -3,7 +3,7 @@ import qa from './qa';
 import List from './list';
 import './app.css';
 
-class Accordion extends React.Component {
+class App extends React.Component {
 
 	state = {
 		currentIndex: -1
@@ -38,4 +38,4 @@ class Accordion extends React.Component {
 	}
 }
 
-export default Accordion;
+export default App;
