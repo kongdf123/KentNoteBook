@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.15" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
